@@ -14,10 +14,26 @@ namespace FlyerWPFPrototype
     {
         private readonly IEventAggregator _eventAggregator;
 
+        private object _ActiveViewModel;
+
+        public object ActiveViewModel
+        {
+            get
+            { return _ActiveViewModel; }
+            set
+            {
+                _ActiveViewModel = value;
+                NotifyOfPropertyChange(() => _ActiveViewModel);
+            }
+        }
+
         public MainWindowViewModel()
         {
             _eventAggregator = IoC.Get<IEventAggregator>();
             _eventAggregator.Subscribe(this);
+
+            _ActiveViewModel = new LoginControlViewModel();
         }
+        
     }
 }
