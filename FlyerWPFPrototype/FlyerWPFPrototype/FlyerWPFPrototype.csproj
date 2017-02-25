@@ -107,6 +107,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="DatabaseInterface.cs" />
+    <Compile Include="Model\FlyerDataModel.cs" />
     <Compile Include="ViewModel\FlyerSampleViewModel.cs" />
     <Compile Include="ViewModel\LoginControlViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
@@ -150,9 +152,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Database\FoodGiantSQLDatabase.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -161,6 +161,17 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>FoodGiantSQLDatabase.mdf</DependentUpon>
     </Content>
+    <Resource Include="Images\cocacola1.png" />
+    <Resource Include="Images\cocacola2.png" />
+    <Resource Include="Images\cocacola3.jpg" />
+    <Resource Include="Images\cost plus.PNG" />
+    <Resource Include="Images\PepsiCola1.jpg" />
+    <Resource Include="Images\PepsiCola2.png" />
+    <Resource Include="Images\PepsiCola3.jpg" />
+    <Resource Include="Images\picnsav.PNG" />
+    <Resource Include="Images\tombstone1.jpg" />
+    <Resource Include="Images\tombstone2.jpg" />
+    <Resource Include="Images\tombstone3.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

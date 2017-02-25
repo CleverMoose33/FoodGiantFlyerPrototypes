@@ -9,10 +9,12 @@ using System.Windows.Controls;
 
 namespace FlyerWPFPrototype
 {
+    //Temp class to handle user login.  There will be server side login in full version
+    //This is just for prototype to call on other classes
     [Export(typeof(LoginControlViewModel))]
-    class LoginControlViewModel : Conductor<object>
+    public class LoginControlViewModel : Conductor<object>
     {
-
+        #region Binding Items
         private ComboBoxItem _UserAccount;
 
         public ComboBoxItem UserAccount
@@ -25,6 +27,7 @@ namespace FlyerWPFPrototype
                 NotifyOfPropertyChange(() => UserAccount);
             }
         }
+        #endregion
 
         private readonly IEventAggregator _eventAggregator;
         public LoginControlViewModel()
@@ -33,28 +36,35 @@ namespace FlyerWPFPrototype
             _eventAggregator.Subscribe(this);
         }
 
+        /// <summary>
+        /// TODO - Design - This is temp method to populate different page based on user permissions.  This will be done in server side document
+        /// </summary>
         public void UpdateLoginScreen()
         {
             if (UserAccount != null && UserAccount.Content != null)
             {
-                string someName = UserAccount.Content.ToString();
+                string userName = UserAccount.Content.ToString();
 
-                if (someName.Equals("Store Manager"))
+                
+                if (userName.Equals("Store Manager"))
                 {
-                    //Load basic guy
+                    WindowManager wm = new WindowManager();
+                    FlyerSampleViewModel temp = new FlyerSampleViewModel(userName);
+                    wm.ShowWindow(temp);
                 }
-                else if (someName.Equals("District Manager"))
+                else if (userName.Equals("District Manager"))
                 {
-                    //Load basic guy
-                }
-                else if (someName.Equals("Big John"))
-                {
-                    //Load basic guy
+                    WindowManager wm = new WindowManager();
+                    FlyerSampleViewModel temp = new FlyerSampleViewModel(userName);
+                    wm.ShowWindow(temp);
                 }
             }
         }
 
-
+        /// <summary>
+        /// Event handler for user acccount changed.  Will also not be used in final version
+        /// </summary>
+        /// <param name="sender"></param>
         public void ComboBox_SelectionChanged(object sender)
         {
             ComboBox accountBox = sender as ComboBox;

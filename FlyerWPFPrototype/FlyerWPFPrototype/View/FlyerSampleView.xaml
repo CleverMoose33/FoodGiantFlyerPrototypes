@@ -1,32 +1,88 @@
-﻿<Window x:Class="FlyerWPFPrototype.View.FlyerSampleView"
+﻿<Window x:Class="FlyerWPFPrototype.FlyerSampleView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:FlyerWPFPrototype.View"
+             xmlns:local="clr-namespace:FlyerWPFPrototype"
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="800"
-             Title="Food Giant Flyer Super Ultra Early Prototype! (Don't look at it!)">
+             Title="Food Giant Flyer Super Ultra Early Prototype!">
     <Grid>
         <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="1*"/>
-        <ColumnDefinition Width="1*"/>
-        <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="300*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="100*"/>
         </Grid.RowDefinitions>
 
-        <Label Content="Number of images on page" />
-
-        <ComboBox Grid.Row="1" Grid.Column="1" cal:Message.Attach="ComboBox_SelectionChanged($source)" SelectedItem="{Binding NumImages}">
-            <ComboBoxItem Content="2" />
-            <ComboBoxItem Content="4" />
-            <ComboBoxItem Content="6" />
+        <!--Populates below items based on number of items select-->
+        <!--TODO: Design Doc - Need to clear all items over limit if this changes -->
+        <!--Other option is limit populated items based on this size-->
+        <Label Grid.Column="0" Grid.Row="0" Content="Number of images on page" />
+        <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
+                  ItemsSource="{Binding NumImagesCmboBox}"
+                  cal:Message.Attach="NumImagesCmboBox_SelectionChanged($source)" SelectedItem="{Binding NumImages}">
+            <!--x:Name="NumImagesCmboBox"-->
         </ComboBox>
 
+        <!--Current way to generate flyer needs to "hook up" to aspx page and send all active items over-->
+        <Label Grid.Column="0" Grid.Row="1"  Content="Generate Flyer" />
+        <Button Grid.Column="1" Grid.Row="1"  Content="Generate!" />
+        
+        <!--Current Grid Layout of each sale item, plan to hide/show items based on above selection-->
 
+        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" SharedSizeGroup="Items"/>
+                <RowDefinition Height="1*" SharedSizeGroup="Items"/>
+                <RowDefinition Height="1*" SharedSizeGroup="Items"/>
+                <RowDefinition Height="1*" SharedSizeGroup="Items"/>
+                <RowDefinition Height="1*" SharedSizeGroup="Items"/>
+                <RowDefinition Height="1*" SharedSizeGroup="Items"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Content="Item 1 Name and Price" Visibility="{Binding Item1Vis}"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" x:Name="item1CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item1Vis}" cal:Message.Attach="NumImagesCmboBox_SelectionChanged($source)"/>
+            <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Price1}" Visibility="{Binding Item1Vis}"/>
+            <Image Grid.Row="0" Grid.Column="3" Source="{Binding Image1Src}" Visibility="{Binding Item1Vis}"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Content="Item 2 Name and Price" Visibility="{Binding Item2Vis}"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="item2CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item2Vis}" cal:Message.Attach="NumImagesCmboBox_SelectionChanged($source)"/>
+            <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Price2}" Visibility="{Binding Item2Vis}"/>
+            <Image Grid.Row="1" Grid.Column="3" Source="{Binding Image2Src}" Visibility="{Binding Item2Vis}"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Content="Item 3 Name and Price" Visibility="{Binding Item3Vis}"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" x:Name="item3CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item3Vis}" cal:Message.Attach="NumImagesCmboBox_SelectionChanged($source)"/>
+            <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding Price3}" Visibility="{Binding Item3Vis}"/>
+            <Image Grid.Row="2" Grid.Column="3" Source="{Binding Image3Src}" Visibility="{Binding Item3Vis}"/>
+
+            <Label Grid.Row="3" Grid.Column="0" Content="Item 4 Name and Price" Visibility="{Binding Item4Vis}"/>
+            <ComboBox Grid.Row="3" Grid.Column="1" x:Name="item4CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item4Vis}" cal:Message.Attach="NumImagesCmboBox_SelectionChanged($source)"/>
+            <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding Price4}" Visibility="{Binding Item4Vis}"/>
+            <Image Grid.Row="3" Grid.Column="3" Source="{Binding Image4Src}" Visibility="{Binding Item4Vis}"/>
+
+            <Label Grid.Row="4" Grid.Column="0" Content="Item 5 Name and Price" Visibility="{Binding Item5Vis}"/>
+            <ComboBox Grid.Row="4" Grid.Column="1" x:Name="item5CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item5Vis}" cal:Message.Attach="NumImagesCmboBox_SelectionChanged($source)"/>
+            <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding Price5}" Visibility="{Binding Item5Vis}"/>
+            <Image Grid.Row="4" Grid.Column="3" Source="{Binding Image5Src}" Visibility="{Binding Item5Vis}"/>
+
+            <Label Grid.Row="5" Grid.Column="0" Content="Item 6 Name and Price" Visibility="{Binding Item6Vis}"/>
+            <ComboBox Grid.Row="5" Grid.Column="1" x:Name="item6CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item6Vis}" cal:Message.Attach="NumImagesCmboBox_SelectionChanged($source)"/>
+            <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding Price6}" Visibility="{Binding Item6Vis}"/>
+            <Image Grid.Row="5" Grid.Column="3" Source="{Binding Image6Src}" Visibility="{Binding Item6Vis}"/>
+
+        </Grid>
+        
     </Grid>
 </Window>

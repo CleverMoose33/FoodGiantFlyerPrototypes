@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FlyerWPFPrototype.View
+namespace FlyerWPFPrototype
 {
     /// <summary>
     /// Interaction logic for FlyerSampleView.xaml

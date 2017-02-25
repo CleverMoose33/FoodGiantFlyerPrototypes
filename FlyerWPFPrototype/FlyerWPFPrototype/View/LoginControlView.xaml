@@ -6,29 +6,25 @@
              xmlns:local="clr-namespace:FlyerWPFPrototype"
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="60" d:DesignWidth="500"
+             MinHeight="60" MinWidth="500">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="300*"/>
+            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <Menu Grid.Row="0" Grid.ColumnSpan="3">
-            <MenuItem Name="fileMenuItem" Header="File"/>
-        </Menu>
+
+        <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Login" HorizontalContentAlignment="Center" cal:Message.Attach="UpdateLoginScreen" />
         
         <Label Grid.Row="1" Grid.Column="0" Content="User Permissions"/>
 
         <ComboBox Grid.Row="1" Grid.Column="1" cal:Message.Attach="ComboBox_SelectionChanged($source)" SelectedItem="{Binding UserAccount}">
             <ComboBoxItem Content="Store Manager" />
-            <ComboBoxItem Content="District Manager" />
-            <ComboBoxItem Content="Big John" IsSelected="True" />
+            <ComboBoxItem Content="District Manager" IsSelected="True"/>
         </ComboBox>
-
-        <Button Content="Login" cal:Message.Attach="UpdateLoginScreen" />
     </Grid>
 </UserControl>
