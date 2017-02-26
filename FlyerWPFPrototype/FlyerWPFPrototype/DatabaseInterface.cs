@@ -36,8 +36,8 @@ namespace FlyerWPFPrototype
             BindableCollection<FlyerDataModel> flyerData = new BindableCollection<FlyerDataModel>();
 
             FlyerDataModel sampleItem1 = new FlyerDataModel("Coca-Cola 2 ltr", "Soda", "1.99", "CocaCola1.png", "CocaCola2.png", "CocaCola3.jpg");
-            FlyerDataModel sampleItem2 = new FlyerDataModel("Pepsi 2 ltr", "Soda", "1.99", "PepsiCola1.png", "PepsiCola2.png", "PepsiCola3.jpg");
-            FlyerDataModel sampleItem3 = new FlyerDataModel("Tombstone Pizza", "Pizza", "2.99", "tombstone1.png", "tombstone2.jpg", "tombstone3.jpg");
+            FlyerDataModel sampleItem2 = new FlyerDataModel("Pepsi 2 ltr", "Soda", "1.99", "PepsiCola1.jpg", "PepsiCola2.png", "PepsiCola3.jpg");
+            FlyerDataModel sampleItem3 = new FlyerDataModel("Tombstone Pizza", "Pizza", "2.99", "tombstone1.jpg", "tombstone2.jpg", "tombstone3.jpg");
 
             flyerData.Add(sampleItem1);
             flyerData.Add(sampleItem2);

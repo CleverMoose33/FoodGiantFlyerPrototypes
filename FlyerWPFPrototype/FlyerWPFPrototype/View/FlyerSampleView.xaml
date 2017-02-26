@@ -23,7 +23,7 @@
         <!--TODO: Design Doc - Need to clear all items over limit if this changes -->
         <!--Other option is limit populated items based on this size-->
         <Label Grid.Column="0" Grid.Row="0" Content="Number of images on page" />
-        <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
+        <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
                   ItemsSource="{Binding NumImagesCmboBox}"
                   cal:Message.Attach="NumImagesCmboBox_SelectionChanged($source)" SelectedItem="{Binding NumImages}">
             <!--x:Name="NumImagesCmboBox"-->
@@ -40,7 +40,7 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -53,36 +53,94 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Content="Item 1 Name and Price" Visibility="{Binding Item1Vis}"/>
-            <ComboBox Grid.Row="0" Grid.Column="1" x:Name="item1CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item1Vis}" cal:Message.Attach="NumImagesCmboBox_SelectionChanged($source)"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" Height="25" VerticalAlignment="Top" x:Name="item1CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item1Vis}" cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)"/>
             <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Price1}" Visibility="{Binding Item1Vis}"/>
-            <Image Grid.Row="0" Grid.Column="3" Source="{Binding Image1Src}" Visibility="{Binding Item1Vis}"/>
 
+            <Grid Grid.Row="0" Grid.Column="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+                    <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+                    <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="{Binding Image1Src1}" Visibility="{Binding Item1Vis}"/>
+                <Image Grid.Column="1" Source="{Binding Image1Src2}" Visibility="{Binding Item1Vis}"/>
+                <Image Grid.Column="2" Source="{Binding Image1Src3}" Visibility="{Binding Item1Vis}"/>
+            </Grid>
             <Label Grid.Row="1" Grid.Column="0" Content="Item 2 Name and Price" Visibility="{Binding Item2Vis}"/>
-            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="item2CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item2Vis}" cal:Message.Attach="NumImagesCmboBox_SelectionChanged($source)"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" Height="25" VerticalAlignment="Top" x:Name="item2CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item2Vis}" cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)"/>
             <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Price2}" Visibility="{Binding Item2Vis}"/>
-            <Image Grid.Row="1" Grid.Column="3" Source="{Binding Image2Src}" Visibility="{Binding Item2Vis}"/>
+
+            <Grid Grid.Row="1" Grid.Column="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+                    <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+                    <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="{Binding Image2Src1}" Visibility="{Binding Item2Vis}"/>
+                <Image Grid.Column="1" Source="{Binding Image2Src2}" Visibility="{Binding Item2Vis}"/>
+                <Image Grid.Column="2" Source="{Binding Image2Src3}" Visibility="{Binding Item2Vis}"/>
+            </Grid>
 
             <Label Grid.Row="2" Grid.Column="0" Content="Item 3 Name and Price" Visibility="{Binding Item3Vis}"/>
-            <ComboBox Grid.Row="2" Grid.Column="1" x:Name="item3CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item3Vis}" cal:Message.Attach="NumImagesCmboBox_SelectionChanged($source)"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" Height="25" VerticalAlignment="Top" x:Name="item3CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item3Vis}" cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)"/>
             <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding Price3}" Visibility="{Binding Item3Vis}"/>
-            <Image Grid.Row="2" Grid.Column="3" Source="{Binding Image3Src}" Visibility="{Binding Item3Vis}"/>
+
+            <Grid Grid.Row="2" Grid.Column="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+                    <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+                    <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="{Binding Image3Src1}" Visibility="{Binding Item3Vis}"/>
+                <Image Grid.Column="1" Source="{Binding Image3Src2}" Visibility="{Binding Item3Vis}"/>
+                <Image Grid.Column="2" Source="{Binding Image3Src3}" Visibility="{Binding Item3Vis}"/>
+            </Grid>
 
             <Label Grid.Row="3" Grid.Column="0" Content="Item 4 Name and Price" Visibility="{Binding Item4Vis}"/>
-            <ComboBox Grid.Row="3" Grid.Column="1" x:Name="item4CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item4Vis}" cal:Message.Attach="NumImagesCmboBox_SelectionChanged($source)"/>
+            <ComboBox Grid.Row="3" Grid.Column="1" Height="25" VerticalAlignment="Top" x:Name="item4CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item4Vis}" cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)"/>
             <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding Price4}" Visibility="{Binding Item4Vis}"/>
-            <Image Grid.Row="3" Grid.Column="3" Source="{Binding Image4Src}" Visibility="{Binding Item4Vis}"/>
+
+            <Grid Grid.Row="3" Grid.Column="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+                    <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+                    <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="{Binding Image4Src1}" Visibility="{Binding Item4Vis}"/>
+                <Image Grid.Column="1" Source="{Binding Image4Src2}" Visibility="{Binding Item4Vis}"/>
+                <Image Grid.Column="2" Source="{Binding Image4Src3}" Visibility="{Binding Item4Vis}"/>
+            </Grid>
 
             <Label Grid.Row="4" Grid.Column="0" Content="Item 5 Name and Price" Visibility="{Binding Item5Vis}"/>
-            <ComboBox Grid.Row="4" Grid.Column="1" x:Name="item5CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item5Vis}" cal:Message.Attach="NumImagesCmboBox_SelectionChanged($source)"/>
+            <ComboBox Grid.Row="4" Grid.Column="1" Height="25" VerticalAlignment="Top" x:Name="item5CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item5Vis}" cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)"/>
             <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding Price5}" Visibility="{Binding Item5Vis}"/>
-            <Image Grid.Row="4" Grid.Column="3" Source="{Binding Image5Src}" Visibility="{Binding Item5Vis}"/>
+
+            <Grid Grid.Row="4" Grid.Column="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+                    <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+                    <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="{Binding Image5Src1}" Visibility="{Binding Item5Vis}"/>
+                <Image Grid.Column="1" Source="{Binding Image5Src2}" Visibility="{Binding Item5Vis}"/>
+                <Image Grid.Column="2" Source="{Binding Image5Src3}" Visibility="{Binding Item5Vis}"/>
+            </Grid>
 
             <Label Grid.Row="5" Grid.Column="0" Content="Item 6 Name and Price" Visibility="{Binding Item6Vis}"/>
-            <ComboBox Grid.Row="5" Grid.Column="1" x:Name="item6CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item6Vis}" cal:Message.Attach="NumImagesCmboBox_SelectionChanged($source)"/>
+            <ComboBox Grid.Row="5" Grid.Column="1" Height="25" VerticalAlignment="Top" x:Name="item6CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item6Vis}" cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)"/>
             <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding Price6}" Visibility="{Binding Item6Vis}"/>
-            <Image Grid.Row="5" Grid.Column="3" Source="{Binding Image6Src}" Visibility="{Binding Item6Vis}"/>
+
+            <Grid Grid.Row="5" Grid.Column="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+                    <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+                    <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="{Binding Image6Src1}" Visibility="{Binding Item6Vis}"/>
+                <Image Grid.Column="1" Source="{Binding Image6Src2}" Visibility="{Binding Item6Vis}"/>
+                <Image Grid.Column="2" Source="{Binding Image6Src3}" Visibility="{Binding Item6Vis}"/>
+            </Grid>
 
         </Grid>
-        
     </Grid>
 </Window>

@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace FlyerWPFPrototype.Model
 {
+    /// <summary>
+    /// This class will hold the variables used to create each ad in the eventual flyer.aspx page
+    /// This allows us to store and generate as many ad items as the manager needs
+    /// </summary>
     public class FlyerDataModel
     {
         public string itemName;

@@ -27,7 +27,7 @@ namespace FlyerWPFPrototype
                 NotifyOfPropertyChange(() => NumImages);
             }
         }
-
+                
         private BindableCollection<ComboBoxItem> _NumImagesCmboBox;
 
         public BindableCollection<ComboBoxItem> NumImagesCmboBox
@@ -140,83 +140,251 @@ namespace FlyerWPFPrototype
         #endregion
 
         #region ImageSources
-        private string _Image1Src;
+        #region First Row ImageSrcs
+        private string _Image1Src1;
 
-        public string Image1Src
+        public string Image1Src1
         {
             get
-            { return _Image1Src; }
+            { return _Image1Src1; }
             set
             {
-                _Image1Src = value;
-                NotifyOfPropertyChange(() => Image1Src);
+                _Image1Src1 = value;
+                NotifyOfPropertyChange(() => Image1Src1);
             }
         }
 
-        private string _Image2Src;
+        private string _Image1Src2;
 
-        public string Image2Src
+        public string Image1Src2
         {
             get
-            { return _Image2Src; }
+            { return _Image1Src2; }
             set
             {
-                _Image2Src = value;
-                NotifyOfPropertyChange(() => Image2Src);
+                _Image1Src2 = value;
+                NotifyOfPropertyChange(() => Image1Src2);
             }
         }
 
-        private string _Image3Src;
+        private string _Image1Src3;
 
-        public string Image3Src
+        public string Image1Src3
         {
             get
-            { return _Image3Src; }
+            { return _Image1Src3; }
             set
             {
-                _Image3Src = value;
-                NotifyOfPropertyChange(() => Image3Src);
+                _Image1Src3 = value;
+                NotifyOfPropertyChange(() => Image1Src3);
+            }
+        }
+        #endregion
+
+        #region Second Row ImageSrcs
+        private string _Image2Src1;
+
+        public string Image2Src1
+        {
+            get
+            { return _Image2Src1; }
+            set
+            {
+                _Image2Src1 = value;
+                NotifyOfPropertyChange(() => Image2Src1);
             }
         }
 
-        private string _Image4Src;
+        private string _Image2Src2;
 
-        public string Image4Src
+        public string Image2Src2
         {
             get
-            { return _Image4Src; }
+            { return _Image2Src2; }
             set
             {
-                _Image4Src = value;
-                NotifyOfPropertyChange(() => Image4Src);
+                _Image2Src2 = value;
+                NotifyOfPropertyChange(() => Image2Src2);
             }
         }
 
-        private string _Image5Src;
+        private string _Image2Src3;
 
-        public string Image5Src
+        public string Image2Src3
         {
             get
-            { return _Image5Src; }
+            { return _Image2Src3; }
             set
             {
-                _Image5Src = value;
-                NotifyOfPropertyChange(() => Image5Src);
+                _Image2Src3 = value;
+                NotifyOfPropertyChange(() => Image2Src3);
+            }
+        }
+        #endregion
+
+        #region Third Row ImageSrcs
+        private string _Image3Src1;
+
+        public string Image3Src1
+        {
+            get
+            { return _Image3Src1; }
+            set
+            {
+                _Image3Src1 = value;
+                NotifyOfPropertyChange(() => Image3Src1);
             }
         }
 
-        private string _Image6Src;
+        private string _Image3Src2;
 
-        public string Image6Src
+        public string Image3Src2
         {
             get
-            { return _Image6Src; }
+            { return _Image3Src2; }
             set
             {
-                _Image6Src = value;
-                NotifyOfPropertyChange(() => Image6Src);
+                _Image3Src2 = value;
+                NotifyOfPropertyChange(() => Image3Src2);
             }
         }
+
+        private string _Image3Src3;
+
+        public string Image3Src3
+        {
+            get
+            { return _Image3Src3; }
+            set
+            {
+                _Image3Src3 = value;
+                NotifyOfPropertyChange(() => Image3Src3);
+            }
+        }
+        #endregion
+
+        #region Fourth Row ImageSrcs
+        private string _Image4Src1;
+
+        public string Image4Src1
+        {
+            get
+            { return _Image4Src1; }
+            set
+            {
+                _Image4Src1 = value;
+                NotifyOfPropertyChange(() => Image4Src1);
+            }
+        }
+
+        private string _Image4Src2;
+
+        public string Image4Src2
+        {
+            get
+            { return _Image4Src2; }
+            set
+            {
+                _Image4Src2 = value;
+                NotifyOfPropertyChange(() => Image4Src2);
+            }
+        }
+
+        private string _Image4Src3;
+
+        public string Image4Src3
+        {
+            get
+            { return _Image4Src3; }
+            set
+            {
+                _Image4Src3 = value;
+                NotifyOfPropertyChange(() => Image4Src3);
+            }
+        }
+        #endregion
+
+        #region Fifth Row ImageSrcs
+        private string _Image5Src1;
+
+        public string Image5Src1
+        {
+            get
+            { return _Image5Src1; }
+            set
+            {
+                _Image5Src1 = value;
+                NotifyOfPropertyChange(() => Image5Src1);
+            }
+        }
+
+        private string _Image5Src2;
+
+        public string Image5Src2
+        {
+            get
+            { return _Image5Src2; }
+            set
+            {
+                _Image5Src2 = value;
+                NotifyOfPropertyChange(() => Image5Src2);
+            }
+        }
+
+        private string _Image5Src3;
+
+        public string Image5Src3
+        {
+            get
+            { return _Image5Src3; }
+            set
+            {
+                _Image5Src3 = value;
+                NotifyOfPropertyChange(() => Image5Src3);
+            }
+        }
+        #endregion
+
+        #region Sixth Row ImageSrcs
+        private string _Image6Src1;
+
+        public string Image6Src1
+        {
+            get
+            { return _Image6Src1; }
+            set
+            {
+                _Image6Src1 = value;
+                NotifyOfPropertyChange(() => Image6Src1);
+            }
+        }
+
+        private string _Image6Src2;
+
+        public string Image6Src2
+        {
+            get
+            { return _Image6Src2; }
+            set
+            {
+                _Image6Src2 = value;
+                NotifyOfPropertyChange(() => Image6Src2);
+            }
+        }
+
+        private string _Image6Src3;
+
+        public string Image6Src3
+        {
+            get
+            { return _Image6Src3; }
+            set
+            {
+                _Image6Src3 = value;
+                NotifyOfPropertyChange(() => Image6Src3);
+            }
+        }
+        #endregion
         #endregion
 
         #region Visibility
@@ -308,6 +476,7 @@ namespace FlyerWPFPrototype
             _eventAggregator.Subscribe(this);
 
             PopulateNumImages();
+            PopulateItemList();
         }
 
         public FlyerSampleViewModel(string userName)
@@ -318,15 +487,19 @@ namespace FlyerWPFPrototype
 
             PopulateNumImages();
             PopulateItemList();
-
         }
 
+        /// <summary>
+        /// Method called when VM is instantiated, currently does not do anything
+        /// </summary>
         protected override void OnActivate()
         {
             base.OnActivate();
         }
 
-        //Checking TODO
+        /// <summary>
+        /// Populated ComboBox Items for Binding element NumImagesCmboBox
+        /// </summary>
         private void PopulateNumImages()
         {
             ComboBoxItem item1 = new ComboBoxItem();
@@ -353,15 +526,26 @@ namespace FlyerWPFPrototype
             NumImagesCmboBox.Add(item4);
             NumImagesCmboBox.Add(item5);
             NumImagesCmboBox.Add(item6);
+
+            NumImagesCmboBox[0].IsSelected = true;
+
         }
 
+        /// <summary>
+        /// TEMP method that populates ItemList with items, will eventually be database query to sql database
+        /// TODO - Method does not set item name, instead states flyerdatamodel as item type, need to set item.name as itemName
+        /// </summary>
         private void PopulateItemList()
         {
             DatabaseInterface dbInt = new DatabaseInterface();
-
             ItemList = dbInt.PopulateItemList();
         }
 
+        /// <summary>
+        /// Event for selection changed event
+        /// Updates visible item elements
+        /// </summary>
+        /// <param name="sender"></param>
         public void NumImagesCmboBox_SelectionChanged(object sender)
         {
             ComboBox accountBox = sender as ComboBox;
@@ -377,60 +561,83 @@ namespace FlyerWPFPrototype
             }
         }
 
-        //First attempt at populating item based on user selection
+        /// <summary>
+        /// Event for user selecting an item
+        /// Should read in FlyerDataModel to populate fields for item
+        /// </summary>
+        /// <param name="sender"></param>
         public void ItemListCmboBox_SelectionChanged(object sender)
         {
             ComboBox itemCmboBox = sender as ComboBox;
             if (itemCmboBox != null)
             {
-                ComboBoxItem selectedItemCmboItem = itemCmboBox.SelectedItem as ComboBoxItem;
-
-                if (selectedItemCmboItem != null)
+                FlyerDataModel selectedItem = itemCmboBox.SelectedItem as FlyerDataModel;
+                if (selectedItem != null)
                 {
-                    FlyerDataModel selectedItem = selectedItemCmboItem.Content as FlyerDataModel;
-                    //Maybe store in database once we complete design of image location?
-                    string tempImageLocation = Environment.CurrentDirectory + @"Images\";
-                    string itemNum = selectedItemCmboItem.Name;                    
+                    //Maybe store in database once we complete design of image location?      
+                    string tempImageLocation = Environment.CurrentDirectory + @"\Images\";
+                    string itemNum = itemCmboBox.Name;
 
-                    if (string.IsNullOrEmpty(itemNum) && itemNum.Equals("item1CmboBox"))
+                    //Current logic for populating elements, checking if string is not null, then finding which combobox it is
+                    if (!string.IsNullOrEmpty(itemNum))
                     {
-                        Price1 = selectedItem.itemPrice;
-                        Image1Src = tempImageLocation + selectedItem.imageName1;
-                    }
+                        if (itemNum.Equals("item1CmboBox"))
+                        {
+                            Price1 = selectedItem.itemPrice;
+                            Image1Src1 = tempImageLocation + selectedItem.imageName1;
+                            Image1Src2 = tempImageLocation + selectedItem.imageName2;
+                            Image1Src3 = tempImageLocation + selectedItem.imageName3;
+                        }
 
-                    if (string.IsNullOrEmpty(itemNum) && itemNum.Equals("item2CmboBox"))
-                    {
-                        Price2 = selectedItem.itemPrice;
-                        Image2Src = tempImageLocation + selectedItem.imageName1;
-                    }
+                        if (itemNum.Equals("item2CmboBox"))
+                        {
+                            Price2 = selectedItem.itemPrice;
+                            Image2Src1 = tempImageLocation + selectedItem.imageName1;
+                            Image2Src2 = tempImageLocation + selectedItem.imageName2;
+                            Image2Src3 = tempImageLocation + selectedItem.imageName3;
+                        }
 
-                    if (string.IsNullOrEmpty(itemNum) && itemNum.Equals("item3CmboBox"))
-                    {
-                        Price3 = selectedItem.itemPrice;
-                        Image3Src = tempImageLocation + selectedItem.imageName1;
-                    }
+                        if (itemNum.Equals("item3CmboBox"))
+                        {
+                            Price3 = selectedItem.itemPrice;
+                            Image3Src1 = tempImageLocation + selectedItem.imageName1;
+                            Image3Src2 = tempImageLocation + selectedItem.imageName2;
+                            Image3Src3 = tempImageLocation + selectedItem.imageName3;
+                        }
 
-                    if (string.IsNullOrEmpty(itemNum) && itemNum.Equals("item4CmboBox"))
-                    {
-                        Price4 = selectedItem.itemPrice;
-                        Image4Src = tempImageLocation + selectedItem.imageName1;
-                    }
+                        if (itemNum.Equals("item4CmboBox"))
+                        {
+                            Price4 = selectedItem.itemPrice;
+                            Image4Src1 = tempImageLocation + selectedItem.imageName1;
+                            Image4Src2 = tempImageLocation + selectedItem.imageName2;
+                            Image4Src3 = tempImageLocation + selectedItem.imageName3;
+                        }
 
-                    if (string.IsNullOrEmpty(itemNum) && itemNum.Equals("item5CmboBox"))
-                    {
-                        Price5 = selectedItem.itemPrice;
-                        Image5Src = tempImageLocation + selectedItem.imageName1;
-                    }
+                        if (itemNum.Equals("item5CmboBox"))
+                        {
+                            Price5 = selectedItem.itemPrice;
+                            Image5Src1 = tempImageLocation + selectedItem.imageName1;
+                            Image5Src2 = tempImageLocation + selectedItem.imageName2;
+                            Image5Src3 = tempImageLocation + selectedItem.imageName3;
+                        }
 
-                    if (string.IsNullOrEmpty(itemNum) && itemNum.Equals("item6CmboBox"))
-                    {
-                        Price6 = selectedItem.itemPrice;
-                        Image6Src = tempImageLocation + selectedItem.imageName1;
+                        if (itemNum.Equals("item6CmboBox"))
+                        {
+                            Price6 = selectedItem.itemPrice;
+                            Image6Src1 = tempImageLocation + selectedItem.imageName1;
+                            Image6Src2 = tempImageLocation + selectedItem.imageName2;
+                            Image6Src3 = tempImageLocation + selectedItem.imageName3;
+                        }
                     }
                 }
             }
         }
 
+        /// <summary>
+        /// Shows/Hides elements based on user selection, will be used for
+        /// aspx page to inform it of how many items it will be generating
+        /// </summary>
+        /// <param name="numVisElements"></param>
         public void ShowHideElements(int numVisElements)
         {
             Item1Vis = Visibility.Visible;

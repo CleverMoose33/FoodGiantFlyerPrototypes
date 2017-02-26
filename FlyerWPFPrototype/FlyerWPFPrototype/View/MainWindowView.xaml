@@ -18,10 +18,7 @@
                 <MenuItem Header="Print" />
             </MenuItem>
         </Menu>
-        
-        <!-- Make this load the View Model-->
-        
+
         <ContentControl cal:View.Model="{Binding ActiveViewModel}" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <!--<local:LoginControlView Grid.Row="1" x:Name="ControlViewModel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>-->
     </Grid>
 </Window>
