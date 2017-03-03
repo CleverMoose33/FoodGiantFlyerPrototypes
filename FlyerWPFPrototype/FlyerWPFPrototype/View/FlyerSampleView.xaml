@@ -8,6 +8,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="800"
              Title="Food Giant Flyer Super Ultra Early Prototype!">
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="LabelStyle">
+                <Setter Property="FontSize" Value="24"/>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -18,19 +25,17 @@
             <RowDefinition Height="5*"/>
             <RowDefinition Height="100*"/>
         </Grid.RowDefinitions>
-
         <!--Populates below items based on number of items select-->
         <!--TODO: Design Doc - Need to clear all items over limit if this changes -->
         <!--Other option is limit populated items based on this size-->
-        <Label Grid.Column="0" Grid.Row="0" Content="Number of images on page" />
+        <Label Grid.Column="0" Grid.Row="0" Content="Number of images on page" HorizontalAlignment="Right" />
         <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
                   ItemsSource="{Binding NumImagesCmboBox}"
                   cal:Message.Attach="NumImagesCmboBox_SelectionChanged($source)" SelectedItem="{Binding NumImages}">
-            <!--x:Name="NumImagesCmboBox"-->
         </ComboBox>
 
         <!--Current way to generate flyer needs to "hook up" to aspx page and send all active items over-->
-        <Label Grid.Column="0" Grid.Row="1"  Content="Generate Flyer" />
+        <Label Grid.Column="0" Grid.Row="1"  Content="Generate Flyer" HorizontalAlignment="Right"/>
         <Button Grid.Column="1" Grid.Row="1"  Content="Generate!" />
         
         <!--Current Grid Layout of each sale item, plan to hide/show items based on above selection-->
@@ -54,7 +59,7 @@
 
             <Label Grid.Row="0" Grid.Column="0" Content="Item 1 Name and Price" Visibility="{Binding Item1Vis}"/>
             <ComboBox Grid.Row="0" Grid.Column="1" Height="25" VerticalAlignment="Top" x:Name="item1CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item1Vis}" cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)"/>
-            <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Price1}" Visibility="{Binding Item1Vis}"/>
+            <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Price1}" Visibility="{Binding Item1Vis}" FontSize="24" HorizontalAlignment="Center"/>
 
             <Grid Grid.Row="0" Grid.Column="3">
                 <Grid.ColumnDefinitions>
@@ -62,13 +67,19 @@
                     <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
                     <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="{Binding Image1Src1}" Visibility="{Binding Item1Vis}"/>
-                <Image Grid.Column="1" Source="{Binding Image1Src2}" Visibility="{Binding Item1Vis}"/>
-                <Image Grid.Column="2" Source="{Binding Image1Src3}" Visibility="{Binding Item1Vis}"/>
+                <Border Grid.Column="0"  Visibility="Visible" BorderThickness="1" BorderBrush="Black">
+                    <Image Grid.Column="0" Source="{Binding Image1Src1}" Visibility="{Binding Item1Vis}"/>
+                </Border>
+                <Border Grid.Column="1"  Visibility="Visible" BorderThickness="1" BorderBrush="Black">
+                    <Image Grid.Column="1" Source="{Binding Image1Src2}" Visibility="{Binding Item1Vis}"/>
+                </Border>
+                <Border Grid.Column="2" Visibility="Visible" BorderThickness="1" BorderBrush="Black">
+                    <Image Grid.Column="2" Source="{Binding Image1Src3}" Visibility="{Binding Item1Vis}"/>
+                </Border>
             </Grid>
             <Label Grid.Row="1" Grid.Column="0" Content="Item 2 Name and Price" Visibility="{Binding Item2Vis}"/>
             <ComboBox Grid.Row="1" Grid.Column="1" Height="25" VerticalAlignment="Top" x:Name="item2CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item2Vis}" cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)"/>
-            <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Price2}" Visibility="{Binding Item2Vis}"/>
+            <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Price2}" Visibility="{Binding Item2Vis}" FontSize="24" HorizontalAlignment="Center"/>
 
             <Grid Grid.Row="1" Grid.Column="3">
                 <Grid.ColumnDefinitions>
@@ -83,7 +94,7 @@
 
             <Label Grid.Row="2" Grid.Column="0" Content="Item 3 Name and Price" Visibility="{Binding Item3Vis}"/>
             <ComboBox Grid.Row="2" Grid.Column="1" Height="25" VerticalAlignment="Top" x:Name="item3CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item3Vis}" cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)"/>
-            <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding Price3}" Visibility="{Binding Item3Vis}"/>
+            <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding Price3}" Visibility="{Binding Item3Vis}" FontSize="24" HorizontalAlignment="Center"/>
 
             <Grid Grid.Row="2" Grid.Column="3">
                 <Grid.ColumnDefinitions>
@@ -98,7 +109,7 @@
 
             <Label Grid.Row="3" Grid.Column="0" Content="Item 4 Name and Price" Visibility="{Binding Item4Vis}"/>
             <ComboBox Grid.Row="3" Grid.Column="1" Height="25" VerticalAlignment="Top" x:Name="item4CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item4Vis}" cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)"/>
-            <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding Price4}" Visibility="{Binding Item4Vis}"/>
+            <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding Price4}" Visibility="{Binding Item4Vis}" FontSize="24" HorizontalAlignment="Center"/>
 
             <Grid Grid.Row="3" Grid.Column="3">
                 <Grid.ColumnDefinitions>
@@ -113,7 +124,7 @@
 
             <Label Grid.Row="4" Grid.Column="0" Content="Item 5 Name and Price" Visibility="{Binding Item5Vis}"/>
             <ComboBox Grid.Row="4" Grid.Column="1" Height="25" VerticalAlignment="Top" x:Name="item5CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item5Vis}" cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)"/>
-            <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding Price5}" Visibility="{Binding Item5Vis}"/>
+            <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding Price5}" Visibility="{Binding Item5Vis}" FontSize="24" HorizontalAlignment="Center"/>
 
             <Grid Grid.Row="4" Grid.Column="3">
                 <Grid.ColumnDefinitions>
@@ -128,7 +139,7 @@
 
             <Label Grid.Row="5" Grid.Column="0" Content="Item 6 Name and Price" Visibility="{Binding Item6Vis}"/>
             <ComboBox Grid.Row="5" Grid.Column="1" Height="25" VerticalAlignment="Top" x:Name="item6CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item6Vis}" cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)"/>
-            <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding Price6}" Visibility="{Binding Item6Vis}"/>
+            <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding Price6}" Visibility="{Binding Item6Vis}" FontSize="24" HorizontalAlignment="Center"/>
 
             <Grid Grid.Row="5" Grid.Column="3">
                 <Grid.ColumnDefinitions>
