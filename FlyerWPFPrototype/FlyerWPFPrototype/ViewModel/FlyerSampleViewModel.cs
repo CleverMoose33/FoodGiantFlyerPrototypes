@@ -58,6 +58,20 @@ namespace FlyerWPFPrototype
                 NotifyOfPropertyChange(() => ItemList);
             }
         }
+        private string _ItemName;
+
+        public string ItemName
+        {
+            get
+            {
+                return _ItemName;
+            }
+            set
+            {
+                _ItemName = value;
+                NotifyOfPropertyChange(() => _ItemName);
+            }
+        }
 
         #region Price Bindings
         private string _Price1;
@@ -539,6 +553,14 @@ namespace FlyerWPFPrototype
         {
             DatabaseInterface dbInt = new DatabaseInterface();
             ItemList = dbInt.PopulateItemList();
+        }
+
+        /// <summary>
+        /// This method will pass all selected data over to the Flyer page for generation
+        /// </summary>
+        public void GenerateFlyer()
+        {
+
         }
 
         /// <summary>

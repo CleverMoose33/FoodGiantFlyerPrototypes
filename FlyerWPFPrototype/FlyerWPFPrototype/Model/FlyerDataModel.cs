@@ -12,12 +12,12 @@ namespace FlyerWPFPrototype.Model
     /// </summary>
     public class FlyerDataModel
     {
-        public string itemName;
-        public string itemCategory;
-        public string itemPrice;
-        public string imageName1;
-        public string imageName2;
-        public string imageName3;
+        public string itemName { get; set; }
+        public string itemCategory { get; set; }
+        public string itemPrice { get; set; }
+        public string imageName1 { get; set; }
+        public string imageName2 { get; set; }
+        public string imageName3 { get; set; }
 
         public FlyerDataModel(string itemName, string itemCategory, string itemPrice, string imageName1, string imageName2, string imageName3)
         {

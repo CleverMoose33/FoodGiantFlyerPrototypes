@@ -13,11 +13,20 @@
             <Style TargetType="Label" x:Key="LabelStyle">
                 <Setter Property="FontSize" Value="24"/>
             </Style>
+            <Style TargetType="Border" x:Key="BorderStyle">
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="Black"/>
+            </Style>
+            <Style TargetType="ComboBox" x:Key="CmboBoxStyle">
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+            </Style>
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -25,22 +34,29 @@
             <RowDefinition Height="5*"/>
             <RowDefinition Height="100*"/>
         </Grid.RowDefinitions>
+
+        <!-- Style Check -->
+        <Label Grid.Row="0" Grid.Column="0" Content="Style Check" />
+        <ComboBox Grid.Row="1" Grid.Column="0" SelectionChanged="StyleBox_SelectionChanged">
+            <ComboBoxItem Content="Normal Style" IsSelected="True"/>
+            <ComboBoxItem Content="Pretty Style"/>
+        </ComboBox>
         <!--Populates below items based on number of items select-->
         <!--TODO: Design Doc - Need to clear all items over limit if this changes -->
         <!--Other option is limit populated items based on this size-->
-        <Label Grid.Column="0" Grid.Row="0" Content="Number of images on page" HorizontalAlignment="Right" />
-        <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
+        <Label Grid.Row="0" Grid.Column="1" Content="Number of images on page" HorizontalAlignment="Right" />
+        <ComboBox Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2"
                   ItemsSource="{Binding NumImagesCmboBox}"
-                  cal:Message.Attach="NumImagesCmboBox_SelectionChanged($source)" SelectedItem="{Binding NumImages}">
-        </ComboBox>
+                  cal:Message.Attach="NumImagesCmboBox_SelectionChanged($source)" SelectedItem="{Binding NumImages}" />
+
 
         <!--Current way to generate flyer needs to "hook up" to aspx page and send all active items over-->
-        <Label Grid.Column="0" Grid.Row="1"  Content="Generate Flyer" HorizontalAlignment="Right"/>
-        <Button Grid.Column="1" Grid.Row="1"  Content="Generate!" />
+        <Label Grid.Column="1" Grid.Row="1"  Content="Generate Flyer" HorizontalAlignment="Right"/>
+        <Button Grid.Column="2" Grid.Row="1"  Content="Generate!" cal:Message.Attach="GenerateFlyer" />
         
         <!--Current Grid Layout of each sale item, plan to hide/show items based on above selection-->
 
-        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+        <Grid Grid.Row="2" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="2*"/>
@@ -58,7 +74,14 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Content="Item 1 Name and Price" Visibility="{Binding Item1Vis}"/>
-            <ComboBox Grid.Row="0" Grid.Column="1" Height="25" VerticalAlignment="Top" x:Name="item1CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item1Vis}" cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" x:Name="item1CmboBox" Style="{StaticResource CmboBoxStyle}"
+                      ItemsSource="{Binding ItemList}" Visibility="{Binding Item1Vis}" cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding itemName}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Price1}" Visibility="{Binding Item1Vis}" FontSize="24" HorizontalAlignment="Center"/>
 
             <Grid Grid.Row="0" Grid.Column="3">
@@ -67,18 +90,25 @@
                     <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
                     <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Column="0"  Visibility="Visible" BorderThickness="1" BorderBrush="Black">
+                <Border Grid.Column="0" Style="{StaticResource BorderStyle}" >
                     <Image Grid.Column="0" Source="{Binding Image1Src1}" Visibility="{Binding Item1Vis}"/>
                 </Border>
-                <Border Grid.Column="1"  Visibility="Visible" BorderThickness="1" BorderBrush="Black">
+                <Border Grid.Column="1"  Style="{StaticResource BorderStyle}">
                     <Image Grid.Column="1" Source="{Binding Image1Src2}" Visibility="{Binding Item1Vis}"/>
                 </Border>
-                <Border Grid.Column="2" Visibility="Visible" BorderThickness="1" BorderBrush="Black">
+                <Border Grid.Column="2" Style="{StaticResource BorderStyle}">
                     <Image Grid.Column="2" Source="{Binding Image1Src3}" Visibility="{Binding Item1Vis}"/>
                 </Border>
             </Grid>
             <Label Grid.Row="1" Grid.Column="0" Content="Item 2 Name and Price" Visibility="{Binding Item2Vis}"/>
-            <ComboBox Grid.Row="1" Grid.Column="1" Height="25" VerticalAlignment="Top" x:Name="item2CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item2Vis}" cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="item2CmboBox" ItemsSource="{Binding ItemList}" Style="{StaticResource CmboBoxStyle}"
+                      Visibility="{Binding Item2Vis}" cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding itemName}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Price2}" Visibility="{Binding Item2Vis}" FontSize="24" HorizontalAlignment="Center"/>
 
             <Grid Grid.Row="1" Grid.Column="3">
@@ -87,13 +117,26 @@
                     <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
                     <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="{Binding Image2Src1}" Visibility="{Binding Item2Vis}"/>
-                <Image Grid.Column="1" Source="{Binding Image2Src2}" Visibility="{Binding Item2Vis}"/>
-                <Image Grid.Column="2" Source="{Binding Image2Src3}" Visibility="{Binding Item2Vis}"/>
+                <Border Grid.Column="0" Style="{StaticResource BorderStyle}" >
+                    <Image Grid.Column="0" Source="{Binding Image2Src1}" Visibility="{Binding Item1Vis}"/>
+                </Border>
+                <Border Grid.Column="1"  Style="{StaticResource BorderStyle}">
+                    <Image Grid.Column="1" Source="{Binding Image2Src2}" Visibility="{Binding Item1Vis}"/>
+                </Border>
+                <Border Grid.Column="2" Style="{StaticResource BorderStyle}">
+                    <Image Grid.Column="2" Source="{Binding Image2Src3}" Visibility="{Binding Item1Vis}"/>
+                </Border>
             </Grid>
 
             <Label Grid.Row="2" Grid.Column="0" Content="Item 3 Name and Price" Visibility="{Binding Item3Vis}"/>
-            <ComboBox Grid.Row="2" Grid.Column="1" Height="25" VerticalAlignment="Top" x:Name="item3CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item3Vis}" cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" Style="{StaticResource CmboBoxStyle}" x:Name="item3CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item3Vis}" 
+                      cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding itemName}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding Price3}" Visibility="{Binding Item3Vis}" FontSize="24" HorizontalAlignment="Center"/>
 
             <Grid Grid.Row="2" Grid.Column="3">
@@ -102,13 +145,26 @@
                     <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
                     <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="{Binding Image3Src1}" Visibility="{Binding Item3Vis}"/>
-                <Image Grid.Column="1" Source="{Binding Image3Src2}" Visibility="{Binding Item3Vis}"/>
-                <Image Grid.Column="2" Source="{Binding Image3Src3}" Visibility="{Binding Item3Vis}"/>
+                <Border Grid.Column="0" Style="{StaticResource BorderStyle}" >
+                    <Image Grid.Column="0" Source="{Binding Image3Src1}" Visibility="{Binding Item1Vis}"/>
+                </Border>
+                <Border Grid.Column="1"  Style="{StaticResource BorderStyle}">
+                    <Image Grid.Column="1" Source="{Binding Image3Src2}" Visibility="{Binding Item1Vis}"/>
+                </Border>
+                <Border Grid.Column="2" Style="{StaticResource BorderStyle}">
+                    <Image Grid.Column="2" Source="{Binding Image3Src3}" Visibility="{Binding Item1Vis}"/>
+                </Border>
             </Grid>
 
             <Label Grid.Row="3" Grid.Column="0" Content="Item 4 Name and Price" Visibility="{Binding Item4Vis}"/>
-            <ComboBox Grid.Row="3" Grid.Column="1" Height="25" VerticalAlignment="Top" x:Name="item4CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item4Vis}" cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)"/>
+            <ComboBox Grid.Row="3" Grid.Column="1" Style="{StaticResource CmboBoxStyle}" x:Name="item4CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item4Vis}" 
+                      cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)" >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding itemName}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding Price4}" Visibility="{Binding Item4Vis}" FontSize="24" HorizontalAlignment="Center"/>
 
             <Grid Grid.Row="3" Grid.Column="3">
@@ -117,13 +173,26 @@
                     <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
                     <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="{Binding Image4Src1}" Visibility="{Binding Item4Vis}"/>
-                <Image Grid.Column="1" Source="{Binding Image4Src2}" Visibility="{Binding Item4Vis}"/>
-                <Image Grid.Column="2" Source="{Binding Image4Src3}" Visibility="{Binding Item4Vis}"/>
+                <Border Grid.Column="0" Style="{StaticResource BorderStyle}" >
+                    <Image Grid.Column="0" Source="{Binding Image4Src1}" Visibility="{Binding Item1Vis}"/>
+                </Border>
+                <Border Grid.Column="1"  Style="{StaticResource BorderStyle}">
+                    <Image Grid.Column="1" Source="{Binding Image4Src2}" Visibility="{Binding Item1Vis}"/>
+                </Border>
+                <Border Grid.Column="2" Style="{StaticResource BorderStyle}">
+                    <Image Grid.Column="2" Source="{Binding Image4Src3}" Visibility="{Binding Item1Vis}"/>
+                </Border>
             </Grid>
 
             <Label Grid.Row="4" Grid.Column="0" Content="Item 5 Name and Price" Visibility="{Binding Item5Vis}"/>
-            <ComboBox Grid.Row="4" Grid.Column="1" Height="25" VerticalAlignment="Top" x:Name="item5CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item5Vis}" cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)"/>
+            <ComboBox Grid.Row="4" Grid.Column="1" Style="{StaticResource CmboBoxStyle}" x:Name="item5CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item5Vis}" 
+                      cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding itemName}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding Price5}" Visibility="{Binding Item5Vis}" FontSize="24" HorizontalAlignment="Center"/>
 
             <Grid Grid.Row="4" Grid.Column="3">
@@ -132,13 +201,26 @@
                     <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
                     <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="{Binding Image5Src1}" Visibility="{Binding Item5Vis}"/>
-                <Image Grid.Column="1" Source="{Binding Image5Src2}" Visibility="{Binding Item5Vis}"/>
-                <Image Grid.Column="2" Source="{Binding Image5Src3}" Visibility="{Binding Item5Vis}"/>
+                <Border Grid.Column="0" Style="{StaticResource BorderStyle}" >
+                    <Image Grid.Column="0" Source="{Binding Image5Src1}" Visibility="{Binding Item1Vis}"/>
+                </Border>
+                <Border Grid.Column="1"  Style="{StaticResource BorderStyle}">
+                    <Image Grid.Column="1" Source="{Binding Image5Src2}" Visibility="{Binding Item1Vis}"/>
+                </Border>
+                <Border Grid.Column="2" Style="{StaticResource BorderStyle}">
+                    <Image Grid.Column="2" Source="{Binding Image5Src3}" Visibility="{Binding Item1Vis}"/>
+                </Border>
             </Grid>
 
             <Label Grid.Row="5" Grid.Column="0" Content="Item 6 Name and Price" Visibility="{Binding Item6Vis}"/>
-            <ComboBox Grid.Row="5" Grid.Column="1" Height="25" VerticalAlignment="Top" x:Name="item6CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item6Vis}" cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)"/>
+            <ComboBox Grid.Row="5" Grid.Column="1" Style="{StaticResource CmboBoxStyle}" x:Name="item6CmboBox" ItemsSource="{Binding ItemList}" Visibility="{Binding Item6Vis}" 
+                      cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding itemName}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding Price6}" Visibility="{Binding Item6Vis}" FontSize="24" HorizontalAlignment="Center"/>
 
             <Grid Grid.Row="5" Grid.Column="3">
@@ -147,9 +229,15 @@
                     <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
                     <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="{Binding Image6Src1}" Visibility="{Binding Item6Vis}"/>
-                <Image Grid.Column="1" Source="{Binding Image6Src2}" Visibility="{Binding Item6Vis}"/>
-                <Image Grid.Column="2" Source="{Binding Image6Src3}" Visibility="{Binding Item6Vis}"/>
+                <Border Grid.Column="0" Style="{StaticResource BorderStyle}" >
+                    <Image Grid.Column="0" Source="{Binding Image6Src1}" Visibility="{Binding Item1Vis}"/>
+                </Border>
+                <Border Grid.Column="1"  Style="{StaticResource BorderStyle}">
+                    <Image Grid.Column="1" Source="{Binding Image6Src2}" Visibility="{Binding Item1Vis}"/>
+                </Border>
+                <Border Grid.Column="2" Style="{StaticResource BorderStyle}">
+                    <Image Grid.Column="2" Source="{Binding Image6Src3}" Visibility="{Binding Item1Vis}"/>
+                </Border>
             </Grid>
 
         </Grid>

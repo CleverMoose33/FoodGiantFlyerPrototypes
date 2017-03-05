@@ -24,5 +24,24 @@ namespace FlyerWPFPrototype
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Temp method to play with resource dictionary style bindings
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void StyleBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox style = sender as ComboBox;
+            if (style != null && style.SelectedItem != null)
+            {
+                ComboBoxItem seltItm = style.SelectedItem as ComboBoxItem;
+                if (seltItm.Content.ToString().Equals("Pretty Style"))
+                {
+                    Style borderStyle = (Style)this.Resources["BorderStyle"];
+                }
+            }
+
+        }
     }
 }
