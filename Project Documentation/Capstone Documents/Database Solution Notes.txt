@@ -1,0 +1,7 @@
+Criterium
+
+Free to Use, with no software license
+Easy to understand with documentation explaining program
+Works with SQL mdf database
+
+Dbeaver

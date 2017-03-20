@@ -560,6 +560,7 @@ namespace FlyerWPFPrototype
         /// </summary>
         public void GenerateFlyer()
         {
+            Response.Reidrect(@"Flyer Templates\SampleTemplate.aspx?Parameter=" + );
 
         }
 

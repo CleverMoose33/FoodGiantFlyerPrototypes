@@ -2,9 +2,8 @@
 using FlyerWPFPrototype.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace FlyerWPFPrototype
 {
@@ -14,7 +13,7 @@ namespace FlyerWPFPrototype
     public class DatabaseInterface
     {
         //private string dbQuery;
-        
+
         /// <summary>
         /// This class will establish a connection with the database, maybe this should be a interface that other classes can reference?
         /// That way only one instance of the class is active, will be an issue once program moves to server side, may leave in class for now
@@ -23,6 +22,33 @@ namespace FlyerWPFPrototype
         public DatabaseInterface()
         {
 
+            List<string> resultsString = new List<string>();
+            SqlConnection sqlConnection = new SqlConnection();
+            sqlConnection.ConnectionString = @"Data Source=.\SQLEXPRESS;
+                          AttachDbFilename=" + Environment.CurrentDirectory + @"\Database\FoodGiantSQLDatabase.mdf;
+                          Integrated Security=True;
+                          Connect Timeout=30;
+                          User Instance=True";
+
+            sqlConnection.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT * FROM Items";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = sqlConnection;
+
+            sqlConnection.Open();
+
+            reader = cmd.ExecuteReader();
+            foreach(string resultString in reader)
+            {
+                resultsString.Add(resultString);
+            }
+            // Data is accessible through the DataReader object here.
+
+            sqlConnection.Close();
         }
 
         /// <summary>
@@ -31,7 +57,7 @@ namespace FlyerWPFPrototype
         /// </summary>
         /// <returns></returns>
         public BindableCollection<FlyerDataModel> PopulateItemList()
-        {
+        { 
             //Do db query, for now, we will manually populate items
             BindableCollection<FlyerDataModel> flyerData = new BindableCollection<FlyerDataModel>();
 
