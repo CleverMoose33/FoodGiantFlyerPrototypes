@@ -3,16 +3,14 @@ using FlyerWPFPrototype.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace FlyerWPFPrototype
 {
-    [Export(typeof(FlyerSampleViewModel))]
-    public class FlyerSampleViewModel : Screen
+    [Export(typeof(FlyerCreatorViewModel))]
+    public class FlyerCreatorViewModel : Screen
     {
         #region Binding Items
         private ComboBoxItem _NumImages;
@@ -27,7 +25,7 @@ namespace FlyerWPFPrototype
                 NotifyOfPropertyChange(() => NumImages);
             }
         }
-                
+
         private BindableCollection<ComboBoxItem> _NumImagesCmboBox;
 
         public BindableCollection<ComboBoxItem> NumImagesCmboBox
@@ -42,7 +40,6 @@ namespace FlyerWPFPrototype
                 NotifyOfPropertyChange(() => NumImagesCmboBox);
             }
         }
-        
 
         private BindableCollection<FlyerDataModel> _ItemList;
 
@@ -58,6 +55,7 @@ namespace FlyerWPFPrototype
                 NotifyOfPropertyChange(() => ItemList);
             }
         }
+
         private string _ItemName;
 
         public string ItemName
@@ -401,6 +399,254 @@ namespace FlyerWPFPrototype
         #endregion
         #endregion
 
+        #region BorderSources
+        #region First Row BorderSrcs
+        private SolidColorBrush _Border1Src1;
+
+        public SolidColorBrush Border1Src1
+        {
+            get
+            { return _Border1Src1; }
+            set
+            {
+                _Border1Src1 = value;
+                NotifyOfPropertyChange(() => Border1Src1);
+            }
+        }
+
+        private SolidColorBrush _Border1Src2;
+
+        public SolidColorBrush Border1Src2
+        {
+            get
+            { return _Border1Src2; }
+            set
+            {
+                _Border1Src2 = value;
+                NotifyOfPropertyChange(() => Border1Src2);
+            }
+        }
+
+        private SolidColorBrush _Border1Src3;
+
+        public SolidColorBrush Border1Src3
+        {
+            get
+            { return _Border1Src3; }
+            set
+            {
+                _Border1Src3 = value;
+                NotifyOfPropertyChange(() => Border1Src3);
+            }
+        }
+        #endregion
+
+        #region Second Row BorderSrcs
+        private SolidColorBrush _Border2Src1;
+
+        public SolidColorBrush Border2Src1
+        {
+            get
+            { return _Border2Src1; }
+            set
+            {
+                _Border2Src1 = value;
+                NotifyOfPropertyChange(() => Border2Src1);
+            }
+        }
+
+        private SolidColorBrush _Border2Src2;
+
+        public SolidColorBrush Border2Src2
+        {
+            get
+            { return _Border2Src2; }
+            set
+            {
+                _Border2Src2 = value;
+                NotifyOfPropertyChange(() => Border2Src2);
+            }
+        }
+
+        private SolidColorBrush _Border2Src3;
+
+        public SolidColorBrush Border2Src3
+        {
+            get
+            { return _Border2Src3; }
+            set
+            {
+                _Border2Src3 = value;
+                NotifyOfPropertyChange(() => Border2Src3);
+            }
+        }
+        #endregion
+
+        #region Third Row BorderSrcs
+        private SolidColorBrush _Border3Src1;
+
+        public SolidColorBrush Border3Src1
+        {
+            get
+            { return _Border3Src1; }
+            set
+            {
+                _Border3Src1 = value;
+                NotifyOfPropertyChange(() => Border3Src1);
+            }
+        }
+
+        private SolidColorBrush _Border3Src2;
+
+        public SolidColorBrush Border3Src2
+        {
+            get
+            { return _Border3Src2; }
+            set
+            {
+                _Border3Src2 = value;
+                NotifyOfPropertyChange(() => Border3Src2);
+            }
+        }
+
+        private SolidColorBrush _Border3Src3;
+
+        public SolidColorBrush Border3Src3
+        {
+            get
+            { return _Border3Src3; }
+            set
+            {
+                _Border3Src3 = value;
+                NotifyOfPropertyChange(() => Border3Src3);
+            }
+        }
+        #endregion
+
+        #region Fourth Row BorderSrcs
+        private SolidColorBrush _Border4Src1;
+
+        public SolidColorBrush Border4Src1
+        {
+            get
+            { return _Border4Src1; }
+            set
+            {
+                _Border4Src1 = value;
+                NotifyOfPropertyChange(() => Border4Src1);
+            }
+        }
+
+        private SolidColorBrush _Border4Src2;
+
+        public SolidColorBrush Border4Src2
+        {
+            get
+            { return _Border4Src2; }
+            set
+            {
+                _Border4Src2 = value;
+                NotifyOfPropertyChange(() => Border4Src2);
+            }
+        }
+
+        private SolidColorBrush _Border4Src3;
+
+        public SolidColorBrush Border4Src3
+        {
+            get
+            { return _Border4Src3; }
+            set
+            {
+                _Border4Src3 = value;
+                NotifyOfPropertyChange(() => Border4Src3);
+            }
+        }
+        #endregion
+
+        #region Fifth Row BorderSrcs
+        private SolidColorBrush _Border5Src1;
+
+        public SolidColorBrush Border5Src1
+        {
+            get
+            { return _Border5Src1; }
+            set
+            {
+                _Border5Src1 = value;
+                NotifyOfPropertyChange(() => Border5Src1);
+            }
+        }
+
+        private SolidColorBrush _Border5Src2;
+
+        public SolidColorBrush Border5Src2
+        {
+            get
+            { return _Border5Src2; }
+            set
+            {
+                _Border5Src2 = value;
+                NotifyOfPropertyChange(() => Border5Src2);
+            }
+        }
+
+        private SolidColorBrush _Border5Src3;
+
+        public SolidColorBrush Border5Src3
+        {
+            get
+            { return _Border5Src3; }
+            set
+            {
+                _Border5Src3 = value;
+                NotifyOfPropertyChange(() => Border5Src3);
+            }
+        }
+        #endregion
+
+        #region Sixth Row BorderSrcs
+        private SolidColorBrush _Border6Src1;
+
+        public SolidColorBrush Border6Src1
+        {
+            get
+            { return _Border6Src1; }
+            set
+            {
+                _Border6Src1 = value;
+                NotifyOfPropertyChange(() => Border6Src1);
+            }
+        }
+
+        private SolidColorBrush _Border6Src2;
+
+        public SolidColorBrush Border6Src2
+        {
+            get
+            { return _Border6Src2; }
+            set
+            {
+                _Border6Src2 = value;
+                NotifyOfPropertyChange(() => Border6Src2);
+            }
+        }
+
+        private SolidColorBrush _Border6Src3;
+
+        public SolidColorBrush Border6Src3
+        {
+            get
+            { return _Border6Src3; }
+            set
+            {
+                _Border6Src3 = value;
+                NotifyOfPropertyChange(() => Border6Src3);
+            }
+        }
+        #endregion
+        #endregion
+
         #region Visibility
         private Visibility _Item1Vis;
 
@@ -483,17 +729,17 @@ namespace FlyerWPFPrototype
 
         #endregion
 
+        #region Image Sources
+        private string image1Src ="";
+        private string image2Src = "";
+        private string image3Src = "";
+        private string image4Src = "";
+        private string image5Src = "";
+        private string image6Src = "";
+        #endregion
+
         private readonly IEventAggregator _eventAggregator;
-        public FlyerSampleViewModel()
-        {
-            _eventAggregator = IoC.Get<IEventAggregator>();
-            _eventAggregator.Subscribe(this);
-
-            PopulateNumImages();
-            PopulateItemList();
-        }
-
-        public FlyerSampleViewModel(string userName)
+        public FlyerCreatorViewModel()
         {
             _eventAggregator = IoC.Get<IEventAggregator>();
             _eventAggregator.Subscribe(this);
@@ -501,14 +747,51 @@ namespace FlyerWPFPrototype
 
             PopulateNumImages();
             PopulateItemList();
+            SetDefaultBrushColors();
         }
 
-        /// <summary>
-        /// Method called when VM is instantiated, currently does not do anything
-        /// </summary>
-        protected override void OnActivate()
+        public FlyerCreatorViewModel(string userName)
         {
-            base.OnActivate();
+            _eventAggregator = IoC.Get<IEventAggregator>();
+            _eventAggregator.Subscribe(this);
+            NumImagesCmboBox = new BindableCollection<ComboBoxItem>();
+
+            PopulateNumImages();
+            PopulateItemList();
+            SetDefaultBrushColors();
+        }
+
+        #region Form Generation
+
+        /// <summary>
+        /// Temp method to set default Brush Colors
+        /// Look into styling in XAML instead
+        /// </summary>
+        private void SetDefaultBrushColors()
+        {
+            Border1Src1 = Brushes.Black;
+            Border1Src2 = Brushes.Black;
+            Border1Src3 = Brushes.Black;
+
+            Border2Src1 = Brushes.Black;
+            Border2Src2 = Brushes.Black;
+            Border2Src3 = Brushes.Black;
+
+            Border3Src1 = Brushes.Black;
+            Border3Src2 = Brushes.Black;
+            Border3Src3 = Brushes.Black;
+
+            Border4Src1 = Brushes.Black;
+            Border4Src2 = Brushes.Black;
+            Border4Src3 = Brushes.Black;
+
+            Border5Src1 = Brushes.Black;
+            Border5Src2 = Brushes.Black;
+            Border5Src3 = Brushes.Black;
+
+            Border6Src1 = Brushes.Black;
+            Border6Src2 = Brushes.Black;
+            Border6Src3 = Brushes.Black;
         }
 
         /// <summary>
@@ -541,8 +824,11 @@ namespace FlyerWPFPrototype
             NumImagesCmboBox.Add(item5);
             NumImagesCmboBox.Add(item6);
 
-            NumImagesCmboBox[0].IsSelected = true;
+            NumImages = NumImagesCmboBox[0];
 
+            //Method to force control to hide images by default
+            int numVisElements = int.Parse(NumImages.Content.ToString());
+            ShowHideElements(numVisElements);
         }
 
         /// <summary>
@@ -554,13 +840,35 @@ namespace FlyerWPFPrototype
             DatabaseInterface dbInt = new DatabaseInterface();
             ItemList = dbInt.PopulateItemList();
         }
+        #endregion
 
+        #region UserEvents
         /// <summary>
         /// This method will pass all selected data over to the Flyer page for generation
         /// </summary>
         public void GenerateFlyer()
         {
-            Response.Reidrect(@"Flyer Templates\SampleTemplate.aspx?Parameter=" + );
+            int numberImagesToDisplay = 1;
+            //foreach(ComboBoxItem ci in NumImagesCmboBox)
+            //{
+            //    if(ci.IsSelected)
+            //    {
+            //        numberImagesToDisplay = Int32.Parse(ci.Content.ToString());
+            //    }
+            //}
+
+            if (numberImagesToDisplay > 0)
+            {
+                List<string> parameterStrings = new List<string>();
+
+                for (int i = 0; i < numberImagesToDisplay; i++)
+                {
+
+                }
+                WindowManager wm = new WindowManager();
+                FlyerCreatorViewModel temp = new FlyerCreatorViewModel();
+                wm.ShowWindow(temp);
+            }
 
         }
 
@@ -575,7 +883,7 @@ namespace FlyerWPFPrototype
             if (accountBox != null)
                 NumImages = accountBox.SelectedItem as ComboBoxItem;
 
-            if(NumImages.Content != null)
+            if (NumImages.Content != null)
             {
                 int numVisElements = int.Parse(NumImages.Content.ToString());
 
@@ -656,6 +964,39 @@ namespace FlyerWPFPrototype
             }
         }
 
+        #region ImageSelectionEvents
+        /// <summary>
+        /// TODO Figure out how to update bindings based on image clicked
+        /// </summary>
+        /// <param name="imageControl"></param>
+        public void Image1SrcChanged(Image imageControl)
+        {
+            if (imageControl != null && imageControl.Source != null)
+            {
+                Border1Src1 = Brushes.Black;
+                Border1Src2 = Brushes.Black;
+                Border1Src3 = Brushes.Black;
+
+                if (image1Src.Equals(imageControl.Source.ToString()))
+                {
+                    image1Src = "";
+                    Border imageBorder = imageControl.Parent as Border;
+                    imageBorder.BorderBrush = Brushes.Black;
+                }
+                else
+                {
+                    image1Src = imageControl.Source.ToString();
+                    Border imageBorder = imageControl.Parent as Border;
+                    imageBorder.BorderBrush = Brushes.Gold;
+                }
+            }
+        }
+
+        #endregion
+        #endregion
+
+        #region Visibility
+
         /// <summary>
         /// Shows/Hides elements based on user selection, will be used for
         /// aspx page to inform it of how many items it will be generating
@@ -690,7 +1031,14 @@ namespace FlyerWPFPrototype
             else
                 Item6Vis = Visibility.Hidden;
         }
+        #endregion
 
-
+        /// <summary>
+        /// Method called when VM is instantiated, currently does not do anything
+        /// </summary>
+        protected override void OnActivate()
+        {
+            base.OnActivate();
+        }
     }
 }

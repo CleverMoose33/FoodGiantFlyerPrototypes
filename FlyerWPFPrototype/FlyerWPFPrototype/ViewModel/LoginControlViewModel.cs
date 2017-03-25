@@ -49,13 +49,13 @@ namespace FlyerWPFPrototype
                 if (userName.Equals("Store Manager"))
                 {
                     WindowManager wm = new WindowManager();
-                    FlyerSampleViewModel temp = new FlyerSampleViewModel(userName);
+                    FlyerCreatorViewModel temp = new FlyerCreatorViewModel(userName);
                     wm.ShowWindow(temp);
                 }
                 else if (userName.Equals("District Manager"))
                 {
                     WindowManager wm = new WindowManager();
-                    FlyerSampleViewModel temp = new FlyerSampleViewModel(userName);
+                    FlyerCreatorViewModel temp = new FlyerCreatorViewModel(userName);
                     wm.ShowWindow(temp);
                 }
             }

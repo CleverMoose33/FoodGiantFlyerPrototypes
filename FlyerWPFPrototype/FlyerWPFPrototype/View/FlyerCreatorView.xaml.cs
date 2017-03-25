@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace FlyerWPFPrototype
 {
     /// <summary>
-    /// Interaction logic for FlyerSampleView.xaml
+    /// Interaction logic for FlyerCreatorView.xaml
     /// </summary>
-    public partial class FlyerSampleView : Window
+    public partial class FlyerCreatorView : Window
     {
-        public FlyerSampleView()
+        public FlyerCreatorView()
         {
             InitializeComponent();
         }

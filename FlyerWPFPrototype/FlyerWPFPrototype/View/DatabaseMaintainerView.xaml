@@ -1,0 +1,41 @@
+﻿<Window x:Class="FlyerWPFPrototype.DatabaseMaintainerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FlyerWPFPrototype"
+        xmlns:cal="http://www.caliburnproject.org"
+        mc:Ignorable="d"
+        Title="Food Giant Database Maintainer" Height="300" Width="600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" SharedSizeGroup="Items"/>
+            <RowDefinition Height="1*" SharedSizeGroup="Items"/>
+            <RowDefinition Height="1*" SharedSizeGroup="Items"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Enter Food Giant Inventory Items below"/>
+        <Button Grid.Row="0" Grid.Column="5" Content="Add Item To Database" cal:Message.Attach="AddItemToDatabase()"/>
+
+        <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding ItemName}" />
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ItemCategory}" />
+        <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding Price}" FontSize="24"/>
+        <Button Grid.Row="1" Grid.Column="3" Content="{Binding Item1SlctnBtn}" cal:Message.Attach="SelectImage1()"/>
+        <Button Grid.Row="1" Grid.Column="4" Content="{Binding Item2SlctnBtn}" cal:Message.Attach="SelectImage2()"/>
+        <Button Grid.Row="1" Grid.Column="5" Content="{Binding Item3SlctnBtn}" cal:Message.Attach="SelectImage3()"/>
+
+        <Image Grid.Row="2" Grid.Column="3" Source="{Binding Image1Src}"/>
+        <Image Grid.Row="2" Grid.Column="4" Source="{Binding Image2Src}"/>
+        <Image Grid.Row="2" Grid.Column="5" Source="{Binding Image3Src}"/>
+
+    </Grid>
+</Window>

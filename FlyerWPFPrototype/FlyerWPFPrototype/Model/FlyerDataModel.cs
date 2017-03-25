@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FlyerWPFPrototype.Model
+﻿namespace FlyerWPFPrototype.Model
 {
     /// <summary>
     /// This class will hold the variables used to create each ad in the eventual flyer.aspx page

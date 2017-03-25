@@ -21,7 +21,6 @@ namespace FlyerWPFPrototype
         /// </summary>
         public DatabaseInterface()
         {
-
             List<string> resultsString = new List<string>();
             SqlConnection sqlConnection = new SqlConnection();
             sqlConnection.ConnectionString = @"Data Source=.\SQLEXPRESS;
@@ -42,7 +41,7 @@ namespace FlyerWPFPrototype
             sqlConnection.Open();
 
             reader = cmd.ExecuteReader();
-            foreach(string resultString in reader)
+            foreach (string resultString in reader)
             {
                 resultsString.Add(resultString);
             }
@@ -57,17 +56,23 @@ namespace FlyerWPFPrototype
         /// </summary>
         /// <returns></returns>
         public BindableCollection<FlyerDataModel> PopulateItemList()
-        { 
+        {
             //Do db query, for now, we will manually populate items
             BindableCollection<FlyerDataModel> flyerData = new BindableCollection<FlyerDataModel>();
 
             FlyerDataModel sampleItem1 = new FlyerDataModel("Coca-Cola 2 ltr", "Soda", "1.99", "CocaCola1.png", "CocaCola2.png", "CocaCola3.jpg");
-            FlyerDataModel sampleItem2 = new FlyerDataModel("Pepsi 2 ltr", "Soda", "1.99", "PepsiCola1.jpg", "PepsiCola2.png", "PepsiCola3.jpg");
-            FlyerDataModel sampleItem3 = new FlyerDataModel("Tombstone Pizza", "Pizza", "2.99", "tombstone1.jpg", "tombstone2.jpg", "tombstone3.jpg");
+            FlyerDataModel sampleItem2 = new FlyerDataModel("Diet Coke 12pk", "Soda", "3.99", "dietcoke1.jpg", "dietcoke2.jpg", "dietcoke3.png");
+            FlyerDataModel sampleItem3 = new FlyerDataModel("Pepsi 2 ltr", "Soda", "1.99", "PepsiCola1.jpg", "PepsiCola2.png", "PepsiCola3.jpg");
+            FlyerDataModel sampleItem4 = new FlyerDataModel("Tombstone Pizza", "Frozen Pizza", "2.99", "tombstone1.jpg", "tombstone2.jpg", "tombstone3.jpg");
+            FlyerDataModel sampleItem5 = new FlyerDataModel("Hot Pocket Double Pack", "Frozen Food", "2.99", "hotpocketham.jpg", "hotpocketmeatball.jpeg", "hotpocketsteak.jpg");
+            FlyerDataModel sampleItem6 = new FlyerDataModel("Honey Nut Cheerios 21.6 Oz", "Cereal", "5.99", "honeyNut1.jpg", "", "");
 
             flyerData.Add(sampleItem1);
             flyerData.Add(sampleItem2);
             flyerData.Add(sampleItem3);
+            flyerData.Add(sampleItem4);
+            flyerData.Add(sampleItem5);
+            flyerData.Add(sampleItem6);
 
             return flyerData;
         }

@@ -32,7 +32,12 @@ namespace FlyerWPFPrototype
             _eventAggregator = IoC.Get<IEventAggregator>();
             _eventAggregator.Subscribe(this);
 
-            _ActiveViewModel = new LoginControlViewModel();
+            //_ActiveViewModel = new LoginControlViewModel();
+            //_ActiveViewModel = new FlyerSampleViewModel();
+            WindowManager wm = new WindowManager();
+            //FlyerCreatorViewModel temp = new FlyerCreatorViewModel();
+            DatabaseMaintainerViewModel temp = new DatabaseMaintainerViewModel();
+            wm.ShowWindow(temp);
         }
         
     }

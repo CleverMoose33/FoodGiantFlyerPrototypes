@@ -71,6 +71,7 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -94,7 +95,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="View\FlyerSampleView.xaml">
+    <Page Include="View\BasicFlyerTemplateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DatabaseMaintainerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FlyerCreatorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,11 +122,19 @@
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="DatabaseInterface.cs" />
     <Compile Include="Model\FlyerDataModel.cs" />
-    <Compile Include="ViewModel\FlyerSampleViewModel.cs" />
+    <Compile Include="ViewModel\BasicFlyerTemplateViewModel.cs" />
+    <Compile Include="ViewModel\DatabaseMaintainerViewModel.cs" />
+    <Compile Include="ViewModel\FlyerCreatorViewModel.cs" />
     <Compile Include="ViewModel\LoginControlViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="View\FlyerSampleView.xaml.cs">
-      <DependentUpon>FlyerSampleView.xaml</DependentUpon>
+    <Compile Include="View\BasicFlyerTemplateView.xaml.cs">
+      <DependentUpon>BasicFlyerTemplateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DatabaseMaintainerView.xaml.cs">
+      <DependentUpon>DatabaseMaintainerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FlyerCreatorView.xaml.cs">
+      <DependentUpon>FlyerCreatorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginControlView.xaml.cs">
       <DependentUpon>LoginControlView.xaml</DependentUpon>
@@ -164,6 +181,9 @@
     <Content Include="Database\FoodGiantSQLDatabase_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>FoodGiantSQLDatabase.mdf</DependentUpon>
+    </Content>
+    <Content Include="Flyer Templates\SampleTemplate.aspx">
+      <SubType>ASPXCodeBehind</SubType>
     </Content>
     <None Include="Flyer Templates\TemplatePage1.cshtml" />
     <Resource Include="Images\cocacola1.png" />
