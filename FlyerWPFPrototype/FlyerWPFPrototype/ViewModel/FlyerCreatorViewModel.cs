@@ -56,20 +56,97 @@ namespace FlyerWPFPrototype
             }
         }
 
-        private string _ItemName;
+        #region ItemName Bindings
+        private string _ItemName1;
 
-        public string ItemName
+        public string ItemName1
         {
             get
             {
-                return _ItemName;
+                return _ItemName1;
             }
             set
             {
-                _ItemName = value;
-                NotifyOfPropertyChange(() => _ItemName);
+                _ItemName1 = value;
+                NotifyOfPropertyChange(() => ItemName1);
             }
         }
+
+        private string _ItemName2;
+
+        public string ItemName2
+        {
+            get
+            {
+                return _ItemName2;
+            }
+            set
+            {
+                _ItemName2 = value;
+                NotifyOfPropertyChange(() => ItemName2);
+            }
+        }
+
+        private string _ItemName3;
+
+        public string ItemName3
+        {
+            get
+            {
+                return _ItemName3;
+            }
+            set
+            {
+                _ItemName3 = value;
+                NotifyOfPropertyChange(() => ItemName3);
+            }
+        }
+
+        private string _ItemName4;
+
+        public string ItemName4
+        {
+            get
+            {
+                return _ItemName4;
+            }
+            set
+            {
+                _ItemName4 = value;
+                NotifyOfPropertyChange(() => ItemName4);
+            }
+        }
+
+        private string _ItemName5;
+
+        public string ItemName5
+        {
+            get
+            {
+                return _ItemName5;
+            }
+            set
+            {
+                _ItemName5 = value;
+                NotifyOfPropertyChange(() => ItemName5);
+            }
+        }
+
+        private string _ItemName6;
+
+        public string ItemName6
+        {
+            get
+            {
+                return _ItemName6;
+            }
+            set
+            {
+                _ItemName6 = value;
+                NotifyOfPropertyChange(() => ItemName6);
+            }
+        }
+        #endregion
 
         #region Price Bindings
         private string _Price1;
@@ -738,6 +815,8 @@ namespace FlyerWPFPrototype
         private string image6Src = "";
         #endregion
 
+        int numberImagesToDisplay =1;
+
         private readonly IEventAggregator _eventAggregator;
         public FlyerCreatorViewModel()
         {
@@ -848,7 +927,6 @@ namespace FlyerWPFPrototype
         /// </summary>
         public void GenerateFlyer()
         {
-            int numberImagesToDisplay = 1;
             //foreach(ComboBoxItem ci in NumImagesCmboBox)
             //{
             //    if(ci.IsSelected)
@@ -859,17 +937,68 @@ namespace FlyerWPFPrototype
 
             if (numberImagesToDisplay > 0)
             {
-                List<string> parameterStrings = new List<string>();
+                //List<FlyerDataModel> parameterStrings = new List<FlyerDataModel>();
+                List<string> itemNames = new List<string>();
+                List<string> prices = new List<string>();
+                List<string> imageSrcs = new List<string>();
+                bool tempImgeCnfrm = true;
 
-                for (int i = 0; i < numberImagesToDisplay; i++)
+                itemNames.Add(ItemName1);
+                prices.Add(Price1);
+                if (string.IsNullOrEmpty(image1Src))
+                    tempImgeCnfrm = false;
+                imageSrcs.Add(image1Src);
+
+                if (numberImagesToDisplay > 1)
                 {
-
+                    itemNames.Add(ItemName2);
+                    prices.Add(Price2);
+                    if (string.IsNullOrEmpty(image2Src))
+                        tempImgeCnfrm = false;
+                    imageSrcs.Add(image2Src);
                 }
-                WindowManager wm = new WindowManager();
-                FlyerCreatorViewModel temp = new FlyerCreatorViewModel();
-                wm.ShowWindow(temp);
-            }
 
+                if (numberImagesToDisplay > 2)
+                {
+                    itemNames.Add(ItemName3);
+                    prices.Add(Price3);
+                    if (string.IsNullOrEmpty(image3Src))
+                        tempImgeCnfrm = false;
+                    imageSrcs.Add(image3Src);
+                }
+
+                if (numberImagesToDisplay > 3)
+                {
+                    itemNames.Add(ItemName4);
+                    prices.Add(Price4);
+                    if (string.IsNullOrEmpty(image4Src))
+                        tempImgeCnfrm = false;
+                    imageSrcs.Add(image4Src);
+                }
+                if (numberImagesToDisplay > 4)
+                {
+                    itemNames.Add(ItemName5);
+                    prices.Add(Price5);
+                    if (string.IsNullOrEmpty(image5Src))
+                        tempImgeCnfrm = false;
+                    imageSrcs.Add(image5Src);
+                }
+                if (numberImagesToDisplay > 5)
+                {
+                    itemNames.Add(ItemName6);
+                    prices.Add(Price6);
+                    if (string.IsNullOrEmpty(image6Src))
+                        tempImgeCnfrm = false;
+                    imageSrcs.Add(image6Src);
+                }
+                if (tempImgeCnfrm)
+                {
+                    WindowManager wm = new WindowManager();
+                    BasicFlyerTemplateViewModel temp = new BasicFlyerTemplateViewModel(itemNames, prices, imageSrcs, "somedates", "somestore");
+                    wm.ShowWindow(temp);
+                }
+                else MessageBox.Show("Missing image for flyer, please click on an image to select it for the flyer for each selected item");
+            }
         }
 
         /// <summary>
@@ -888,7 +1017,10 @@ namespace FlyerWPFPrototype
                 int numVisElements = int.Parse(NumImages.Content.ToString());
 
                 if (numVisElements > 0)
+                { 
                     ShowHideElements(numVisElements);
+                    numberImagesToDisplay = numVisElements;
+                }
             }
         }
 
@@ -914,6 +1046,7 @@ namespace FlyerWPFPrototype
                     {
                         if (itemNum.Equals("item1CmboBox"))
                         {
+                            ItemName1 = selectedItem.itemName;
                             Price1 = selectedItem.itemPrice;
                             Image1Src1 = tempImageLocation + selectedItem.imageName1;
                             Image1Src2 = tempImageLocation + selectedItem.imageName2;
@@ -922,6 +1055,7 @@ namespace FlyerWPFPrototype
 
                         if (itemNum.Equals("item2CmboBox"))
                         {
+                            ItemName2 = selectedItem.itemName;
                             Price2 = selectedItem.itemPrice;
                             Image2Src1 = tempImageLocation + selectedItem.imageName1;
                             Image2Src2 = tempImageLocation + selectedItem.imageName2;
@@ -930,6 +1064,7 @@ namespace FlyerWPFPrototype
 
                         if (itemNum.Equals("item3CmboBox"))
                         {
+                            ItemName3 = selectedItem.itemName;
                             Price3 = selectedItem.itemPrice;
                             Image3Src1 = tempImageLocation + selectedItem.imageName1;
                             Image3Src2 = tempImageLocation + selectedItem.imageName2;
@@ -938,6 +1073,7 @@ namespace FlyerWPFPrototype
 
                         if (itemNum.Equals("item4CmboBox"))
                         {
+                            ItemName4 = selectedItem.itemName;
                             Price4 = selectedItem.itemPrice;
                             Image4Src1 = tempImageLocation + selectedItem.imageName1;
                             Image4Src2 = tempImageLocation + selectedItem.imageName2;
@@ -946,6 +1082,7 @@ namespace FlyerWPFPrototype
 
                         if (itemNum.Equals("item5CmboBox"))
                         {
+                            ItemName5 = selectedItem.itemName;
                             Price5 = selectedItem.itemPrice;
                             Image5Src1 = tempImageLocation + selectedItem.imageName1;
                             Image5Src2 = tempImageLocation + selectedItem.imageName2;
@@ -954,6 +1091,7 @@ namespace FlyerWPFPrototype
 
                         if (itemNum.Equals("item6CmboBox"))
                         {
+                            ItemName6 = selectedItem.itemName;
                             Price6 = selectedItem.itemPrice;
                             Image6Src1 = tempImageLocation + selectedItem.imageName1;
                             Image6Src2 = tempImageLocation + selectedItem.imageName2;
@@ -986,6 +1124,141 @@ namespace FlyerWPFPrototype
                 else
                 {
                     image1Src = imageControl.Source.ToString();
+                    Border imageBorder = imageControl.Parent as Border;
+                    imageBorder.BorderBrush = Brushes.Gold;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="imageControl"></param>
+        public void Image2SrcChanged(Image imageControl)
+        {
+            if (imageControl != null && imageControl.Source != null)
+            {
+                Border2Src1 = Brushes.Black;
+                Border2Src2 = Brushes.Black;
+                Border2Src3 = Brushes.Black;
+
+                if (image2Src.Equals(imageControl.Source.ToString()))
+                {
+                    image2Src = "";
+                    Border imageBorder = imageControl.Parent as Border;
+                    imageBorder.BorderBrush = Brushes.Black;
+                }
+                else
+                {
+                    image2Src = imageControl.Source.ToString();
+                    Border imageBorder = imageControl.Parent as Border;
+                    imageBorder.BorderBrush = Brushes.Gold;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="imageControl"></param>
+        public void Image3SrcChanged(Image imageControl)
+        {
+            if (imageControl != null && imageControl.Source != null)
+            {
+                Border3Src1 = Brushes.Black;
+                Border3Src2 = Brushes.Black;
+                Border3Src3 = Brushes.Black;
+
+                if (image3Src.Equals(imageControl.Source.ToString()))
+                {
+                    image3Src = "";
+                    Border imageBorder = imageControl.Parent as Border;
+                    imageBorder.BorderBrush = Brushes.Black;
+                }
+                else
+                {
+                    image3Src = imageControl.Source.ToString();
+                    Border imageBorder = imageControl.Parent as Border;
+                    imageBorder.BorderBrush = Brushes.Gold;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="imageControl"></param>
+        public void Image4SrcChanged(Image imageControl)
+        {
+            if (imageControl != null && imageControl.Source != null)
+            {
+                Border4Src1 = Brushes.Black;
+                Border4Src2 = Brushes.Black;
+                Border4Src3 = Brushes.Black;
+
+                if (image4Src.Equals(imageControl.Source.ToString()))
+                {
+                    image4Src = "";
+                    Border imageBorder = imageControl.Parent as Border;
+                    imageBorder.BorderBrush = Brushes.Black;
+                }
+                else
+                {
+                    image4Src = imageControl.Source.ToString();
+                    Border imageBorder = imageControl.Parent as Border;
+                    imageBorder.BorderBrush = Brushes.Gold;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="imageControl"></param>
+        public void Image5SrcChanged(Image imageControl)
+        {
+            if (imageControl != null && imageControl.Source != null)
+            {
+                Border5Src1 = Brushes.Black;
+                Border5Src2 = Brushes.Black;
+                Border5Src3 = Brushes.Black;
+
+                if (image5Src.Equals(imageControl.Source.ToString()))
+                {
+                    image5Src = "";
+                    Border imageBorder = imageControl.Parent as Border;
+                    imageBorder.BorderBrush = Brushes.Black;
+                }
+                else
+                {
+                    image5Src = imageControl.Source.ToString();
+                    Border imageBorder = imageControl.Parent as Border;
+                    imageBorder.BorderBrush = Brushes.Gold;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="imageControl"></param>
+        public void Image6SrcChanged(Image imageControl)
+        {
+            if (imageControl != null && imageControl.Source != null)
+            {
+                Border6Src1 = Brushes.Black;
+                Border6Src2 = Brushes.Black;
+                Border6Src3 = Brushes.Black;
+
+                if (image6Src.Equals(imageControl.Source.ToString()))
+                {
+                    image6Src = "";
+                    Border imageBorder = imageControl.Parent as Border;
+                    imageBorder.BorderBrush = Brushes.Black;
+                }
+                else
+                {
+                    image6Src = imageControl.Source.ToString();
                     Border imageBorder = imageControl.Parent as Border;
                     imageBorder.BorderBrush = Brushes.Gold;
                 }

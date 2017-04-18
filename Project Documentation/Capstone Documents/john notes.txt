@@ -1,0 +1,40 @@
+Managers need to see preview of flyer when they select type
+Managers need to be able to manually type in address, phone number
+Managers need to be able to set exact times of sale (12 hour sale 6-6 vs 7-7) - Maybe set in actual flyer
+Manager would want a max size of 15 items
+Print area would be 8 1/2 by 11 (standard sheet paper)
+
+Applicable Sale flyer types are:
+Customer Appreciatation Day
+3 Day Sale
+12 hour Sale
+Truckload Sale
+Holiday Sale
+Doorbuster Sale
+
+For demo I will only have two flyer types selectable
+
+Need to add Store Type to FlyerCreator Project
+Applicable store types are:
+Piggly Wiggly
+Food Giant
+Pic-N-Sav
+
+Add checkboxes in Flyer Creator for following types:
+While supplies last
+No rainchecks given - Should say "Sorry, No Rainchecks given"
+Populate these in the flyer template - Look at existing While Supplies Last Sign
+
+Look into overlapping image and price - like flyer example
+
+Client requested category for item size, which is a drop down box in the Flyer Creator window
+
+Item Size box will contain the following options:
+Per Pound
+Each
+Jumbo Pack
+Family Pack
+
+
+Also need another section where they can enter description besides name:
+This would be text field

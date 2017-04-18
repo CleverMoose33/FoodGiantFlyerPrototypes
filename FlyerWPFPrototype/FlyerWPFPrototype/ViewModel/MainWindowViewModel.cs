@@ -34,10 +34,17 @@ namespace FlyerWPFPrototype
 
             //_ActiveViewModel = new LoginControlViewModel();
             //_ActiveViewModel = new FlyerSampleViewModel();
+
+            WindowManager dbwin = new WindowManager();
+            DatabaseMaintainerViewModel db = new DatabaseMaintainerViewModel();
+            dbwin.ShowWindow(db);
+            
+
             WindowManager wm = new WindowManager();
-            //FlyerCreatorViewModel temp = new FlyerCreatorViewModel();
-            DatabaseMaintainerViewModel temp = new DatabaseMaintainerViewModel();
+            FlyerCreatorViewModel temp = new FlyerCreatorViewModel();
             wm.ShowWindow(temp);
+
+
         }
         
     }

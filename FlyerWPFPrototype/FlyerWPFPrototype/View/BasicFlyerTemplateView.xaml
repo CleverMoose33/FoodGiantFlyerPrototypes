@@ -4,34 +4,155 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FlyerWPFPrototype"
-             mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="800">
-    <Grid>
+             >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="TextBlock" x:Key="FlyerDateStyle">
+                <Setter Property="FontSize" Value="36"/>
+                <Setter Property="FontFamily" Value="Century Gothic"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="TextWrapping" Value="Wrap"/>
+            </Style>
+            <Style TargetType="Label" x:Key="ItemNameStyle">
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="Foreground" Value="White"/>
+            </Style>
+            <Style TargetType="TextBox" x:Key="ItemPriceStyle">
+                <Setter Property="FontSize" Value="36"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="TextWrapping" Value="Wrap"/>
+                <Setter Property="FontFamily" Value="Times New Roman"/>
+                <Setter Property="Background" Value="{Binding FlyerBackgroundColor}"/>
+            </Style>
+            <Style TargetType="Border" x:Key="BorderStyle">
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="Black"/>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="{Binding FlyerBackgroundColor}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*" SharedSizeGroup="ColumnGroups"/>
+            <ColumnDefinition Width="1*" SharedSizeGroup="ColumnGroups"/>
+            <ColumnDefinition Width="1*" SharedSizeGroup="ColumnGroups"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="5*"/>
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="{Binding Price1Txt}" />
-        <Image Source="{Binding Image1Src}" />
+        <!-- Grid to contain the store name and sale dates-->
+        <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding SaleDates}"  Style="{StaticResource FlyerDateStyle}"/>
+            <Image Grid.Column="1" Source="{Binding GroceryStoreImage}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </Grid>
+
+        <Border Grid.Column="0" Grid.Row="1" Style="{StaticResource BorderStyle}">
+                <Grid Grid.Column="0" Grid.Row="1" Visibility="{Binding Item1Vis}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="1" Grid.Row="1" Content="{Binding Item1Txt}" Style="{StaticResource ItemNameStyle}"/>
+                <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Price1Txt}" Style="{StaticResource ItemPriceStyle}"/>
+                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Source="{Binding Image1Src}" />
+                </Grid>
+        </Border>
         
-        <Image Source="{Binding Image2Src}" />
         
-        <Image Source="{Binding Image3Src}" />
-        
-        <Image Source="{Binding Image4Src}" />
-        
-        <Image Source="{Binding Image5Src}" />
-        
-        <Image Source="{Binding Image6Src}" />
+        <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource BorderStyle}">
+            <Grid Grid.Column="1" Grid.Row="1" Visibility="{Binding Item2Vis}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="1" Grid.Row="1" Content="{Binding Item2Txt}" Style="{StaticResource ItemNameStyle}"/>
+                <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Price2Txt}" Style="{StaticResource ItemPriceStyle}"/>
+                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Source="{Binding Image2Src}" />
+            </Grid>
+        </Border>
+
+
+        <Border Grid.Column="2" Grid.Row="1" Style="{StaticResource BorderStyle}">
+            <Grid Grid.Column="2" Grid.Row="1" Visibility="{Binding Item3Vis}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="1" Grid.Row="1" Content="{Binding Item3Txt}" Style="{StaticResource ItemNameStyle}"/>
+                <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Price3Txt}" Style="{StaticResource ItemPriceStyle}"/>
+                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Source="{Binding Image3Src}" />
+            </Grid>
+        </Border>
+
+
+        <Border Grid.Column="0" Grid.Row="2" Style="{StaticResource BorderStyle}">
+            <Grid Grid.Column="0" Grid.Row="2" Visibility="{Binding Item4Vis}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="1" Grid.Row="1" Content="{Binding Item4Txt}" Style="{StaticResource ItemNameStyle}"/>
+                <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Price4Txt}" Style="{StaticResource ItemPriceStyle}"/>
+                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Source="{Binding Image4Src}" />
+            </Grid>
+        </Border>
+
+
+        <Border Grid.Column="1" Grid.Row="2" Style="{StaticResource BorderStyle}">
+            <Grid Grid.Column="1" Grid.Row="2" Visibility="{Binding Item5Vis}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="1" Grid.Row="1" Content="{Binding Item5Txt}" Style="{StaticResource ItemNameStyle}"/>
+                <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Price5Txt}" Style="{StaticResource ItemPriceStyle}"/>
+                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Source="{Binding Image5Src}" />
+            </Grid>
+        </Border>
+
+
+        <Border Grid.Column="2" Grid.Row="2" Style="{StaticResource BorderStyle}">
+            <Grid Grid.Column="2" Grid.Row="2" Visibility="{Binding Item6Vis}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="1" Grid.Row="1" Content="{Binding Item6Txt}" Style="{StaticResource ItemNameStyle}"/>
+                <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Price6Txt}" Style="{StaticResource ItemPriceStyle}"/>
+                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Source="{Binding Image6Src}" />
+            </Grid>
+        </Border>
 
 
     </Grid>

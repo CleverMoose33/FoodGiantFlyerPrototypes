@@ -21,33 +21,33 @@ namespace FlyerWPFPrototype
         /// </summary>
         public DatabaseInterface()
         {
-            List<string> resultsString = new List<string>();
-            SqlConnection sqlConnection = new SqlConnection();
-            sqlConnection.ConnectionString = @"Data Source=.\SQLEXPRESS;
-                          AttachDbFilename=" + Environment.CurrentDirectory + @"\Database\FoodGiantSQLDatabase.mdf;
-                          Integrated Security=True;
-                          Connect Timeout=30;
-                          User Instance=True";
+            //List<string> resultsString = new List<string>();
+            //SqlConnection sqlConnection = new SqlConnection();
+            //sqlConnection.ConnectionString = @"Data Source=.\SQLEXPRESS;
+            //              AttachDbFilename=" + Environment.CurrentDirectory + @"\Database\FoodGiantSQLDatabase.mdf;
+            //              Integrated Security=True;
+            //              Connect Timeout=30;
+            //              User Instance=True";
 
-            sqlConnection.Open();
+            //sqlConnection.Open();
 
-            SqlCommand cmd = new SqlCommand();
-            SqlDataReader reader;
+            //SqlCommand cmd = new SqlCommand();
+            //SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM Items";
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = sqlConnection;
+            //cmd.CommandText = "SELECT * FROM Items";
+            //cmd.CommandType = CommandType.Text;
+            //cmd.Connection = sqlConnection;
 
-            sqlConnection.Open();
+            //sqlConnection.Open();
 
-            reader = cmd.ExecuteReader();
-            foreach (string resultString in reader)
-            {
-                resultsString.Add(resultString);
-            }
-            // Data is accessible through the DataReader object here.
+            //reader = cmd.ExecuteReader();
+            //foreach (string resultString in reader)
+            //{
+            //    resultsString.Add(resultString);
+            //}
+            //// Data is accessible through the DataReader object here.
 
-            sqlConnection.Close();
+            //sqlConnection.Close();
         }
 
         /// <summary>

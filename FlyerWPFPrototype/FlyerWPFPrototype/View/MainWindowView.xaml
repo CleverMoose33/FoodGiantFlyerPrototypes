@@ -18,7 +18,7 @@
                 <MenuItem Header="Print" />
             </MenuItem>
         </Menu>
-
-        <ContentControl cal:View.Model="{Binding ActiveViewModel}" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Calendar Grid.Row="1" SelectedDatesChanged="Calendar_SelectedDatesChanged" />
+        <!--<ContentControl cal:View.Model="{Binding ActiveViewModel}" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>-->
     </Grid>
 </Window>

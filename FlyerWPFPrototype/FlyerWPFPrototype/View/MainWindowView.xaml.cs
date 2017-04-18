@@ -25,5 +25,17 @@ namespace FlyerWPFPrototype
         {
             InitializeComponent();
         }
+
+        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Calendar cally = sender as Calendar;
+
+            if (cally.SelectedDate != null)
+            {
+                string selectedDate = cally.SelectedDate.Value.ToLongDateString();
+                MessageBox.Show(selectedDate);
+            }
+
+        }
     }
 }
