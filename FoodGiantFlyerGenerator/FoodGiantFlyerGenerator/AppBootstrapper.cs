@@ -8,7 +8,7 @@ using System.ComponentModel.Composition;
 using System.Windows;
 using System.Reflection;
 
-namespace FlyerWPFPrototype
+namespace FoodGiantFlyerGenerator
 {
     public class AppBootstrapper : BootstrapperBase
     {

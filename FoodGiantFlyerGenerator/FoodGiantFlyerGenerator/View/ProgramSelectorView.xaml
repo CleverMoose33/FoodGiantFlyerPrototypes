@@ -1,12 +1,25 @@
-﻿<Window x:Class="FoodGiantFlyerGenerator.View.ProgramSelectorView"
+﻿<Window x:Class="FoodGiantFlyerGenerator.ProgramSelectorView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FoodGiantFlyerGenerator.View"
-        mc:Ignorable="d"
-        Title="ProgramSelectorView" Height="300" Width="300">
+        xmlns:local="clr-namespace:FoodGiantFlyerGenerator"
+        xmlns:cal="http://www.caliburnproject.org"
+        Title="ProgramSelectorView" Height="400" Width="525">
+    <Window.Resources>
+        <BitmapImage x:Key="FoodGiantBannerImageSrc" UriSource="../Program Images/foodgiant_logo.png" />
+    </Window.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="155"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Image Grid.Row="0" Grid.ColumnSpan="2" Source="{StaticResource FoodGiantBannerImageSrc}" />
+        <Button Grid.Row="1" Grid.Column="0" Content="Create a new Flyer" cal:Message.Attach="FlyerClicked($source)" />
+        <Button Grid.Row="2" Grid.Column="0" Content="Add/Remove a Database Item" cal:Message.Attach="DatabaseClicked($source)" />
     </Grid>
 </Window>
