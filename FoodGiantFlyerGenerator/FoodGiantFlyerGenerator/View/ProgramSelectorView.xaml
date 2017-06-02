@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FoodGiantFlyerGenerator"
         xmlns:cal="http://www.caliburnproject.org"
-        Title="ProgramSelectorView" Height="400" Width="525">
+        Title="Food Giant Program Selector" Height="400" Width="525">
     <Window.Resources>
         <BitmapImage x:Key="FoodGiantBannerImageSrc" UriSource="../Program Images/foodgiant_logo.png" />
     </Window.Resources>
@@ -17,9 +17,11 @@
             <RowDefinition Height="155"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Image Grid.Row="0" Grid.ColumnSpan="2" Source="{StaticResource FoodGiantBannerImageSrc}" />
-        <Button Grid.Row="1" Grid.Column="0" Content="Create a new Flyer" cal:Message.Attach="FlyerClicked($source)" />
-        <Button Grid.Row="2" Grid.Column="0" Content="Add/Remove a Database Item" cal:Message.Attach="DatabaseClicked($source)" />
+        <Button Grid.Row="1" Grid.Column="0" Content="Create a new Flyer" cal:Message.Attach="FlyerCreatorClicked" />
+        <Button Grid.Row="2" Grid.Column="0" Content="Add/Remove a Database Item" cal:Message.Attach="DatabaseClicked" />
+        <Button Grid.Row="3" Grid.Column="0" Content="View Previous Flyers" cal:Message.Attach="FlyerHistoryClicked" />
     </Grid>
 </Window>

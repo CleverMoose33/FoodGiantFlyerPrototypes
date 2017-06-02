@@ -1,10 +1,5 @@
 ﻿using Caliburn.Micro;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace FoodGiantFlyerGenerator
 {
@@ -13,43 +8,31 @@ namespace FoodGiantFlyerGenerator
     {
         private readonly IEventAggregator _eventAggregator;
 
-        #region Binding Items
-        private string _BaseItem;
-
-        public string BaseItem
-        {
-            get { return _BaseItem; }
-            set
-            {
-                _BaseItem = value;
-                NotifyOfPropertyChange();
-            }
-        }
-        #endregion
-
         public ProgramSelectorViewModel()
         {
             _eventAggregator = IoC.Get<IEventAggregator>();
             _eventAggregator.Subscribe(this);
         }
 
-        public void FlyerClicked(object var)
+        public void FlyerCreatorClicked()
         {
-            Button something = (Button)var;
+            WindowManager wm = new WindowManager();
+            FlyerCreatorViewModel fcvm = new FlyerCreatorViewModel();
+            wm.ShowWindow(fcvm);
         }
 
-        public void FlyerClicked()
+        public void DatabaseClicked()
         {
-            //WindowManager wm = new WindowManager();
-            //FlyerCreatorViewModel temp = new FlyerCreatorViewModel();
-            //wm.ShowWindow(temp);
+            WindowManager wm = new WindowManager();
+            //DatabaseMaintainerViewModel dbvm = new DatabaseMaintainerViewModel();
+            //wm.ShowWindow(dbvm);
         }
 
-        public void DatabaseClicked(object var)
+        public void FlyerHistoryClicked()
         {
-            //WindowManager dbwin = new WindowManager();
-            //DatabaseMaintainerViewModel db = new DatabaseMaintainerViewModel();
-            //dbwin.ShowWindow(db);
+            WindowManager wm = new WindowManager();
+            //FlyerHistoryViewModel fhvm = new FlyerHistoryViewModel();
+            //wm.ShowWindow(fhvm);
         }
     }
 }
