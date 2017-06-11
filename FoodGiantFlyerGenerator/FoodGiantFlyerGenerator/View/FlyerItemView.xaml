@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="FoodGiantFlyerGenerator.FlyerItemView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FoodGiantFlyerGenerator"
+        xmlns:cal="http://www.caliburnproject.org">
+    <UserControl.Resources>
+        <!--
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/StandardFlyerTheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        -->
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="LblStyle">
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+            <Style TargetType="TextBox" x:Key="TxtBoxStyle">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="TextWrapping" Value="Wrap" />
+            </Style>
+            <Style TargetType="Border" x:Key="BdrStyle">
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="Black"/>
+            </Style>
+            <Style TargetType="ComboBox" x:Key="CmboBoxStyle">
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+            <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+            <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+            <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+            <ColumnDefinition Width="3*" SharedSizeGroup="ItemGroup"/>
+        </Grid.ColumnDefinitions>
+        <ComboBox Grid.Column="0" x:Name="itemCmboBox" Style="{StaticResource CmboBoxStyle}" ItemsSource="{Binding ItemList}"
+                              cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)" >
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Style="{StaticResource LblStyle}" Content="{Binding ItemName}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <TextBox Grid.Column="1" Grid.Row="0" x:Name="priceTxtBlk" Text="Enter Price Here" Style="{StaticResource TxtBoxStyle}" />
+        <ComboBox Grid.Column="2" x:Name="itemSizes" Style="{StaticResource CmboBoxStyle}">
+            <ComboBoxItem Content="Per Pound"/>
+            <ComboBoxItem Content="Each" />
+            <ComboBoxItem Content="Jumbo Pack" />
+            <ComboBoxItem Content="Family Pack" />
+        </ComboBox>
+        <TextBox Grid.Column="3" x:Name="descriptionTxtBlk" Text="Enter Item Description" Style="{StaticResource TxtBoxStyle}" />
+        <Grid Grid.Column="4" Visibility="Visible">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+                <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+                <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" BorderBrush="{Binding BdrBrsh1}" Style="{StaticResource BdrStyle}">
+                <Image Grid.Column="0" Source="{Binding ImgSrc1}" cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ImgSrc1Changed()]" />
+            </Border>
+            <Border Grid.Column="1" BorderBrush="{Binding BdrBrsh2}" Style="{StaticResource BdrStyle}">
+                <Image Grid.Column="1" Source="{Binding ImgSrc2}" cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ImgSrc2Changed()]" />
+            </Border>
+            <Border Grid.Column="2" BorderBrush="{Binding BdrBrsh3}" Style="{StaticResource BdrStyle}">
+                <Image Grid.Column="2" Source="{Binding ImgSrc3}" cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ImgSrc3Changed()]" />
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

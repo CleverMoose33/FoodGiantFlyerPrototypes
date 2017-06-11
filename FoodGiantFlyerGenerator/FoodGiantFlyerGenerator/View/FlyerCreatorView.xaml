@@ -6,63 +6,9 @@
         xmlns:local="clr-namespace:FoodGiantFlyerGenerator"
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
-        Title="FlyerCreatorView" Height="400" Width="600">
+        Title="FlyerCreatorView" Height="400" Width="1000">
     <Window.Resources>
-        <ResourceDictionary>
-            <Style TargetType="Label" x:Key="LabelStyle">
-                <Setter Property="FontSize" Value="24"/>
-            </Style>
-            <Style TargetType="Border" x:Key="BorderStyle">
-                <Setter Property="BorderThickness" Value="1"/>
-            </Style>
-            <Style TargetType="ComboBox" x:Key="CmboBoxStyle">
-                <Setter Property="Height" Value="30"/>
-                <Setter Property="VerticalAlignment" Value="Top"/>
-            </Style>
-            <ControlTemplate x:Key="FlyerItem" TargetType="GroupBox">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
-                        <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
-                        <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
-                        <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
-                        <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
-                    </Grid.ColumnDefinitions>
-                    <ComboBox Grid.Column="0" x:Name="itemCmboBox" Style="{StaticResource CmboBoxStyle}" >
-                        <!--cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)"-->
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <Label />
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                    <TextBlock Grid.Column="1" Grid.Row="0" x:Name="priceTxtBlk" Text="Enter Price Here"/>
-                    <ComboBox Grid.Column="2" x:Name="itemSizes">
-                        <ComboBoxItem Content="Per Pound"/>
-                        <ComboBoxItem Content="Each" />
-                        <ComboBoxItem Content="Jumbo Pack" />
-                        <ComboBoxItem Content="Family Pack" />
-                    </ComboBox>
-                    <TextBlock Grid.Column="3" x:Name="descriptionTxtBlk" Text="Enter Item Description, if applicable, here" />
-                    <Grid Grid.Row="0" Grid.Column="4">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
-                            <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
-                            <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
-                        </Grid.ColumnDefinitions>
-                        <Border Grid.Column="0" Style="{StaticResource BorderStyle}">
-                            <Image Grid.Column="0" />
-                        </Border>
-                        <Border Grid.Column="1" Style="{StaticResource BorderStyle}">
-                            <Image Grid.Column="1" />
-                        </Border>
-                        <Border Grid.Column="2" Style="{StaticResource BorderStyle}">
-                            <Image Grid.Column="2" />
-                        </Border>
-                    </Grid>
-                </Grid>
-            </ControlTemplate>
-        </ResourceDictionary>
+
     </Window.Resources>
     
     <Grid>
@@ -79,10 +25,14 @@
             <RowDefinition Height="1*" SharedSizeGroup="Items"/>
             <RowDefinition Height="1*" SharedSizeGroup="Items"/>
         </Grid.RowDefinitions>
-
-        <GroupBox Template="{StaticResource FlyerItem}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding FlyerItem1}" cal:Message.Attach="SomeEvent($source)" />
-        <GroupBox Template="{StaticResource FlyerItem}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Visibility="Collapsed"/>
         
+        <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="FlyerItem1" Visibility="{Binding Item1Vis}" />
+        <ContentControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Name="FlyerItem2" Visibility="{Binding Item2Vis}" />
+        <ContentControl Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" x:Name="FlyerItem3" Visibility="{Binding Item3Vis}" />
+        <ContentControl Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" x:Name="FlyerItem4" Visibility="{Binding Item4Vis}" />
+        <ContentControl Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" x:Name="FlyerItem5" Visibility="{Binding Item5Vis}" />
+        <ContentControl Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" x:Name="FlyerItem6" Visibility="{Binding Item6Vis}" />
+
     </Grid>
     
     <!--

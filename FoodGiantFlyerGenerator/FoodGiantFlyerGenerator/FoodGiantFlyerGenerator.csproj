@@ -88,15 +88,23 @@
     </ApplicationDefinition>
     <Compile Include="DatabaseInterface.cs" />
     <Compile Include="Model\FlyerDataModel.cs" />
+    <Compile Include="ViewModel\FlyerItemViewModel.cs" />
     <Compile Include="ViewModel\FlyerCreatorViewModel.cs" />
     <Compile Include="ViewModel\ProgramSelectorViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="View\FlyerItemView.xaml.cs">
+      <DependentUpon>FlyerItemView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\FlyerCreatorView.xaml.cs">
       <DependentUpon>FlyerCreatorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\BaseView.xaml.cs">
       <DependentUpon>BaseView.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\FlyerItemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\FlyerCreatorView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -146,7 +154,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Themes\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Database\FoodGiantSQLDatabase.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

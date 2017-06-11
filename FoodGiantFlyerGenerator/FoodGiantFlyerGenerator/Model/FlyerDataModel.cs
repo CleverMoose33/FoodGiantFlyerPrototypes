@@ -1,33 +1,35 @@
-﻿namespace FoodGiantFlyerGenerator.Model
+﻿using Caliburn.Micro;
+
+namespace FoodGiantFlyerGenerator.Model
 {
     /// <summary>
     /// This class will hold the variables used to create each ad in the eventual flyer.aspx page
     /// This allows us to store and generate as many ad items as the manager needs
     /// </summary>
-    public class FlyerDataModel
+    public class FlyerDataModel : PropertyChangedBase
     {
-        public string itemName { get; set; }
-        public string itemCategory { get; set; }
-        public string imageName1 { get; set; }
-        public string imageName2 { get; set; }
-        public string imageName3 { get; set; }
+        public string ItemName { get; set; }
+        public string ItemCategory { get; set; }
+        public string ImgName1 { get; set; }
+        public string ImgName2 { get; set; }
+        public string ImgName3 { get; set; }
 
-        public FlyerDataModel(string itemName, string itemCategory, string imageName1, string imageName2, string imageName3)
+        public FlyerDataModel(string itemName, string itemCategory, string imgName1, string imgName2, string imgName3)
         {
             if (!string.IsNullOrEmpty(itemName))
-                this.itemName = itemName;
+                ItemName = itemName;
 
             if (!string.IsNullOrEmpty(itemCategory))
-                this.itemCategory = itemCategory;
+                ItemCategory = itemCategory;
 
-            if (!string.IsNullOrEmpty(imageName1))
-                this.imageName1 = imageName1;
+            if (!string.IsNullOrEmpty(imgName1))
+                ImgName1 = imgName1;
 
-            if (!string.IsNullOrEmpty(imageName2))
-                this.imageName2 = imageName2;
+            if (!string.IsNullOrEmpty(imgName2))
+                ImgName2 = imgName2;
 
-            if (!string.IsNullOrEmpty(imageName3))
-                this.imageName3 = imageName3;
+            if (!string.IsNullOrEmpty(imgName3))
+                ImgName3 = imgName3;
         }
 
     }
