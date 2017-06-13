@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,6 +21,79 @@ Checkboxes for
     •	No rainchecks given
         */
         #region Binding Items
+
+        #region ComboBox Bindings
+        private string _StoreName;
+
+        public string StoreName
+        {
+            get
+            { return _StoreName; }
+            set
+            {
+                _StoreName = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private string _StoreAddress;
+
+        public string StoreAddress
+        {
+            get
+            { return _StoreAddress; }
+            set
+            {
+                _StoreAddress = value;
+                NotifyOfPropertyChange();
+            }
+        }
+        
+
+        private string _StoreNumber;
+
+        public string StoreNumber
+        {
+            get
+            { return _StoreNumber; }
+            set
+            {
+                _StoreNumber = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private List<string> _StoreLocCmboBox;
+
+        public List<string> StoreLocCmboBox
+        {
+            get
+            {
+                return _StoreLocCmboBox;
+            }
+            set
+            {
+                _StoreLocCmboBox = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private List<int> _NumItemsCmboBox;
+
+        public List<int> NumItemsCmboBox
+        {
+            get
+            {
+                return _NumItemsCmboBox;
+            }
+            set
+            {
+                _NumItemsCmboBox = value;
+                NotifyOfPropertyChange();
+            }
+        }
+        #endregion
+
         #region Flyer Binding Items
         private FlyerItemViewModel _FlyerItem1;
 
@@ -99,6 +173,7 @@ Checkboxes for
             }
         }
         #endregion
+
         #region Visibility
         private Visibility _Item1Vis;
 
@@ -185,6 +260,23 @@ Checkboxes for
             _eventAggregator = IoC.Get<IEventAggregator>();
             _eventAggregator.Subscribe(this);
 
+            PopulateNumFlyerItems();
+            CreateStoreLocs();
+            CreateFlyerItems();
+        }
+
+        #region Flyer Creator Items Instantiation
+        public void CreateStoreLocs()
+        {
+            StoreLocCmboBox = new List<string>();
+            StoreLocCmboBox.Add("Piggly Wiggly");
+            StoreLocCmboBox.Add("Food Giant");
+            StoreLocCmboBox.Add("Pic-N-Sav");
+            StoreLocCmboBox.Add("Citronelle Marketplace");
+        }
+
+        public void CreateFlyerItems()
+        {
             FlyerItem1 = new FlyerItemViewModel();
             FlyerItem2 = new FlyerItemViewModel();
             FlyerItem3 = new FlyerItemViewModel();
@@ -193,6 +285,26 @@ Checkboxes for
             FlyerItem6 = new FlyerItemViewModel();
         }
 
+        /// <summary>
+        /// Populated ComboBox Items for Binding element NumImagesCmboBox
+        /// </summary>
+        private void PopulateNumFlyerItems()
+        {
+            NumItemsCmboBox = new List<int>();
+            int maxNumberOfFlyers = 15;
+            int numItem = 1;
+            for (int i = 0; i < maxNumberOfFlyers; i++)
+            {
+                NumItemsCmboBox.Add(numItem);
+                numItem++;
+            }
+
+            //Method to force control to hide images by default
+            //Showing 3 flyer items initially
+            int numVisElements = NumItemsCmboBox[2];
+            ShowHideElements(numVisElements);
+        }
+        #endregion
 
         #region User Events
 
@@ -201,6 +313,33 @@ Checkboxes for
         {
 
         }
+
+        #region ComboBox Entry Events
+        /// <summary>
+        /// Event for selection changed, updates Visual Elements
+        /// </summary>
+        /// <param name="numVisElements"></param>
+        public void NumImagesCmboBox_SelectionChanged(int numVisElements)
+        {
+            ShowHideElements(numVisElements);
+        }
+
+        public void StoreLocCmboBox_SelectionChanged(string storeName)
+        {
+            StoreName = storeName;
+        }
+
+        public void StoreAddress_TextChanged(string storeAddress)
+        {
+            StoreAddress = storeAddress;
+        }
+
+        public void StoreNumber_TextChanged(string storeNumber)
+        {
+            StoreNumber = storeNumber;
+        }
+        #endregion
+
         #endregion
 
         #region Visibility

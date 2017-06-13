@@ -12,21 +12,9 @@
             </ResourceDictionary.MergedDictionaries>
         -->
         <ResourceDictionary>
-            <Style TargetType="Label" x:Key="LblStyle">
-                <Setter Property="FontSize" Value="14"/>
-            </Style>
-            <Style TargetType="TextBox" x:Key="TxtBoxStyle">
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="TextWrapping" Value="Wrap" />
-            </Style>
-            <Style TargetType="Border" x:Key="BdrStyle">
-                <Setter Property="BorderThickness" Value="1"/>
-                <Setter Property="BorderBrush" Value="Black"/>
-            </Style>
-            <Style TargetType="ComboBox" x:Key="CmboBoxStyle">
-                <Setter Property="Height" Value="30"/>
-                <Setter Property="VerticalAlignment" Value="Top"/>
-            </Style>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/DefaultStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
