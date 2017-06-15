@@ -88,10 +88,14 @@
     </ApplicationDefinition>
     <Compile Include="DatabaseInterface.cs" />
     <Compile Include="Model\FlyerDataModel.cs" />
+    <Compile Include="ViewModel\DatabaseMaintainerViewModel.cs" />
     <Compile Include="ViewModel\FlyerItemViewModel.cs" />
     <Compile Include="ViewModel\FlyerCreatorViewModel.cs" />
     <Compile Include="ViewModel\ProgramSelectorViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="View\DatabaseMaintainerView.xaml.cs">
+      <DependentUpon>DatabaseMaintainerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\FlyerItemView.xaml.cs">
       <DependentUpon>FlyerItemView.xaml</DependentUpon>
     </Compile>
@@ -104,6 +108,10 @@
     <Page Include="Themes\DefaultStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DatabaseMaintainerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\FlyerItemView.xaml">
       <Generator>MSBuild:Compile</Generator>
