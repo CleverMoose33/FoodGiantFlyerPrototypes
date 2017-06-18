@@ -8,37 +8,43 @@
         mc:Ignorable="d"
         Title="Database Maintainer" Height="300" Width="300">
     <Window.Resources>
-        
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/DefaultStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="2*"/>
-            </Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" SharedSizeGroup="Items"/>
-                <RowDefinition Height="1*" SharedSizeGroup="Items"/>
+            <RowDefinition Height="1*" SharedSizeGroup="Items"/>
+            <RowDefinition Height="2*" SharedSizeGroup="Items"/>
                 <RowDefinition Height="1*" SharedSizeGroup="Items"/>
             </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Enter Food Giant Inventory Items below"/>
-        <Button Grid.Row="0" Grid.Column="5" Content="Add Item To Database" cal:Message.Attach="AddItemToDatabase()"/>
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Content="Enter Food Giant Inventory Items below"/>
 
-        <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding ItemName}" />
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ItemCategory}" />
-        <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding Price}" FontSize="24"/>
-        <Button Grid.Row="1" Grid.Column="3" Content="{Binding Item1SlctnBtn}" cal:Message.Attach="SelectImage1()"/>
-        <Button Grid.Row="1" Grid.Column="4" Content="{Binding Item2SlctnBtn}" cal:Message.Attach="SelectImage2()"/>
-        <Button Grid.Row="1" Grid.Column="5" Content="{Binding Item3SlctnBtn}" cal:Message.Attach="SelectImage3()"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Item Name"/>
+        <Label Grid.Row="1" Grid.Column="1" Content="Item Category"/>
+        <Button Grid.Row="1" Grid.Column="2" Content="{Binding Item1SlctnBtn}" cal:Message.Attach="SelectImage1()"/>
+        <Button Grid.Row="1" Grid.Column="3" Content="{Binding Item2SlctnBtn}" cal:Message.Attach="SelectImage2()"/>
+        <Button Grid.Row="1" Grid.Column="4" Content="{Binding Item3SlctnBtn}" cal:Message.Attach="SelectImage3()"/>
 
-        <Image Grid.Row="2" Grid.Column="3" Source="{Binding Image1Src}"/>
-        <Image Grid.Row="2" Grid.Column="4" Source="{Binding Image2Src}"/>
-        <Image Grid.Row="2" Grid.Column="5" Source="{Binding Image3Src}"/>
-        
+        <TextBox Grid.Row="2" Grid.Column="0" Text="{Binding ItemName}" />
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ItemCategory}" />
+        <Image Grid.Row="2" Grid.Column="2" Source="{Binding Image1Src}"/>
+        <Image Grid.Row="2" Grid.Column="3" Source="{Binding Image2Src}"/>
+        <Image Grid.Row="2" Grid.Column="4" Source="{Binding Image3Src}"/>
+
+        <Button Grid.Row="3" Grid.Column="2" Content="Add Item To Database" Grid.ColumnSpan="3" cal:Message.Attach="AddItemToDatabase()"/>
+
     </Grid>
 </Window>

@@ -72,7 +72,6 @@ namespace FoodGiantFlyerGenerator
                         {
                             MessageBox.Show("Error Has Occured");
                         }
-
                     }
                 }
                 finally
@@ -81,7 +80,6 @@ namespace FoodGiantFlyerGenerator
                 }
                 dbConn.Close();
             }
-
             return flyerDBItemsList;
         }
 
@@ -91,7 +89,28 @@ namespace FoodGiantFlyerGenerator
         /// <param name="newItem"></param>
         public void AddNewItem(FlyerDataModel newItem)
         {
+            SqlCommand cmd = new SqlCommand();
+            SqlConnection dbConn = new SqlConnection(dbConnStr);
 
+            cmd.Connection = dbConn;
+            cmd.CommandType = CommandType.Text;
+
+            //Check if data already exists
+            cmd.CommandText = "SELECT * FROM INTO ItemList (Item Name, Item Category, Image Name 1, Image Name 2, Image Name 3) VALUES" +
+            "'" + newItem.ItemName + "' , '" + newItem.ItemCategory + "' , '" + newItem.ImgName1 + "' , '" + newItem.ImgName2 + "' , '" + newItem.ImgName3;
+
+            dbConn.Open();
+
+            SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.Default);
+
+            if (reader.HasRows)
+                MessageBox.Show("Data Already Exists");
+            else
+            {
+                cmd.CommandText = "INSERT INTO ItemList (Item Name, Item Category, Image Name 1, Image Name 2, Image Name 3) VALUES" +
+                    "'" + newItem.ItemName + "' , '" + newItem.ItemCategory + "' , '" + newItem.ImgName1 + "' , '" + newItem.ImgName2 + "' , '" + newItem.ImgName3;
+                               
+            }
         }
     }
 }

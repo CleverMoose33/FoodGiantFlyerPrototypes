@@ -43,19 +43,6 @@ namespace FoodGiantFlyerGenerator
             }
         }
 
-        private string _Price;
-
-        public string Price
-        {
-            get
-            { return _Price; }
-            set
-            {
-                _Price = value;
-                NotifyOfPropertyChange(() => Price);
-            }
-        }
-
         private string _Image1Src;
 
         public string Image1Src
@@ -151,18 +138,32 @@ namespace FoodGiantFlyerGenerator
         {
             ItemName = "Enter Item Name Here";
             ItemCategory = "Enter Item Category Here";
-            Price = "$0.00";
             Item1SlctnBtn = Item2SlctnBtn = Item3SlctnBtn = "Select an Image";
         }
 
         public void AddItemToDatabase()
         {
             //Pull items, create new FlyerItemModel
-
-            FlyerDataModel newModelItem = new FlyerDataModel(ItemName, ItemCategory, Image1Src, Image2Src, Image3Src);
-            //Validate Params
-            dbInt.AddNewItem(newModelItem);
+            if (EntriesValid())
+            {
+                FlyerDataModel newModelItem = new FlyerDataModel(ItemName, ItemCategory, Image1Src, Image2Src, Image3Src);
+                //Validate Params
+                dbInt.AddNewItem(newModelItem);
+            }
         }
 
+        /// <summary>
+        /// Verifies user completed all previous forms
+        /// </summary>
+        /// <returns></returns>
+        public bool EntriesValid()
+        {
+            bool validEntry = false;
+
+            if (!string.IsNullOrEmpty(ItemName) && !string.IsNullOrEmpty(ItemCategory) && !string.IsNullOrEmpty(Image1Src))
+                validEntry = true;
+
+            return validEntry
+        }
     }
 }
