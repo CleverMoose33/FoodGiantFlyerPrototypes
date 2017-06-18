@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
@@ -84,33 +83,111 @@ namespace FoodGiantFlyerGenerator
         }
 
         /// <summary>
-        /// Add new item to database, clear out flyer list
+        /// Add new item to database
         /// </summary>
         /// <param name="newItem"></param>
-        public void AddNewItem(FlyerDataModel newItem)
+        public bool AddNewItem(FlyerDataModel newItem)
         {
-            SqlCommand cmd = new SqlCommand();
+            bool entryAdded = false;
+            SqlCommand duplicateChkCmd = new SqlCommand();
             SqlConnection dbConn = new SqlConnection(dbConnStr);
 
-            cmd.Connection = dbConn;
-            cmd.CommandType = CommandType.Text;
+            duplicateChkCmd.Connection = dbConn;
+            duplicateChkCmd.CommandType = CommandType.Text;
 
-            //Check if data already exists
-            cmd.CommandText = "SELECT * FROM INTO ItemList (Item Name, Item Category, Image Name 1, Image Name 2, Image Name 3) VALUES" +
-            "'" + newItem.ItemName + "' , '" + newItem.ItemCategory + "' , '" + newItem.ImgName1 + "' , '" + newItem.ImgName2 + "' , '" + newItem.ImgName3;
-
-            dbConn.Open();
-
-            SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.Default);
-
-            if (reader.HasRows)
-                MessageBox.Show("Data Already Exists");
-            else
+            try
             {
-                cmd.CommandText = "INSERT INTO ItemList (Item Name, Item Category, Image Name 1, Image Name 2, Image Name 3) VALUES" +
-                    "'" + newItem.ItemName + "' , '" + newItem.ItemCategory + "' , '" + newItem.ImgName1 + "' , '" + newItem.ImgName2 + "' , '" + newItem.ImgName3;
-                               
+                //Check if entry already exists in DB
+
+                //Logic to set up appropriate query search string
+                string duplicateChkCmdTxt = "SELECT * FROM ItemList WHERE ItemName LIKE @ItemName AND ItemCategory LIKE @ItemCategory" +
+                    " AND ImageName1 LIKE @ImageName1";
+
+                //Added params this way for reduction of a (unlikely) SQL Command Line Injection Attack
+                duplicateChkCmd.Parameters.AddWithValue("@ItemName", newItem.ItemName);
+                duplicateChkCmd.Parameters.AddWithValue("@ItemCategory", newItem.ItemCategory);
+                duplicateChkCmd.Parameters.AddWithValue("@ImageName1", newItem.ImgName1);
+
+                if (!string.IsNullOrEmpty(newItem.ImgName2))
+                {
+                    duplicateChkCmdTxt = duplicateChkCmdTxt + " AND ImageName2 LIKE @ImageName2";
+                    duplicateChkCmd.Parameters.AddWithValue("@ImageName2", newItem.ImgName2);
+                }
+
+                if (!string.IsNullOrEmpty(newItem.ImgName3))
+                {
+                    duplicateChkCmdTxt = duplicateChkCmdTxt + " AND ImageName3 LIKE @ImageName3";
+                    duplicateChkCmd.Parameters.AddWithValue("@ImageName3", newItem.ImgName3);
+                }
+
+                duplicateChkCmd.CommandText = duplicateChkCmdTxt;
+
+                //Open connection and run query
+                dbConn.Open();
+                SqlDataReader reader = duplicateChkCmd.ExecuteReader();
+                bool itemAlreadyExists = reader.HasRows;
+                reader.Close();
+
+
+                if (itemAlreadyExists)
+                    MessageBox.Show("Flyer Item Already Exists");
+                else
+                {
+                    //Not duplicate entry, we can add entry to database
+                    SqlCommand insertCmd = new SqlCommand();
+
+                    insertCmd.Connection = dbConn;
+                    insertCmd.CommandType = CommandType.Text;
+
+                    //Split INSERT and VALUES section due to dynamic query based on number of images
+                    string insertCmdTxt = "INSERT INTO ItemList (ItemName, ItemCategory, ImageName1";//,ImageName2,ImageName3
+                    string insertValCmdTxt = " VALUES (@ItemName, @ItemCategory, @ImageName1";//,@ImageName2,@ImageName3
+
+                    //Added params this way for reduction of a (unlikely) SQL Command Line Injection Attack
+                    insertCmd.Parameters.AddWithValue("@ItemName", newItem.ItemName);
+                    insertCmd.Parameters.AddWithValue("@ItemCategory", newItem.ItemCategory);
+                    insertCmd.Parameters.AddWithValue("@ImageName1", newItem.ImgName1);
+
+                    if (!string.IsNullOrEmpty(newItem.ImgName2))
+                    {
+                        insertCmdTxt = insertCmdTxt + ", ImageName2";
+                        insertValCmdTxt = insertValCmdTxt + ", @ImageName2";
+                        insertCmd.Parameters.AddWithValue("@ImageName2", newItem.ImgName2);
+                    }
+
+                    if (!string.IsNullOrEmpty(newItem.ImgName3))
+                    {
+                        insertCmdTxt = insertCmdTxt + ", ImageName3";
+                        insertValCmdTxt = insertValCmdTxt + ", @ImageName3";
+                        insertCmd.Parameters.AddWithValue("@ImageName3", newItem.ImgName3);
+                    }
+
+                    insertCmdTxt = insertCmdTxt + ")";
+                    insertValCmdTxt = insertValCmdTxt + ")";
+
+                    //Append INSERT and VALUE sections together
+                    insertCmdTxt = insertCmdTxt + insertValCmdTxt;
+                    insertCmd.CommandText = insertCmdTxt;
+
+                    //See if query updated database
+                    int insertSuccess = insertCmd.ExecuteNonQuery();
+
+                    if(insertSuccess == 1)
+                    {
+                        entryAdded = true;
+                    }
+                }
             }
+            catch (Exception e)
+            {
+                Console.Write(e);
+            }
+            finally
+            {
+                dbConn.Close();
+            }
+            return entryAdded;
         }
+
     }
 }

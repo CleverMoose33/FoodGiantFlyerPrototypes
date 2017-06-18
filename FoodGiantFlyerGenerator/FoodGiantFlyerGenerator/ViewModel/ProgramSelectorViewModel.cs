@@ -6,12 +6,12 @@ namespace FoodGiantFlyerGenerator
     [Export(typeof(ProgramSelectorViewModel))]
     public class ProgramSelectorViewModel : PropertyChangedBase //Or Screen if visual
     {
-        private readonly IEventAggregator _eventAggregator;
+        private readonly IEventAggregator _EventAggregator;
 
         public ProgramSelectorViewModel()
         {
-            _eventAggregator = IoC.Get<IEventAggregator>();
-            _eventAggregator.Subscribe(this);
+            _EventAggregator = IoC.Get<IEventAggregator>();
+            _EventAggregator.Subscribe(this);
         }
 
         public void FlyerCreatorClicked()
@@ -24,8 +24,8 @@ namespace FoodGiantFlyerGenerator
         public void DatabaseClicked()
         {
             WindowManager wm = new WindowManager();
-            //DatabaseMaintainerViewModel dbvm = new DatabaseMaintainerViewModel();
-            //wm.ShowWindow(dbvm);
+            DatabaseMaintainerViewModel dbvm = new DatabaseMaintainerViewModel();
+            wm.ShowWindow(dbvm);
         }
 
         public void FlyerHistoryClicked()

@@ -9,7 +9,7 @@ namespace FoodGiantFlyerGenerator
     [Export(typeof(FlyerCreatorViewModel))]
     public class FlyerCreatorViewModel : Screen
     {
-        private readonly IEventAggregator _eventAggregator;
+        private readonly IEventAggregator _EventAggregator;
 
         /*
      Number Of Flyer Items 1-15
@@ -257,8 +257,8 @@ Checkboxes for
 
         public FlyerCreatorViewModel()
         {
-            _eventAggregator = IoC.Get<IEventAggregator>();
-            _eventAggregator.Subscribe(this);
+            _EventAggregator = IoC.Get<IEventAggregator>();
+            _EventAggregator.Subscribe(this);
 
             PopulateNumFlyerItems();
             CreateStoreLocs();

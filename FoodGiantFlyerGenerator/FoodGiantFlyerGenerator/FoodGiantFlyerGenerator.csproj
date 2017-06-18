@@ -168,11 +168,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Database\FoodGiantSQLDatabase.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Database\FoodGiantSQLDatabase.mdf" />
     <Content Include="Database\FoodGiantSQLDatabase_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>FoodGiantSQLDatabase.mdf</DependentUpon>
     </Content>
     <Resource Include="Program Images\foodgiant_logo.png" />

@@ -12,7 +12,7 @@ namespace FoodGiantFlyerGenerator
 {
     public class AppBootstrapper : BootstrapperBase
     {
-        private CompositionContainer _compContainer;
+        private CompositionContainer _CompContainer;
 
         public AppBootstrapper()
         {
@@ -21,15 +21,15 @@ namespace FoodGiantFlyerGenerator
 
         protected override void Configure()
         {
-            _compContainer = new CompositionContainer(new AggregateCatalog(AssemblySource.Instance.Select(x => new AssemblyCatalog(x)).OfType<ComposablePartCatalog>()));
+            _CompContainer = new CompositionContainer(new AggregateCatalog(AssemblySource.Instance.Select(x => new AssemblyCatalog(x)).OfType<ComposablePartCatalog>()));
 
             CompositionBatch batch = new CompositionBatch();
 
             batch.AddExportedValue<IWindowManager>(new WindowManager());
             batch.AddExportedValue<IEventAggregator>(new EventAggregator());
-            batch.AddExportedValue(_compContainer);
+            batch.AddExportedValue(_CompContainer);
 
-            _compContainer.Compose(batch);
+            _CompContainer.Compose(batch);
 
             var config = new TypeMappingConfiguration();
             config.DefaultSubNamespaceForViewModels = "ViewModel";
@@ -44,7 +44,7 @@ namespace FoodGiantFlyerGenerator
         protected override object GetInstance(Type service, string key)
         {
             string contract = string.IsNullOrEmpty(key) ? AttributedModelServices.GetContractName(service) : key;
-            var exports = _compContainer.GetExportedValues<object>(contract);
+            var exports = _CompContainer.GetExportedValues<object>(contract);
 
             if (exports.Any())
                 return exports.First();
@@ -54,12 +54,12 @@ namespace FoodGiantFlyerGenerator
 
         protected override IEnumerable<object> GetAllInstances (Type service)
         {
-            return _compContainer.GetExportedValues<object>(AttributedModelServices.GetContractName(service));
+            return _CompContainer.GetExportedValues<object>(AttributedModelServices.GetContractName(service));
         }
 
         protected override void BuildUp(object instance)
         {
-            _compContainer.SatisfyImportsOnce(instance);
+            _CompContainer.SatisfyImportsOnce(instance);
         }
 
         protected override void OnStartup(object sender, StartupEventArgs e)

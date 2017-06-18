@@ -43,8 +43,11 @@
         <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding StoreNumber}" cal:Message.Attach="StoreNumber_TextChanged($this)" MaxLength="11" />
 
         <Label Grid.Row="3" Grid.Column="0" Content="Add While Supplies Last" />
-        <CheckBox Grid.Row="3" Grid.Column="0" />
+        <CheckBox Grid.Row="3" Grid.Column="0" Style="{StaticResource ChckBoxStyle}" />
 
+        <Label Grid.Row="3" Grid.Column="1" Content="No Rainchecks Given" />
+        <CheckBox Grid.Row="3" Grid.Column="1" Style="{StaticResource ChckBoxStyle}" />
+        
         <ContentControl Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" x:Name="FlyerItem1" Visibility="{Binding Item1Vis}" />
         <ContentControl Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" x:Name="FlyerItem2" Visibility="{Binding Item2Vis}" />
         <ContentControl Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" x:Name="FlyerItem3" Visibility="{Binding Item3Vis}" />

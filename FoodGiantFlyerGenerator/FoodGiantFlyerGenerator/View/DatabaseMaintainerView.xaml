@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:FoodGiantFlyerGenerator"
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
-        Title="Database Maintainer" Height="300" Width="300">
+        Title="Database Maintainer" Height="500" Width="700"
+        MinHeight="500" MinWidth="700">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -30,21 +31,29 @@
                 <RowDefinition Height="1*" SharedSizeGroup="Items"/>
             </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Content="Enter Food Giant Inventory Items below"/>
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"  Style="{StaticResource LblHeaderStyle}" Content="Enter Food Giant Inventory Items below"/>
 
-        <Label Grid.Row="1" Grid.Column="0" Content="Item Name"/>
-        <Label Grid.Row="1" Grid.Column="1" Content="Item Category"/>
-        <Button Grid.Row="1" Grid.Column="2" Content="{Binding Item1SlctnBtn}" cal:Message.Attach="SelectImage1()"/>
-        <Button Grid.Row="1" Grid.Column="3" Content="{Binding Item2SlctnBtn}" cal:Message.Attach="SelectImage2()"/>
-        <Button Grid.Row="1" Grid.Column="4" Content="{Binding Item3SlctnBtn}" cal:Message.Attach="SelectImage3()"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Item Name" Style="{StaticResource LblStyle}"/>
+        <Label Grid.Row="1" Grid.Column="1" Content="Item Category" Style="{StaticResource LblStyle}"/>
+        <Button Grid.Row="1" Grid.Column="2" Content="Select First Image" cal:Message.Attach="SelectImage1()"/>
+        <Button Grid.Row="1" Grid.Column="3" Content="Select Second Image" cal:Message.Attach="SelectImage2()"/>
+        <Button Grid.Row="1" Grid.Column="4" Content="Select Third Image" cal:Message.Attach="SelectImage3()"/>
 
         <TextBox Grid.Row="2" Grid.Column="0" Text="{Binding ItemName}" />
         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ItemCategory}" />
-        <Image Grid.Row="2" Grid.Column="2" Source="{Binding Image1Src}"/>
-        <Image Grid.Row="2" Grid.Column="3" Source="{Binding Image2Src}"/>
-        <Image Grid.Row="2" Grid.Column="4" Source="{Binding Image3Src}"/>
 
+        <Border Grid.Row="2" Grid.Column="2" Style="{StaticResource BdrStyle}">
+            <Image Grid.Row="2" Grid.Column="2" Source="{Binding Image1Src}"/>
+        </Border>
+
+        <Border Grid.Row="2" Grid.Column="3"  Style="{StaticResource BdrStyle}">
+            <Image Grid.Row="2" Grid.Column="3" Source="{Binding Image2Src}"/>
+        </Border>
+
+        <Border Grid.Row="2" Grid.Column="4" Style="{StaticResource BdrStyle}">
+            <Image Grid.Row="2" Grid.Column="4" Source="{Binding Image3Src}"/>
+        </Border>
+        
         <Button Grid.Row="3" Grid.Column="2" Content="Add Item To Database" Grid.ColumnSpan="3" cal:Message.Attach="AddItemToDatabase()"/>
-
     </Grid>
 </Window>
