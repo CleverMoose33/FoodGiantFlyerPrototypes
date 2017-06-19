@@ -39,8 +39,12 @@
         <Button Grid.Row="1" Grid.Column="3" Content="Select Second Image" cal:Message.Attach="SelectImage2()"/>
         <Button Grid.Row="1" Grid.Column="4" Content="Select Third Image" cal:Message.Attach="SelectImage3()"/>
 
-        <TextBox Grid.Row="2" Grid.Column="0" Text="{Binding ItemName}" />
-        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ItemCategory}" />
+        <Border Grid.Row="2" Grid.Column="0" Style="{StaticResource BdrStyle}">
+            <TextBox Grid.Row="2" Grid.Column="0" Text="{Binding ItemName}" />
+        </Border>
+        <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource BdrStyle}">
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ItemCategory}" />
+        </Border>
 
         <Border Grid.Row="2" Grid.Column="2" Style="{StaticResource BdrStyle}">
             <Image Grid.Row="2" Grid.Column="2" Source="{Binding Image1Src}"/>
@@ -54,6 +58,6 @@
             <Image Grid.Row="2" Grid.Column="4" Source="{Binding Image3Src}"/>
         </Border>
         
-        <Button Grid.Row="3" Grid.Column="2" Content="Add Item To Database" Grid.ColumnSpan="3" cal:Message.Attach="AddItemToDatabase()"/>
+        <Button Grid.Row="3" Grid.Column="3" Content="Add Item To Database" Grid.ColumnSpan="2" cal:Message.Attach="AddItemToDatabase()"/>
     </Grid>
 </Window>
