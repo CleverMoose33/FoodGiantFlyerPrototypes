@@ -11,7 +11,7 @@ namespace FoodGiantFlyerGenerator
     [Export(typeof(BaseViewModel))]
     public class BaseViewModel : PropertyChangedBase //Or Screen if visual
     {
-        private readonly IEventAggregator _eventAggregator;
+        private readonly IEventAggregator _EventAggregator;
 
         #region Binding Items
         private string _BaseItem;
@@ -29,8 +29,8 @@ namespace FoodGiantFlyerGenerator
 
         public BaseViewModel()
         {
-            _eventAggregator = IoC.Get<IEventAggregator>();
-            _eventAggregator.Subscribe(this);
+            _EventAggregator = IoC.Get<IEventAggregator>();
+            _EventAggregator.Subscribe(this);
         }
     }
 }

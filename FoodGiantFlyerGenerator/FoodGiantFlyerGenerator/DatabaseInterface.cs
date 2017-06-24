@@ -47,20 +47,20 @@ namespace FoodGiantFlyerGenerator
                         try
                         {
                             IDataRecord record = reader;
-                            string itemName = (string)reader["Item Name"];
-                            string itemCat = (string)reader["Item Category"];
-                            string imageName1 = (string)reader["Image Name 1"];
+                            string itemName = (string)reader["ItemName"];
+                            string itemCat = (string)reader["ItemCategory"];
+                            string imageName1 = (string)reader["ImageName1"];
 
                             string imageName2 = "";
-                            if (!string.IsNullOrEmpty(reader["Image Name 2"].ToString()))
+                            if (!string.IsNullOrEmpty(reader["ImageName2"].ToString()))
                             {
-                                imageName2 = (string)reader["Image Name 2"];
+                                imageName2 = (string)reader["ImageName2"];
                             }
 
                             string imageName3 = "";
-                            if (!string.IsNullOrEmpty(reader["Image Name 3"].ToString()))
+                            if (!string.IsNullOrEmpty(reader["ImageName3"].ToString()))
                             {
-                                imageName3 = (string)reader["Image Name 3"];
+                                imageName3 = (string)reader["ImageName3"];
                             }
 
                             FlyerDataModel flyerItem = new FlyerDataModel(itemName, itemCat, imageName1, imageName2, imageName3);

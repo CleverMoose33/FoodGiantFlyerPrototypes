@@ -3,8 +3,7 @@
 namespace FoodGiantFlyerGenerator.Model
 {
     /// <summary>
-    /// This class will hold the variables used to create each ad in the eventual flyer.aspx page
-    /// This allows us to store and generate as many ad items as the manager needs
+    /// This class holds the variables used to populate values in the FlyerItem classes
     /// </summary>
     public class FlyerDataModel : PropertyChangedBase
     {
@@ -13,6 +12,10 @@ namespace FoodGiantFlyerGenerator.Model
         public string ImgName1 { get; set; }
         public string ImgName2 { get; set; }
         public string ImgName3 { get; set; }
+
+        public string ItemPrice { get; set; }
+        public string ItemSize { get; set; }
+        public string ItemDesc { get; set; }
 
         public FlyerDataModel(string itemName, string itemCategory, string imgName1, string imgName2, string imgName3)
         {

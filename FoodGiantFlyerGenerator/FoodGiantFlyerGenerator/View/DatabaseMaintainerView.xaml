@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FoodGiantFlyerGenerator"
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
-        Title="Database Maintainer" Height="500" Width="700"
+        Title="{Binding Title}" Height="500" Width="700"
         MinHeight="500" MinWidth="700">
     <Window.Resources>
         <ResourceDictionary>

@@ -21,6 +21,18 @@ namespace FoodGiantFlyerGenerator
         private string _SafeImage3;
 
         #region Binding Items
+        private string _Title;
+
+        public string Title
+        {
+            get
+            { return _Title; }
+            set
+            {
+                _Title = value;
+                NotifyOfPropertyChange();
+            }
+        }
 
         #region Item Parameters
         private string _ItemName;
@@ -98,7 +110,7 @@ namespace FoodGiantFlyerGenerator
         {
             _EventAggregator = IoC.Get<IEventAggregator>();
             _EventAggregator.Subscribe(this);
-
+            Title = "Database Maintainer";
             _DbInt = new DatabaseInterface();
         }
 
