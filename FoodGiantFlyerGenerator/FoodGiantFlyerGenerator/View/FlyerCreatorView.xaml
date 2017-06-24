@@ -15,43 +15,72 @@
     </Window.Resources>
 
     <ScrollViewer VerticalScrollBarVisibility="Visible">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="20*"/>
-        </Grid.RowDefinitions>
-        
-        <!--Flyer options-->
-        <Label Grid.Row="0" Grid.Column="0" Content="Number of Items for Flyer" Style="{StaticResource LblStyle}" />
-        <ComboBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding NumItemsCmboBox}" cal:Message.Attach="NumImagesCmboBox_SelectionChanged($this)"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="20*"/>
+            </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="1" Content="Store Location" Style="{StaticResource LblStyle}" />
-        <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding StoreLocCmboBox}" SelectedItem="{Binding StoreName}" cal:Message.Attach="StoreLocCmboBox_SelectionChanged($this)" />
-        <Label Grid.Row="0" Grid.Column="2" Content="Store Address" Style="{StaticResource LblStyle}" />
-        <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding StoreAddress}" cal:Message.Attach="StoreAddress_TextChanged($this)" />
-        <Label Grid.Row="0" Grid.Column="3" Content="Store Phone Number" Style="{StaticResource LblStyle}" />
-        <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding StoreNumber}" cal:Message.Attach="StoreNumber_TextChanged($this)" MaxLength="11" />
+            <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" BorderBrush="Blue" Style="{StaticResource BdrStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <!--Flyer options-->
+                <Label Grid.Row="0" Grid.Column="0" Content="Number of Items for Flyer" Style="{StaticResource LblStyle}" />
+                <ComboBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding NumItemsCmboBox}" cal:Message.Attach="NumImagesCmboBox_SelectionChanged($this)"/>
 
-        <!--Check Boxes-->
-        <Label Grid.Row="2" Grid.Column="0" Content="Add While Supplies Last" Style="{StaticResource LblStyle}" />
-        <CheckBox Grid.Row="2" Grid.Column="0" Style="{StaticResource ChckBoxStyle}" cal:Message.Attach="SupplyChkBox_SelectionChanged($source)" />
+                <Label Grid.Row="0" Grid.Column="1" Content="Flyer Template" Style="{StaticResource LblStyle}" />
+                    <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding FlyerTemplatesCmboBox}" cal:Message.Attach="FlyerTemplateCmboBox_SelectionChanged($this)"/>
 
-        <Label Grid.Row="2" Grid.Column="1" Content="No Rainchecks Given" Style="{StaticResource LblStyle}" />
-        <CheckBox Grid.Row="2" Grid.Column="1" Style="{StaticResource ChckBoxStyle}" cal:Message.Attach="RainChkBox_SelectionChanged($source)" />
+                    <!--Check Boxes-->
+                    <Label Grid.Column="0" Grid.Row="3" Content="Supplies Last" Style="{StaticResource LblStyle}" />
+                    <CheckBox Grid.Column="0" Grid.Row="3" Style="{StaticResource ChckBoxStyle}" cal:Message.Attach="SupplyChkBox_SelectionChanged($source)" />
+                    <Label Grid.Column="1" Grid.Row="3" Content="No Rainchecks" Style="{StaticResource LblStyle}" />
+                    <CheckBox Grid.Column="1" Grid.Row="3" Style="{StaticResource ChckBoxStyle}" cal:Message.Attach="RainChkBox_SelectionChanged($source)" />
 
-        <Label Grid.Row="2" Grid.Column="2" Content="Flyer Template" Style="{StaticResource LblStyle}" />
-        <ComboBox Grid.Row="2" Grid.Column="3" ItemsSource="{Binding FlyerTemplatesCmboBox}" cal:Message.Attach="FlyerTemplateCmboBox_SelectionChanged($this)"/>
-        
-        
+                </Grid>
+            </Border>
 
+            <Border Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2" BorderBrush="Red" Style="{StaticResource BdrStyle}">
+                <Grid Grid.Row="0" Grid.Column="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Store Type" Style="{StaticResource LblStyle}" />
+                    <ComboBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding StoreLocCmboBox}" 
+                          SelectedItem="{Binding StoreName}" cal:Message.Attach="StoreLocCmboBox_SelectionChanged($this)" />
+                    <Label Grid.Row="0" Grid.Column="2" Content="Store Address" Style="{StaticResource LblStyle}" />
+                    <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding StoreAddress}" cal:Message.Attach="StoreAddress_TextChanged($this)" />
+                    <Label Grid.Row="0" Grid.Column="3" Content="Store Phone Number" Style="{StaticResource LblStyle}" />
+                    <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding StoreNumber}" cal:Message.Attach="StoreNumber_TextChanged($this)" MaxLength="11" />
+
+                    <DatePicker Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" cal:Message.Attach="PickStartSaleDate($source)" />
+                    <DatePicker Grid.Row="2" Grid.Column="3" cal:Message.Attach="PickEndSaleDate($source)" />
+                </Grid>
+            </Border>
+            
             <Grid Grid.Row="3" Grid.ColumnSpan="4">
                 <Grid.RowDefinitions>
                     <!--Flyer Item Rows-->

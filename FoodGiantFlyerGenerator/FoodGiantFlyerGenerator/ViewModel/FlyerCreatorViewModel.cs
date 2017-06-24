@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using FoodGiantFlyerGenerator.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Windows;
@@ -18,6 +19,9 @@ namespace FoodGiantFlyerGenerator
         private int _NumDisplayedFlyerItems;
         private FlyerItemViewModel[] _FlyerItemList;
         private Visibility[] _FlyerItemVisList;
+
+        private DateTime _SelectedStartDate;
+        private DateTime _SelectedEndDate;
 
         #region Binding Items
 
@@ -628,7 +632,6 @@ namespace FoodGiantFlyerGenerator
             _FlyerItemList[13] = FlyerItem14;
             _FlyerItemList[14] = FlyerItem15;
             _FlyerItemList[15] = FlyerItem16;
-
         }
 
         /// <summary>
@@ -676,7 +679,6 @@ namespace FoodGiantFlyerGenerator
         #endregion
 
         #region User Events
-
         #region FlyerGeneration
         public void GenerateFlyer()
         {
@@ -698,7 +700,9 @@ namespace FoodGiantFlyerGenerator
 
             if (_SelectedFlyerTemplate.Equals("Generic Flyer"))
             {
-
+                WindowManager wm = new WindowManager();
+                GenericFlyerViewModel gfvm = new GenericFlyerViewModel(settings, flyerData, _SelectedStartDate, _SelectedEndDate);
+                wm.ShowDialog(gfvm);
             }
 
         }
@@ -747,13 +751,32 @@ namespace FoodGiantFlyerGenerator
 
         #endregion
 
-        #region Visibility
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="selectedDate"></param>
+        public void PickStartSaleDate(DatePicker selectedDate)
+        {
+            _SelectedStartDate = selectedDate.DisplayDate;
+        }
 
         /// <summary>
-        /// Shows/Hides elements based on user selection, will be used for
-        /// aspx page to inform it of how many items it will be generating
+        /// 
         /// </summary>
-        /// <param name="numVisElements"></param>
+        /// <param name="selectedDate"></param>
+        public void PickEndSaleDate(DatePicker selectedDate)
+        {
+            _SelectedEndDate = selectedDate.DisplayDate;
+        }
+
+
+        #region Visibility
+
+            /// <summary>
+            /// Shows/Hides elements based on user selection, will be used for
+            /// aspx page to inform it of how many items it will be generating
+            /// </summary>
+            /// <param name="numVisElements"></param>
         public void ShowHideElements(int numVisElements)
         {
             for(int i = 0; i < _MaxFlyerItems; i++)

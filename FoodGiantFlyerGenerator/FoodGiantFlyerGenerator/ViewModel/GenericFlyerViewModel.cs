@@ -40,15 +40,29 @@ namespace FoodGiantFlyerGenerator
         }
         #endregion
 
-        public GenericFlyerViewModel(FlyerSettingsModel settings, FlyerDataModel[] flyerData)
+        /// <summary>
+        /// Constructor for Flyer
+        /// </summary>
+        /// <param name="settings"></param>
+        /// <param name="flyerData"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        public GenericFlyerViewModel(FlyerSettingsModel settings, FlyerDataModel[] flyerData, DateTime startDate, DateTime endDate)
         {
             _EventAggregator = IoC.Get<IEventAggregator>();
             _EventAggregator.Subscribe(this);
 
-            SetupFlyerLayout(settings, flyerData);
+            SetupFlyerLayout(settings, flyerData, startDate, endDate);
         }
 
-        public void SetupFlyerLayout(FlyerSettingsModel settings, FlyerDataModel[] flyerData)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="settings"></param>
+        /// <param name="flyerData"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        public void SetupFlyerLayout(FlyerSettingsModel settings, FlyerDataModel[] flyerData, DateTime startDate, DateTime endDate)
         {
             if (settings.RainChkd)
                 ShowRaincheck = Visibility.Visible;
