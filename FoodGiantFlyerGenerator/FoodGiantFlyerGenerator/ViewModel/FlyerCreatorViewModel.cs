@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using FoodGiantFlyerGenerator.Model;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Windows;
@@ -11,18 +12,35 @@ namespace FoodGiantFlyerGenerator
     {
         private readonly IEventAggregator _EventAggregator;
 
-        /*
-     Number Of Flyer Items 1-15
-Store Type
-Store Address and Phone Number
-Flyer Type
-Checkboxes for 
-    •	While supplies last
-    •	No rainchecks given
-        */
+        private readonly int _MaxFlyerItems = 16;
+
+        private string _SelectedFlyerTemplate;
+        private int _NumDisplayedFlyerItems;
+        private FlyerItemViewModel[] _FlyerItemList;
+        private Visibility[] _FlyerItemVisList;
+
         #region Binding Items
 
+        #region Check Boxes
+        private bool _SupplyChkBox;
+
+        private bool _RainChkBox;
+        #endregion
+
         #region ComboBox Bindings
+        private string _Title;
+
+        public string Title
+        {
+            get
+            { return _Title; }
+            set
+            {
+                _Title = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
         private string _StoreName;
 
         public string StoreName
@@ -89,6 +107,21 @@ Checkboxes for
             set
             {
                 _NumItemsCmboBox = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private List<string> _FlyerTemplatesCmboBox;
+
+        public List<string> FlyerTemplatesCmboBox
+        {
+            get
+            {
+                return _FlyerTemplatesCmboBox;
+            }
+            set
+            {
+                _FlyerTemplatesCmboBox = value;
                 NotifyOfPropertyChange();
             }
         }
@@ -172,6 +205,136 @@ Checkboxes for
                 NotifyOfPropertyChange();
             }
         }
+
+        private FlyerItemViewModel _FlyerItem7;
+
+        public FlyerItemViewModel FlyerItem7
+        {
+            get
+            { return _FlyerItem7; }
+            set
+            {
+                _FlyerItem7 = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private FlyerItemViewModel _FlyerItem8;
+
+        public FlyerItemViewModel FlyerItem8
+        {
+            get
+            { return _FlyerItem8; }
+            set
+            {
+                _FlyerItem8 = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private FlyerItemViewModel _FlyerItem9;
+
+        public FlyerItemViewModel FlyerItem9
+        {
+            get
+            { return _FlyerItem9; }
+            set
+            {
+                _FlyerItem9 = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private FlyerItemViewModel _FlyerItem10;
+
+        public FlyerItemViewModel FlyerItem10
+        {
+            get
+            { return _FlyerItem10; }
+            set
+            {
+                _FlyerItem10 = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private FlyerItemViewModel _FlyerItem11;
+
+        public FlyerItemViewModel FlyerItem11
+        {
+            get
+            { return _FlyerItem11; }
+            set
+            {
+                _FlyerItem11 = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private FlyerItemViewModel _FlyerItem12;
+
+        public FlyerItemViewModel FlyerItem12
+        {
+            get
+            { return _FlyerItem12; }
+            set
+            {
+                _FlyerItem12 = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private FlyerItemViewModel _FlyerItem13;
+
+        public FlyerItemViewModel FlyerItem13
+        {
+            get
+            { return _FlyerItem13; }
+            set
+            {
+                _FlyerItem13 = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private FlyerItemViewModel _FlyerItem14;
+
+        public FlyerItemViewModel FlyerItem14
+        {
+            get
+            { return _FlyerItem14; }
+            set
+            {
+                _FlyerItem14 = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private FlyerItemViewModel _FlyerItem15;
+
+        public FlyerItemViewModel FlyerItem15
+        {
+            get
+            { return _FlyerItem15; }
+            set
+            {
+                _FlyerItem15 = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private FlyerItemViewModel _FlyerItem16;
+
+        public FlyerItemViewModel FlyerItem16
+        {
+            get
+            { return _FlyerItem16; }
+            set
+            {
+                _FlyerItem16 = value;
+                NotifyOfPropertyChange();
+            }
+        }
         #endregion
 
         #region Visibility
@@ -184,7 +347,7 @@ Checkboxes for
             set
             {
                 _Item1Vis = value;
-                NotifyOfPropertyChange(() => Item1Vis);
+                NotifyOfPropertyChange();
             }
         }
 
@@ -197,7 +360,7 @@ Checkboxes for
             set
             {
                 _Item2Vis = value;
-                NotifyOfPropertyChange(() => Item2Vis);
+                NotifyOfPropertyChange();
             }
         }
 
@@ -210,7 +373,7 @@ Checkboxes for
             set
             {
                 _Item3Vis = value;
-                NotifyOfPropertyChange(() => Item3Vis);
+                NotifyOfPropertyChange();
             }
         }
 
@@ -223,7 +386,7 @@ Checkboxes for
             set
             {
                 _Item4Vis = value;
-                NotifyOfPropertyChange(() => Item4Vis);
+                NotifyOfPropertyChange();
             }
         }
 
@@ -236,7 +399,7 @@ Checkboxes for
             set
             {
                 _Item5Vis = value;
-                NotifyOfPropertyChange(() => Item5Vis);
+                NotifyOfPropertyChange();
             }
         }
 
@@ -249,23 +412,162 @@ Checkboxes for
             set
             {
                 _Item6Vis = value;
-                NotifyOfPropertyChange(() => Item6Vis);
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private Visibility _Item7Vis;
+
+        public Visibility Item7Vis
+        {
+            get
+            { return _Item7Vis; }
+            set
+            {
+                _Item7Vis = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private Visibility _Item8Vis;
+
+        public Visibility Item8Vis
+        {
+            get
+            { return _Item8Vis; }
+            set
+            {
+                _Item8Vis = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private Visibility _Item9Vis;
+
+        public Visibility Item9Vis
+        {
+            get
+            { return _Item9Vis; }
+            set
+            {
+                _Item9Vis = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private Visibility _Item10Vis;
+
+        public Visibility Item10Vis
+        {
+            get
+            { return _Item10Vis; }
+            set
+            {
+                _Item10Vis = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private Visibility _Item11Vis;
+
+        public Visibility Item11Vis
+        {
+            get
+            { return _Item11Vis; }
+            set
+            {
+                _Item11Vis = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private Visibility _Item12Vis;
+
+        public Visibility Item12Vis
+        {
+            get
+            { return _Item12Vis; }
+            set
+            {
+                _Item12Vis = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private Visibility _Item13Vis;
+
+        public Visibility Item13Vis
+        {
+            get
+            { return _Item13Vis; }
+            set
+            {
+                _Item13Vis = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private Visibility _Item14Vis;
+
+        public Visibility Item14Vis
+        {
+            get
+            { return _Item14Vis; }
+            set
+            {
+                _Item14Vis = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private Visibility _Item15Vis;
+
+        public Visibility Item15Vis
+        {
+            get
+            { return _Item15Vis; }
+            set
+            {
+                _Item15Vis = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private Visibility _Item16Vis;
+
+        public Visibility Item16Vis
+        {
+            get
+            { return _Item16Vis; }
+            set
+            {
+                _Item16Vis = value;
+                NotifyOfPropertyChange();
             }
         }
         #endregion
         #endregion
 
+        /// <summary>
+        /// Constructor for Class
+        /// </summary>
         public FlyerCreatorViewModel()
         {
             _EventAggregator = IoC.Get<IEventAggregator>();
             _EventAggregator.Subscribe(this);
 
-            PopulateNumFlyerItems();
             CreateStoreLocs();
+            CreateFlyerTemplates();
             CreateFlyerItems();
+            SetFlyerVisList();
+            PopulateNumFlyerItems();
+            Title = "Food Giant Flyer Creator";
         }
 
         #region Flyer Creator Items Instantiation
+        /// <summary>
+        /// Create initial Store Location Combo Box Values
+        /// </summary>
         public void CreateStoreLocs()
         {
             StoreLocCmboBox = new List<string>();
@@ -275,6 +577,20 @@ Checkboxes for
             StoreLocCmboBox.Add("Citronelle Marketplace");
         }
 
+        /// <summary>
+        /// Create initial Flyer Template Combo Box Values
+        /// </summary>
+        public void CreateFlyerTemplates()
+        {
+            FlyerTemplatesCmboBox = new List<string>();
+            FlyerTemplatesCmboBox.Add("Generic Flyer");
+
+            _SelectedFlyerTemplate = FlyerTemplatesCmboBox[0];
+        }
+
+        /// <summary>
+        /// Instantiate flyer items
+        /// </summary>
         public void CreateFlyerItems()
         {
             FlyerItem1 = new FlyerItemViewModel();
@@ -283,26 +599,79 @@ Checkboxes for
             FlyerItem4 = new FlyerItemViewModel();
             FlyerItem5 = new FlyerItemViewModel();
             FlyerItem6 = new FlyerItemViewModel();
+            FlyerItem7 = new FlyerItemViewModel();
+            FlyerItem8 = new FlyerItemViewModel();
+            FlyerItem9 = new FlyerItemViewModel();
+            FlyerItem10 = new FlyerItemViewModel();
+            FlyerItem11 = new FlyerItemViewModel();
+            FlyerItem12 = new FlyerItemViewModel();
+            FlyerItem13 = new FlyerItemViewModel();
+            FlyerItem14 = new FlyerItemViewModel();
+            FlyerItem15 = new FlyerItemViewModel();
+            FlyerItem16 = new FlyerItemViewModel();
+
+            //Add Flyer Items to Array
+            _FlyerItemList = new FlyerItemViewModel[_MaxFlyerItems];
+            _FlyerItemList[0] = FlyerItem1;
+            _FlyerItemList[1] = FlyerItem2;
+            _FlyerItemList[2] = FlyerItem3;
+            _FlyerItemList[3] = FlyerItem4;
+            _FlyerItemList[4] = FlyerItem5;
+            _FlyerItemList[5] = FlyerItem6;
+            _FlyerItemList[6] = FlyerItem7;
+            _FlyerItemList[7] = FlyerItem8;
+            _FlyerItemList[8] = FlyerItem9;
+            _FlyerItemList[9] = FlyerItem10;
+            _FlyerItemList[10] = FlyerItem11;
+            _FlyerItemList[11] = FlyerItem12;
+            _FlyerItemList[12] = FlyerItem13;
+            _FlyerItemList[13] = FlyerItem14;
+            _FlyerItemList[14] = FlyerItem15;
+            _FlyerItemList[15] = FlyerItem16;
+
         }
 
         /// <summary>
-        /// Populated ComboBox Items for Binding element NumImagesCmboBox
+        /// Add visibility objects to array. Used for ShowHideElements method
+        /// </summary>
+        public void SetFlyerVisList()
+        {
+            _FlyerItemVisList = new Visibility[_MaxFlyerItems];
+            _FlyerItemVisList[0] = Item1Vis;
+            _FlyerItemVisList[1] = Item2Vis;
+            _FlyerItemVisList[2] = Item3Vis;
+            _FlyerItemVisList[3] = Item4Vis;
+            _FlyerItemVisList[4] = Item5Vis;
+            _FlyerItemVisList[5] = Item6Vis;
+            _FlyerItemVisList[6] = Item7Vis;
+            _FlyerItemVisList[7] = Item8Vis;
+            _FlyerItemVisList[8] = Item9Vis;
+            _FlyerItemVisList[9] = Item10Vis;
+            _FlyerItemVisList[10] = Item11Vis;
+            _FlyerItemVisList[11] = Item12Vis;
+            _FlyerItemVisList[12] = Item13Vis;
+            _FlyerItemVisList[13] = Item14Vis;
+            _FlyerItemVisList[14] = Item15Vis;
+            _FlyerItemVisList[15] = Item16Vis;
+        }
+
+        /// <summary>
+        /// Populated ascending list for Flyer Items in variable NumImagesCmboBox
+        /// Lets user select how many flyer items that want added
         /// </summary>
         private void PopulateNumFlyerItems()
         {
             NumItemsCmboBox = new List<int>();
-            int maxNumberOfFlyers = 15;
-            int numItem = 1;
-            for (int i = 0; i < maxNumberOfFlyers; i++)
+            for (int i = 0; i < _MaxFlyerItems; i++)
             {
-                NumItemsCmboBox.Add(numItem);
-                numItem++;
+                //Adding one due to arrays starting at 0
+                NumItemsCmboBox.Add(i + 1);
             }
 
             //Method to force control to hide images by default
             //Showing 3 flyer items initially
-            int numVisElements = NumItemsCmboBox[2];
-            ShowHideElements(numVisElements);
+            _NumDisplayedFlyerItems = NumItemsCmboBox[2];
+            ShowHideElements(_NumDisplayedFlyerItems);
         }
         #endregion
 
@@ -311,8 +680,29 @@ Checkboxes for
         #region FlyerGeneration
         public void GenerateFlyer()
         {
+            FlyerDataModel[] flyerData = new FlyerDataModel[_NumDisplayedFlyerItems - 1];
+            for (int i = 0; i < _NumDisplayedFlyerItems; i++)
+            {
+                flyerData[i].ItemName = _FlyerItemList[i].SelectedItemName;
+                flyerData[i].ItemPrice = _FlyerItemList[i].PriceTxtBlk;
+                flyerData[i].ItemSize = _FlyerItemList[i].SelectedItemSize;
+                flyerData[i].ItemDesc = _FlyerItemList[i].ItemDesTxtBlk;
+                flyerData[i].ImgName1 = _FlyerItemList[i].ImgSrc1;
+                flyerData[i].ImgName2 = _FlyerItemList[i].ImgSrc2;
+                flyerData[i].ImgName3 = _FlyerItemList[i].ImgSrc3;
+                
+                //Future implementation for Item Category
+                //flyerData[i].ItemCategory = _FlyerItemList[i].ItemCategory;
+            }
+            FlyerSettingsModel settings = new FlyerSettingsModel(StoreName, StoreAddress, StoreNumber, _SupplyChkBox, _RainChkBox);
+
+            if (_SelectedFlyerTemplate.Equals("Generic Flyer"))
+            {
+
+            }
 
         }
+        #endregion
 
         #region ComboBox Entry Events
         /// <summary>
@@ -321,7 +711,8 @@ Checkboxes for
         /// <param name="numVisElements"></param>
         public void NumImagesCmboBox_SelectionChanged(int numVisElements)
         {
-            ShowHideElements(numVisElements);
+            _NumDisplayedFlyerItems = numVisElements;
+            ShowHideElements(_NumDisplayedFlyerItems);
         }
 
         public void StoreLocCmboBox_SelectionChanged(string storeName)
@@ -338,7 +729,21 @@ Checkboxes for
         {
             StoreNumber = storeNumber;
         }
-        #endregion
+
+        public void FlyerTemplateCmboBox_SelectionChanged(string flyerTemplateName)
+        {
+            _SelectedFlyerTemplate = flyerTemplateName;
+        }
+
+        public void SupplyChkBox_SelectionChanged(CheckBox chkBox)
+        {
+            _SupplyChkBox = chkBox.IsChecked.Value;
+        }
+
+        public void RainChkBox_SelectionChanged(CheckBox chkBox)
+        {
+            _RainChkBox = chkBox.IsChecked.Value;
+        }
 
         #endregion
 
@@ -351,32 +756,13 @@ Checkboxes for
         /// <param name="numVisElements"></param>
         public void ShowHideElements(int numVisElements)
         {
-            Item1Vis = Visibility.Visible;
-
-            if (numVisElements >= 2)
-                Item2Vis = Visibility.Visible;
-            else
-                Item2Vis = Visibility.Hidden;
-
-            if (numVisElements >= 3)
-                Item3Vis = Visibility.Visible;
-            else
-                Item3Vis = Visibility.Hidden;
-
-            if (numVisElements >= 4)
-                Item4Vis = Visibility.Visible;
-            else
-                Item4Vis = Visibility.Hidden;
-
-            if (numVisElements >= 5)
-                Item5Vis = Visibility.Visible;
-            else
-                Item5Vis = Visibility.Hidden;
-
-            if (numVisElements >= 6)
-                Item6Vis = Visibility.Visible;
-            else
-                Item6Vis = Visibility.Hidden;
+            for(int i = 0; i < _MaxFlyerItems; i++)
+            {
+                if (i < numVisElements)
+                    _FlyerItemVisList[i] = Visibility.Visible;
+                else
+                    _FlyerItemVisList[i] = Visibility.Hidden;
+            }
         }
         #endregion
         #endregion

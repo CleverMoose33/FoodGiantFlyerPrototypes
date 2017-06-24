@@ -12,6 +12,11 @@ namespace FoodGiantFlyerGenerator
         {
             _EventAggregator = IoC.Get<IEventAggregator>();
             _EventAggregator.Subscribe(this);
+
+            WindowManager wm = new WindowManager();
+            FlyerCreatorViewModel fcvm = new FlyerCreatorViewModel();
+            wm.ShowWindow(fcvm);
+
         }
 
         public void FlyerCreatorClicked()

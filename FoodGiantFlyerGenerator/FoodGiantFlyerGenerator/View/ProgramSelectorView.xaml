@@ -20,8 +20,8 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Image Grid.Row="0" Grid.ColumnSpan="2" Source="{StaticResource FoodGiantBannerImageSrc}" />
-        <Button Grid.Row="1" Grid.Column="0" Content="Create a new Flyer" cal:Message.Attach="FlyerCreatorClicked" />
-        <Button Grid.Row="2" Grid.Column="0" Content="Add/Remove a Database Item" cal:Message.Attach="DatabaseClicked" />
-        <Button Grid.Row="3" Grid.Column="0" Content="View Previous Flyers" cal:Message.Attach="FlyerHistoryClicked" />
+        <Button Grid.Row="1" Grid.Column="0" Content="Create a New Store Flyer" cal:Message.Attach="FlyerCreatorClicked" />
+        <Button Grid.Row="2" Grid.Column="0" Content="Add/Remove a Store Item" cal:Message.Attach="DatabaseClicked" />
+        <Button Grid.Row="3" Grid.Column="0" Content="View Previously Created Flyers" cal:Message.Attach="FlyerHistoryClicked" />
     </Grid>
 </Window>

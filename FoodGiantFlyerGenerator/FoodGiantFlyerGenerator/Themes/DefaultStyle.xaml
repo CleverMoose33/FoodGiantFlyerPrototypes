@@ -23,10 +23,15 @@
         <Setter Property="Height" Value="30"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
     </Style>
-    <Style TargetType="CheckBox" x:Key="ChckBoxStyle">
-        <Setter Property="FontSize" Value="24"/>
-        <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="HorizontalAlignment" Value="Right"/>
+    <Style TargetType="ComboBoxItem" x:Key="CmboBoxItemStyle">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
+    <Style TargetType="CheckBox" x:Key="ChckBoxStyle">
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+    </Style>
+    
+    
 </ResourceDictionary>

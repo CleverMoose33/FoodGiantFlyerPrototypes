@@ -8,26 +8,108 @@ using System.Windows.Media;
 namespace FoodGiantFlyerGenerator
 {
     [Export(typeof(FlyerItemViewModel))]
-    public class FlyerItemViewModel : PropertyChangedBase //Or Screen if visual
+    public class FlyerItemViewModel : PropertyChangedBase
     {
         private readonly IEventAggregator _EventAggregator;
 
         #region Binding Items
-        private BindableCollection<FlyerDataModel> _ItemList;
+        private BindableCollection<FlyerDataModel> _ItemNameList;
 
-        public BindableCollection<FlyerDataModel> ItemList
+        public BindableCollection<FlyerDataModel> ItemNameList
         {
             get
             {
-                return _ItemList;
+                return _ItemNameList;
             }
             set
             {
-                _ItemList = value;
+                _ItemNameList = value;
                 NotifyOfPropertyChange();
             }
         }
 
+        private BindableCollection<string> _ItemSizeList;
+
+        public BindableCollection<string> ItemSizeList
+        {
+            get
+            {
+                return _ItemSizeList;
+            }
+            set
+            {
+                _ItemSizeList = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private string _SelectedItemName;
+
+        public string SelectedItemName
+        {
+            get
+            { return _SelectedItemName; }
+            set
+            {
+                _SelectedItemName = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private string _PriceTxtBlk;
+
+        public string PriceTxtBlk
+        {
+            get
+            { return _PriceTxtBlk; }
+            set
+            {
+                _PriceTxtBlk = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private string _SelectedItemSize;
+
+        public string SelectedItemSize
+        {
+            get
+            { return _SelectedItemSize; }
+            set
+            {
+                _SelectedItemSize = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private string _ItemDesTxtBlk;
+
+        public string ItemDesTxtBlk
+        {
+            get
+            { return _ItemDesTxtBlk; }
+            set
+            {
+                _ItemDesTxtBlk = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        //Not implemented
+        private string _ItemCategory;
+
+        public string ItemCategory
+        {
+            get
+            { return _ItemCategory; }
+            set
+            {
+                _ItemCategory = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        #region Images and Border Brushes
         private SolidColorBrush _BdrBrsh1;
 
         public SolidColorBrush BdrBrsh1
@@ -107,30 +189,38 @@ namespace FoodGiantFlyerGenerator
         }
         #endregion
 
+        #endregion
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public FlyerItemViewModel()
         {
             _EventAggregator = IoC.Get<IEventAggregator>();
             _EventAggregator.Subscribe(this);
 
             DatabaseInterface dbInt = new DatabaseInterface();
-            ItemList = dbInt.PullItems();
+            ItemNameList = dbInt.PullItems();
 
+            SetDefaultTextFields();
             SetDefaultBdrBrsh();
 
         }
 
-        #region Item Event Handlers
-        public void ItemListCmboBox_SelectionChanged(ComboBox selectedItmCmboBox)
+        /// <summary>
+        /// Create values for each flyer item
+        /// Potential improvement: read from database?
+        /// </summary>
+        public void SetDefaultTextFields()
         {
-            string tempImgLocation = Environment.CurrentDirectory + @"\Images\";
-            if (selectedItmCmboBox != null)
-            {
-                FlyerDataModel selectedFlyerModel = selectedItmCmboBox.SelectedItem as FlyerDataModel;
+            PriceTxtBlk = "Enter Price Here";
+            ItemDesTxtBlk = "Enter Item Description";
 
-                ImgSrc1 = tempImgLocation + selectedFlyerModel.ImgName1;
-                ImgSrc2 = tempImgLocation + selectedFlyerModel.ImgName2;
-                ImgSrc3 = tempImgLocation + selectedFlyerModel.ImgName3;
-            }
+            ItemSizeList = new BindableCollection<string>();
+            ItemSizeList.Add("Per Pound");
+            ItemSizeList.Add("Each");
+            ItemSizeList.Add("Jumbo Pack");
+            ItemSizeList.Add("Family Pack");
         }
 
         /// <summary>
@@ -141,6 +231,34 @@ namespace FoodGiantFlyerGenerator
             BdrBrsh1 = Brushes.Black;
             BdrBrsh2 = Brushes.Black;
             BdrBrsh3 = Brushes.Black;
+        }
+
+        #region Item Event Handlers
+        /// <summary>
+        /// Updates selected item name value
+        /// </summary>
+        /// <param name="selectedItmCmboBox"></param>
+        public void ItemListCmboBox_SelectionChanged(ComboBox selectedItmCmboBox)
+        {
+            string tempImgLocation = Environment.CurrentDirectory + @"\Images\";
+            if (selectedItmCmboBox != null)
+            {
+                FlyerDataModel selectedFlyerModel = selectedItmCmboBox.SelectedItem as FlyerDataModel;
+                SelectedItemName = selectedFlyerModel.ItemName;
+                ImgSrc1 = tempImgLocation + selectedFlyerModel.ImgName1;
+                ImgSrc2 = tempImgLocation + selectedFlyerModel.ImgName2;
+                ImgSrc3 = tempImgLocation + selectedFlyerModel.ImgName3;
+            }
+        }
+
+        /// <summary>
+        /// Updates selected item size value
+        /// </summary>
+        /// <param name="selectedItmCmboBox"></param>
+        public void ItemSizeCmboBox_SelectionChanged(ComboBox selectedItmCmboBox)
+        {
+            if (selectedItmCmboBox != null)
+                SelectedItemSize = selectedItmCmboBox.SelectedItem.ToString();
         }
 
         /// <summary>
@@ -176,7 +294,6 @@ namespace FoodGiantFlyerGenerator
             BdrBrsh2 = Brushes.Black;
             BdrBrsh3 = Brushes.Gold;
         }
-
         #endregion
     }
 }

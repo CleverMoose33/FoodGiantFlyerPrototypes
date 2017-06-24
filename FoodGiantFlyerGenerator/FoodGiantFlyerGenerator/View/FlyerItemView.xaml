@@ -6,11 +6,6 @@
         xmlns:local="clr-namespace:FoodGiantFlyerGenerator"
         xmlns:cal="http://www.caliburnproject.org">
     <UserControl.Resources>
-        <!--
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Themes/StandardFlyerTheme.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        -->
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Themes/DefaultStyle.xaml" />
@@ -25,7 +20,7 @@
             <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
             <ColumnDefinition Width="3*" SharedSizeGroup="ItemGroup"/>
         </Grid.ColumnDefinitions>
-        <ComboBox Grid.Column="0" x:Name="itemCmboBox" Style="{StaticResource CmboBoxStyle}" ItemsSource="{Binding ItemList}"
+        <ComboBox Grid.Column="0" x:Name="itemCmboBox" Style="{StaticResource CmboBoxStyle}" ItemsSource="{Binding ItemNameList}"
                               cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)" >
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -33,14 +28,11 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <TextBox Grid.Column="1" Grid.Row="0" x:Name="priceTxtBlk" Text="Enter Price Here" Style="{StaticResource TxtBoxStyle}" />
-        <ComboBox Grid.Column="2" x:Name="itemSizes" Style="{StaticResource CmboBoxStyle}">
-            <ComboBoxItem Content="Per Pound"/>
-            <ComboBoxItem Content="Each" />
-            <ComboBoxItem Content="Jumbo Pack" />
-            <ComboBoxItem Content="Family Pack" />
-        </ComboBox>
-        <TextBox Grid.Column="3" x:Name="descriptionTxtBlk" Text="Enter Item Description" Style="{StaticResource TxtBoxStyle}" />
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding PriceTxtBlk}" Style="{StaticResource TxtBoxStyle}" />
+        <ComboBox Grid.Column="2"  ItemsSource="{Binding ItemSizeList}" Style="{StaticResource CmboBoxStyle}"
+                              cal:Message.Attach="ItemSizeCmboBox_SelectionChanged($source)" />
+
+        <TextBox Grid.Column="3" Text="{Binding ItemDesTxtBlk}" Style="{StaticResource TxtBoxStyle}" />
         <Grid Grid.Column="4" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
