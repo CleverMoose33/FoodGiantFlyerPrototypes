@@ -31,7 +31,7 @@
                 <RowDefinition Height="1*" SharedSizeGroup="Items"/>
             </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"  Style="{StaticResource LblHeaderStyle}" Content="Enter Food Giant Inventory Items below"/>
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"  Style="{StaticResource LblHeaderStyle}" Content="{Binding TitleString}"/>
 
         <Label Grid.Row="1" Grid.Column="0" Content="Item Name" Style="{StaticResource LblStyle}"/>
         <Label Grid.Row="1" Grid.Column="1" Content="Item Category" Style="{StaticResource LblStyle}"/>

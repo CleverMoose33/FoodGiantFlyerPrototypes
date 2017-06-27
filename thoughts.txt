@@ -1,9 +1,0 @@
-Try to look into XAML object as a resource so like
-
-<FlyerItem>
-<ComboBox Name/>
-<Text Price/>
-<Border>
-<Image/>
-<Border/>
-</FlyerItem>

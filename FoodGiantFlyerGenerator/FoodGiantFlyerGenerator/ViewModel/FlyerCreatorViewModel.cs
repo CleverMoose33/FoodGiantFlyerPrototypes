@@ -341,7 +341,7 @@ namespace FoodGiantFlyerGenerator
         }
         #endregion
 
-        #region Visibility
+        #region Flyer Item Visibilities
         private Visibility _Item1Vis;
 
         public Visibility Item1Vis
@@ -587,7 +587,8 @@ namespace FoodGiantFlyerGenerator
         public void CreateFlyerTemplates()
         {
             FlyerTemplatesCmboBox = new List<string>();
-            FlyerTemplatesCmboBox.Add("Generic Flyer");
+            FlyerTemplatesCmboBox.Add("Generic 3 day Flyer");
+            FlyerTemplatesCmboBox.Add("Generic 12 hour Flyer");
 
             _SelectedFlyerTemplate = FlyerTemplatesCmboBox[0];
         }
@@ -640,22 +641,6 @@ namespace FoodGiantFlyerGenerator
         public void SetFlyerVisList()
         {
             _FlyerItemVisList = new Visibility[_MaxFlyerItems];
-            _FlyerItemVisList[0] = Item1Vis;
-            _FlyerItemVisList[1] = Item2Vis;
-            _FlyerItemVisList[2] = Item3Vis;
-            _FlyerItemVisList[3] = Item4Vis;
-            _FlyerItemVisList[4] = Item5Vis;
-            _FlyerItemVisList[5] = Item6Vis;
-            _FlyerItemVisList[6] = Item7Vis;
-            _FlyerItemVisList[7] = Item8Vis;
-            _FlyerItemVisList[8] = Item9Vis;
-            _FlyerItemVisList[9] = Item10Vis;
-            _FlyerItemVisList[10] = Item11Vis;
-            _FlyerItemVisList[11] = Item12Vis;
-            _FlyerItemVisList[12] = Item13Vis;
-            _FlyerItemVisList[13] = Item14Vis;
-            _FlyerItemVisList[14] = Item15Vis;
-            _FlyerItemVisList[15] = Item16Vis;
         }
 
         /// <summary>
@@ -692,18 +677,23 @@ namespace FoodGiantFlyerGenerator
                 flyerData[i].ImgName1 = _FlyerItemList[i].ImgSrc1;
                 flyerData[i].ImgName2 = _FlyerItemList[i].ImgSrc2;
                 flyerData[i].ImgName3 = _FlyerItemList[i].ImgSrc3;
-                
+
                 //Future implementation for Item Category
                 //flyerData[i].ItemCategory = _FlyerItemList[i].ItemCategory;
             }
             FlyerSettingsModel settings = new FlyerSettingsModel(StoreName, StoreAddress, StoreNumber, _SupplyChkBox, _RainChkBox);
 
-            if (_SelectedFlyerTemplate.Equals("Generic Flyer"))
-            {
-                WindowManager wm = new WindowManager();
-                GenericFlyerViewModel gfvm = new GenericFlyerViewModel(settings, flyerData, _SelectedStartDate, _SelectedEndDate);
-                wm.ShowDialog(gfvm);
-            }
+            //Outside current SRS TODO: Launch different flyers based on user choice
+            //if (_SelectedFlyerTemplate.Equals("Generic Flyer"))
+            //{
+            //    WindowManager wm = new WindowManager();
+            //    GenericFlyerViewModel gfvm = new GenericFlyerViewModel(settings, flyerData, _SelectedStartDate, _SelectedEndDate);
+            //    wm.ShowDialog(gfvm);
+            //}
+            //Currently launching generic flyer, TODO launch from Flyer display control model at some point
+            WindowManager wm = new WindowManager();
+            GenericFlyerViewModel gfvm = new GenericFlyerViewModel(settings, flyerData, _SelectedStartDate, _SelectedEndDate);
+            wm.ShowDialog(gfvm);
 
         }
         #endregion
@@ -769,7 +759,6 @@ namespace FoodGiantFlyerGenerator
             _SelectedEndDate = selectedDate.DisplayDate;
         }
 
-
         #region Visibility
 
             /// <summary>
@@ -786,6 +775,23 @@ namespace FoodGiantFlyerGenerator
                 else
                     _FlyerItemVisList[i] = Visibility.Hidden;
             }
+
+            Item1Vis = _FlyerItemVisList[0];
+            Item2Vis =_FlyerItemVisList[1];
+            Item3Vis = _FlyerItemVisList[2];
+            Item4Vis = _FlyerItemVisList[3];
+            Item5Vis = _FlyerItemVisList[4];
+            Item6Vis = _FlyerItemVisList[5];
+            Item7Vis = _FlyerItemVisList[6];
+            Item8Vis = _FlyerItemVisList[7];
+            Item9Vis = _FlyerItemVisList[8];
+            Item10Vis = _FlyerItemVisList[9];
+            Item11Vis = _FlyerItemVisList[10];
+            Item12Vis = _FlyerItemVisList[11];
+            Item13Vis = _FlyerItemVisList[12];
+            Item14Vis = _FlyerItemVisList[13];
+            Item15Vis = _FlyerItemVisList[14];
+            Item16Vis = _FlyerItemVisList[15];
         }
         #endregion
         #endregion

@@ -34,6 +34,20 @@ namespace FoodGiantFlyerGenerator
             }
         }
 
+        private string _TitleString;
+
+        public string TitleString
+        {
+            get
+            { return _TitleString; }
+            set
+            {
+                _TitleString = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+
         #region Item Parameters
         private string _ItemName;
 
@@ -112,6 +126,8 @@ namespace FoodGiantFlyerGenerator
             _EventAggregator.Subscribe(this);
             Title = "Database Maintainer";
             _DbInt = new DatabaseInterface();
+
+            TitleString = "Enter Food Giant Inventory Items below";
         }
 
         /// <summary>

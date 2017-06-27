@@ -217,10 +217,14 @@ namespace FoodGiantFlyerGenerator
             ItemDesTxtBlk = "Enter Item Description";
 
             ItemSizeList = new BindableCollection<string>();
+            ItemSizeList.Add("Oz");
+            ItemSizeList.Add("Bag");
             ItemSizeList.Add("Per Pound");
             ItemSizeList.Add("Each");
             ItemSizeList.Add("Jumbo Pack");
             ItemSizeList.Add("Family Pack");
+
+            ItemSizeList.Add("Custom");
         }
 
         /// <summary>
@@ -258,7 +262,13 @@ namespace FoodGiantFlyerGenerator
         public void ItemSizeCmboBox_SelectionChanged(ComboBox selectedItmCmboBox)
         {
             if (selectedItmCmboBox != null)
-                SelectedItemSize = selectedItmCmboBox.SelectedItem.ToString();
+            {
+                //if(selectedItmCmboBox.SelectedItem.ToString().Equals("Custom"))
+                //Allow user to list own item size type    
+                //else
+                    SelectedItemSize = selectedItmCmboBox.SelectedItem.ToString();
+            }
+                
         }
 
         /// <summary>
