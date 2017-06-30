@@ -15,28 +15,14 @@ namespace FoodGiantFlyerGenerator
         private readonly IEventAggregator _EventAggregator;
 
         private readonly int _MaxFlyerItems = 16;
-
-        private string _SelectedFlyerTemplate;
-        private int _NumDisplayedFlyerItems;
-        private FlyerItemViewModel[] _FlyerItemList;
+        private FlyerItemContainerViewModel[] _FlyerItemList;
         private Visibility[] _FlyerItemVisList;
 
         string tempImgLocation = Environment.CurrentDirectory + @"\Images\";
 
         #region Binding Items
-        private string _Title;
 
-        public string Title
-        {
-            get
-            { return _Title; }
-            set
-            {
-                _Title = value;
-                NotifyOfPropertyChange();
-            }
-        }
-
+        #region StoreLogo Items
         private string _StoreName;
 
         public string StoreName
@@ -50,15 +36,15 @@ namespace FoodGiantFlyerGenerator
             }
         }
 
-        private string _StoreImage;
+        private string _LogoImgSrc;
 
-        public string StoreImage
+        public string LogoImgSrc
         {
             get
-            { return _StoreImage; }
+            { return _LogoImgSrc; }
             set
             {
-                _StoreImage = value;
+                _LogoImgSrc = value;
                 NotifyOfPropertyChange();
             }
         }
@@ -90,19 +76,6 @@ namespace FoodGiantFlyerGenerator
             }
         }
 
-        private string _SaleDates;
-
-        public string SaleDates
-        {
-            get
-            { return _SaleDates; }
-            set
-            {
-                _SaleDates = value;
-                NotifyOfPropertyChange();
-            }
-        }
-
         private Brush _FlyerBackgroundColor;
 
         public Brush FlyerBackgroundColor
@@ -116,29 +89,85 @@ namespace FoodGiantFlyerGenerator
             }
         }
 
-        private DateTime _SaleStartDate;
-        public DateTime SaleStartDate
+        #region DateBindings
+        private string _FirstDayName;
+
+        public string FirstDayName
         {
             get
-            { return SaleStartDate; }
+            { return _FirstDayName; }
             set
             {
-                SaleStartDate = value;
+                _FirstDayName = value;
                 NotifyOfPropertyChange();
             }
         }
 
-        private DateTime _SaleEndDate;
-        public DateTime SaleEndDate
+        private string _SecondDayName;
+
+        public string SecondDayName
         {
             get
-            { return _SaleEndDate; }
+            { return _SecondDayName; }
             set
             {
-                _SaleEndDate = value;
+                _SecondDayName = value;
                 NotifyOfPropertyChange();
             }
         }
+
+        private string _ThirdDayName;
+
+        public string ThirdDayName
+        {
+            get
+            { return _ThirdDayName; }
+            set
+            {
+                _ThirdDayName = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private string _FirstDayNum;
+
+        public string FirstDayNum
+        {
+            get
+            { return _FirstDayNum; }
+            set
+            {
+                _FirstDayNum = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private string _SecondDayNum;
+
+        public string SecondDayNum
+        {
+            get
+            { return _SecondDayNum; }
+            set
+            {
+                _SecondDayNum = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private string _ThirdDayNum;
+
+        public string ThirdDayNum
+        {
+            get
+            { return _ThirdDayNum; }
+            set
+            {
+                _ThirdDayNum = value;
+                NotifyOfPropertyChange();
+            }
+        }
+        #endregion
 
         private Visibility _ShowSupply;
 
@@ -163,11 +192,12 @@ namespace FoodGiantFlyerGenerator
                 NotifyOfPropertyChange();
             }
         }
+        #endregion
 
         #region Flyer Binding Items
-        private FlyerItemViewModel _FlyerItem1;
+        private FlyerItemContainerViewModel _FlyerItem1;
 
-        public FlyerItemViewModel FlyerItem1
+        public FlyerItemContainerViewModel FlyerItem1
         {
             get
             { return _FlyerItem1; }
@@ -178,9 +208,9 @@ namespace FoodGiantFlyerGenerator
             }
         }
 
-        private FlyerItemViewModel _FlyerItem2;
+        private FlyerItemContainerViewModel _FlyerItem2;
 
-        public FlyerItemViewModel FlyerItem2
+        public FlyerItemContainerViewModel FlyerItem2
         {
             get
             { return _FlyerItem2; }
@@ -191,9 +221,9 @@ namespace FoodGiantFlyerGenerator
             }
         }
 
-        private FlyerItemViewModel _FlyerItem3;
+        private FlyerItemContainerViewModel _FlyerItem3;
 
-        public FlyerItemViewModel FlyerItem3
+        public FlyerItemContainerViewModel FlyerItem3
         {
             get
             { return _FlyerItem3; }
@@ -204,9 +234,9 @@ namespace FoodGiantFlyerGenerator
             }
         }
 
-        private FlyerItemViewModel _FlyerItem4;
+        private FlyerItemContainerViewModel _FlyerItem4;
 
-        public FlyerItemViewModel FlyerItem4
+        public FlyerItemContainerViewModel FlyerItem4
         {
             get
             { return _FlyerItem4; }
@@ -217,9 +247,9 @@ namespace FoodGiantFlyerGenerator
             }
         }
 
-        private FlyerItemViewModel _FlyerItem5;
+        private FlyerItemContainerViewModel _FlyerItem5;
 
-        public FlyerItemViewModel FlyerItem5
+        public FlyerItemContainerViewModel FlyerItem5
         {
             get
             { return _FlyerItem5; }
@@ -230,9 +260,9 @@ namespace FoodGiantFlyerGenerator
             }
         }
 
-        private FlyerItemViewModel _FlyerItem6;
+        private FlyerItemContainerViewModel _FlyerItem6;
 
-        public FlyerItemViewModel FlyerItem6
+        public FlyerItemContainerViewModel FlyerItem6
         {
             get
             { return _FlyerItem6; }
@@ -243,9 +273,9 @@ namespace FoodGiantFlyerGenerator
             }
         }
 
-        private FlyerItemViewModel _FlyerItem7;
+        private FlyerItemContainerViewModel _FlyerItem7;
 
-        public FlyerItemViewModel FlyerItem7
+        public FlyerItemContainerViewModel FlyerItem7
         {
             get
             { return _FlyerItem7; }
@@ -256,9 +286,9 @@ namespace FoodGiantFlyerGenerator
             }
         }
 
-        private FlyerItemViewModel _FlyerItem8;
+        private FlyerItemContainerViewModel _FlyerItem8;
 
-        public FlyerItemViewModel FlyerItem8
+        public FlyerItemContainerViewModel FlyerItem8
         {
             get
             { return _FlyerItem8; }
@@ -269,9 +299,9 @@ namespace FoodGiantFlyerGenerator
             }
         }
 
-        private FlyerItemViewModel _FlyerItem9;
+        private FlyerItemContainerViewModel _FlyerItem9;
 
-        public FlyerItemViewModel FlyerItem9
+        public FlyerItemContainerViewModel FlyerItem9
         {
             get
             { return _FlyerItem9; }
@@ -282,9 +312,9 @@ namespace FoodGiantFlyerGenerator
             }
         }
 
-        private FlyerItemViewModel _FlyerItem10;
+        private FlyerItemContainerViewModel _FlyerItem10;
 
-        public FlyerItemViewModel FlyerItem10
+        public FlyerItemContainerViewModel FlyerItem10
         {
             get
             { return _FlyerItem10; }
@@ -295,9 +325,9 @@ namespace FoodGiantFlyerGenerator
             }
         }
 
-        private FlyerItemViewModel _FlyerItem11;
+        private FlyerItemContainerViewModel _FlyerItem11;
 
-        public FlyerItemViewModel FlyerItem11
+        public FlyerItemContainerViewModel FlyerItem11
         {
             get
             { return _FlyerItem11; }
@@ -308,9 +338,9 @@ namespace FoodGiantFlyerGenerator
             }
         }
 
-        private FlyerItemViewModel _FlyerItem12;
+        private FlyerItemContainerViewModel _FlyerItem12;
 
-        public FlyerItemViewModel FlyerItem12
+        public FlyerItemContainerViewModel FlyerItem12
         {
             get
             { return _FlyerItem12; }
@@ -321,9 +351,9 @@ namespace FoodGiantFlyerGenerator
             }
         }
 
-        private FlyerItemViewModel _FlyerItem13;
+        private FlyerItemContainerViewModel _FlyerItem13;
 
-        public FlyerItemViewModel FlyerItem13
+        public FlyerItemContainerViewModel FlyerItem13
         {
             get
             { return _FlyerItem13; }
@@ -334,9 +364,9 @@ namespace FoodGiantFlyerGenerator
             }
         }
 
-        private FlyerItemViewModel _FlyerItem14;
+        private FlyerItemContainerViewModel _FlyerItem14;
 
-        public FlyerItemViewModel FlyerItem14
+        public FlyerItemContainerViewModel FlyerItem14
         {
             get
             { return _FlyerItem14; }
@@ -347,9 +377,9 @@ namespace FoodGiantFlyerGenerator
             }
         }
 
-        private FlyerItemViewModel _FlyerItem15;
+        private FlyerItemContainerViewModel _FlyerItem15;
 
-        public FlyerItemViewModel FlyerItem15
+        public FlyerItemContainerViewModel FlyerItem15
         {
             get
             { return _FlyerItem15; }
@@ -360,9 +390,9 @@ namespace FoodGiantFlyerGenerator
             }
         }
 
-        private FlyerItemViewModel _FlyerItem16;
+        private FlyerItemContainerViewModel _FlyerItem16;
 
-        public FlyerItemViewModel FlyerItem16
+        public FlyerItemContainerViewModel FlyerItem16
         {
             get
             { return _FlyerItem16; }
@@ -597,8 +627,20 @@ namespace FoodGiantFlyerGenerator
             _EventAggregator = IoC.Get<IEventAggregator>();
             _EventAggregator.Subscribe(this);
 
-            SetupFlyerLayout(settings, flyerData, startDate, endDate);
+            SetFlyerVisList();
+            SetupFlyerLayout(settings, startDate, endDate);
+            PopulateFlyerValues(flyerData);
         }
+
+        #region Generic Flyer Methods
+        /// <summary>
+        /// 
+        /// </summary>
+        private void SetFlyerVisList()
+        {
+            _FlyerItemVisList = new Visibility[_MaxFlyerItems];
+        }
+        #endregion
 
         /// <summary>
         /// 
@@ -607,8 +649,10 @@ namespace FoodGiantFlyerGenerator
         /// <param name="flyerData"></param>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
-        private void SetupFlyerLayout(FlyerSettingsModel settings, FlyerDataModel[] flyerData, DateTime startDate, DateTime endDate)
+        private void SetupFlyerLayout(FlyerSettingsModel settings, DateTime startDate, DateTime endDate)
         {
+            SetSaleDates(startDate, endDate);
+
             StoreName = settings.StoreName;
 
             SetStoreTypeImages(StoreName);
@@ -619,40 +663,112 @@ namespace FoodGiantFlyerGenerator
             if (settings.RainChkd)
                 ShowRaincheck = Visibility.Visible;
             else
-                ShowRaincheck = Visibility.Hidden;
+                ShowRaincheck = Visibility.Collapsed;
 
             if (settings.SupplyChkd)
                 ShowSupply = Visibility.Visible;
             else
-                ShowSupply = Visibility.Hidden;
+                ShowSupply = Visibility.Collapsed;
+        }
 
-            //Finish sale dates
-            string saleDates = startDate.ToShortDateString() + " TO " + endDate.ToShortDateString();
+        private void SetSaleDates(DateTime startDate, DateTime endDate)
+        {
+            DateTime secondDate = startDate.AddDays(1);
+
+            FirstDayName = startDate.DayOfWeek.ToString().Remove(3);
+            SecondDayName = secondDate.DayOfWeek.ToString().Remove(3);
+            ThirdDayName = endDate.DayOfWeek.ToString().Remove(3);
+
+            FirstDayNum = startDate.Day.ToString();
+            SecondDayNum = secondDate.Day.ToString();
+            ThirdDayNum = endDate.Day.ToString();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="flyerData"></param>
+        private void PopulateFlyerValues(FlyerDataModel[] flyerData)
+        {
+            GenerateFlyerItems();
+                        
+            for (int i = 0; i < flyerData.Length; i++)
+            {
+                _FlyerItemList[i].PopulateFlyerValues(flyerData[i]);
+            }
+
+            ShowHideElements(flyerData.Length);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="flyerData"></param>
+        private void GenerateFlyerItems()
+        {
+            FlyerItem1 = new FlyerItemContainerViewModel();
+            FlyerItem2 = new FlyerItemContainerViewModel();
+            FlyerItem3 = new FlyerItemContainerViewModel();
+            FlyerItem4 = new FlyerItemContainerViewModel();
+            FlyerItem5 = new FlyerItemContainerViewModel();
+            FlyerItem6 = new FlyerItemContainerViewModel();
+            FlyerItem7 = new FlyerItemContainerViewModel();
+            FlyerItem8 = new FlyerItemContainerViewModel();
+            FlyerItem9 = new FlyerItemContainerViewModel();
+            FlyerItem10 = new FlyerItemContainerViewModel();
+            FlyerItem11 = new FlyerItemContainerViewModel();
+            FlyerItem12 = new FlyerItemContainerViewModel();
+            FlyerItem13 = new FlyerItemContainerViewModel();
+            FlyerItem14 = new FlyerItemContainerViewModel();
+            FlyerItem15 = new FlyerItemContainerViewModel();
+            FlyerItem16 = new FlyerItemContainerViewModel();
+
+            //Add Flyer Items to Array
+            _FlyerItemList = new FlyerItemContainerViewModel[_MaxFlyerItems];
+            _FlyerItemList[0] = FlyerItem1;
+            _FlyerItemList[1] = FlyerItem2;
+            _FlyerItemList[2] = FlyerItem3;
+            _FlyerItemList[3] = FlyerItem4;
+            _FlyerItemList[4] = FlyerItem5;
+            _FlyerItemList[5] = FlyerItem6;
+            _FlyerItemList[6] = FlyerItem7;
+            _FlyerItemList[7] = FlyerItem8;
+            _FlyerItemList[8] = FlyerItem9;
+            _FlyerItemList[9] = FlyerItem10;
+            _FlyerItemList[10] = FlyerItem11;
+            _FlyerItemList[11] = FlyerItem12;
+            _FlyerItemList[12] = FlyerItem13;
+            _FlyerItemList[13] = FlyerItem14;
+            _FlyerItemList[14] = FlyerItem15;
+            _FlyerItemList[15] = FlyerItem16;
         }
 
         private void SetStoreTypeImages(string storeName)
         {
-
-           // StoreLocCmboBox.Add("Piggly Wiggly");
-           // StoreLocCmboBox.Add("Food Giant");
-           // StoreLocCmboBox.Add("Pic-N-Sav");
-           // StoreLocCmboBox.Add("Citronelle Marketplace");
+            string tempImageLocation = Environment.CurrentDirectory + @"\Program Images\";
+            if (storeName.Equals("Piggly Wiggly"))
+                LogoImgSrc = tempImageLocation + "PIGLogo.PNG";
+            else if (storeName.Equals("Food Giant"))
+                LogoImgSrc = tempImageLocation + "FGLogo.png";
+            else if (storeName.Equals("Pic-N-Sav"))
+                LogoImgSrc = tempImageLocation + "PICNSAVLogo.PNG";
+            else if (storeName.Equals("Citronelle Marketplace"))
+                LogoImgSrc = tempImageLocation + "MarketLogo.PNG";
         }
-
 
         /// <summary>
         /// Shows/Hides elements based on user selection, will be used for
         /// aspx page to inform it of how many items it will be generating
         /// </summary>
         /// <param name="numVisElements"></param>
-        public void ShowHideElements(int numVisElements)
+        private void ShowHideElements(int numVisElements)
         {
             for (int i = 0; i < _MaxFlyerItems; i++)
             {
                 if (i < numVisElements)
                     _FlyerItemVisList[i] = Visibility.Visible;
                 else
-                    _FlyerItemVisList[i] = Visibility.Hidden;
+                    _FlyerItemVisList[i] = Visibility.Collapsed;
             }
 
             Item1Vis = _FlyerItemVisList[0];

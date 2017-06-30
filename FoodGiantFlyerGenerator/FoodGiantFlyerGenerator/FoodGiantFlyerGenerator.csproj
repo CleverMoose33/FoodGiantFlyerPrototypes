@@ -89,12 +89,20 @@
     <Compile Include="DatabaseInterface.cs" />
     <Compile Include="Model\FlyerSettingsModel.cs" />
     <Compile Include="Model\FlyerDataModel.cs" />
+    <Compile Include="ViewModel\FlyerItemContainerViewModel.cs" />
+    <Compile Include="ViewModel\FlyerDisplayControlViewModel.cs" />
     <Compile Include="ViewModel\GenericFlyerViewModel.cs" />
     <Compile Include="ViewModel\DatabaseMaintainerViewModel.cs" />
     <Compile Include="ViewModel\FlyerItemViewModel.cs" />
     <Compile Include="ViewModel\FlyerCreatorViewModel.cs" />
     <Compile Include="ViewModel\ProgramSelectorViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="View\FlyerItemContainerView.xaml.cs">
+      <DependentUpon>FlyerItemContainerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FlyerDisplayControlModel.xaml.cs">
+      <DependentUpon>FlyerDisplayControlModel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GenericFlyerView.xaml.cs">
       <DependentUpon>GenericFlyerView.xaml</DependentUpon>
     </Compile>
@@ -110,6 +118,10 @@
     <Compile Include="View\BaseView.xaml.cs">
       <DependentUpon>BaseView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Themes\FlyerItemContainerStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\BasicFlyerStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -117,6 +129,14 @@
     <Page Include="Themes\DefaultStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FlyerItemContainerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\FlyerDisplayControlModel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\GenericFlyerView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -185,7 +205,10 @@
     <Content Include="Database\FoodGiantSQLDatabase_log.ldf">
       <DependentUpon>FoodGiantSQLDatabase.mdf</DependentUpon>
     </Content>
-    <Resource Include="Program Images\foodgiant_logo.png" />
+    <Resource Include="Program Images\FGLogo.png" />
+    <Resource Include="Program Images\3 Day Sale Calendar.PNG" />
+    <Resource Include="Program Images\PICNSAVLogo.PNG" />
+    <Resource Include="Program Images\supplies last.PNG" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

@@ -187,6 +187,19 @@ namespace FoodGiantFlyerGenerator
                 NotifyOfPropertyChange();
             }
         }
+
+        private string _SelectedImage;
+
+        public string SelectedImage
+        {
+            get
+            { return _SelectedImage; }
+            set
+            {
+                _SelectedImage = value;
+                NotifyOfPropertyChange();
+            }
+        }
         #endregion
 
         #endregion
@@ -280,6 +293,8 @@ namespace FoodGiantFlyerGenerator
             BdrBrsh1 = Brushes.Gold;
             BdrBrsh2 = Brushes.Black;
             BdrBrsh3 = Brushes.Black;
+
+            SelectedImage = ImgSrc1;
         }
 
         /// <summary>
@@ -291,6 +306,8 @@ namespace FoodGiantFlyerGenerator
             BdrBrsh1 = Brushes.Black;
             BdrBrsh2 = Brushes.Gold;
             BdrBrsh3 = Brushes.Black;
+
+            SelectedImage = ImgSrc2;
         }
 
 
@@ -303,6 +320,8 @@ namespace FoodGiantFlyerGenerator
             BdrBrsh1 = Brushes.Black;
             BdrBrsh2 = Brushes.Black;
             BdrBrsh3 = Brushes.Gold;
+
+            SelectedImage = ImgSrc3;
         }
         #endregion
     }

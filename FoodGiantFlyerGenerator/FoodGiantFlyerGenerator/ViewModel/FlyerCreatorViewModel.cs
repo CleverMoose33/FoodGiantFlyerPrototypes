@@ -667,16 +667,15 @@ namespace FoodGiantFlyerGenerator
         #region FlyerGeneration
         public void GenerateFlyer()
         {
-            FlyerDataModel[] flyerData = new FlyerDataModel[_NumDisplayedFlyerItems - 1];
+            FlyerDataModel[] flyerData = new FlyerDataModel[_NumDisplayedFlyerItems];
             for (int i = 0; i < _NumDisplayedFlyerItems; i++)
             {
+                flyerData[i] = new FlyerDataModel();
                 flyerData[i].ItemName = _FlyerItemList[i].SelectedItemName;
                 flyerData[i].ItemPrice = _FlyerItemList[i].PriceTxtBlk;
                 flyerData[i].ItemSize = _FlyerItemList[i].SelectedItemSize;
                 flyerData[i].ItemDesc = _FlyerItemList[i].ItemDesTxtBlk;
-                flyerData[i].ImgName1 = _FlyerItemList[i].ImgSrc1;
-                flyerData[i].ImgName2 = _FlyerItemList[i].ImgSrc2;
-                flyerData[i].ImgName3 = _FlyerItemList[i].ImgSrc3;
+                flyerData[i].ImgName1 = _FlyerItemList[i].SelectedImage;
 
                 //Future implementation for Item Category
                 //flyerData[i].ItemCategory = _FlyerItemList[i].ItemCategory;
@@ -773,7 +772,7 @@ namespace FoodGiantFlyerGenerator
                 if (i < numVisElements)
                     _FlyerItemVisList[i] = Visibility.Visible;
                 else
-                    _FlyerItemVisList[i] = Visibility.Hidden;
+                    _FlyerItemVisList[i] = Visibility.Collapsed;
             }
 
             Item1Vis = _FlyerItemVisList[0];

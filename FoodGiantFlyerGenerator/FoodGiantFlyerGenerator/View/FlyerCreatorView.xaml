@@ -39,6 +39,7 @@
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <!--Flyer options-->
                 <Label Grid.Row="0" Grid.Column="0" Content="Number of Items for Flyer" Style="{StaticResource LblStyle}" />
@@ -48,10 +49,11 @@
                     <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding FlyerTemplatesCmboBox}" cal:Message.Attach="FlyerTemplateCmboBox_SelectionChanged($this)"/>
 
                     <!--Check Boxes-->
-                    <Label Grid.Column="0" Grid.Row="3" Content="Supplies Last" Style="{StaticResource LblStyle}" />
-                    <CheckBox Grid.Column="0" Grid.Row="3" Style="{StaticResource ChckBoxStyle}" cal:Message.Attach="SupplyChkBox_SelectionChanged($source)" />
-                    <Label Grid.Column="1" Grid.Row="3" Content="No Rainchecks" Style="{StaticResource LblStyle}" />
-                    <CheckBox Grid.Column="1" Grid.Row="3" Style="{StaticResource ChckBoxStyle}" cal:Message.Attach="RainChkBox_SelectionChanged($source)" />
+                    <Label Grid.Column="0" Grid.Row="2" Content="Supplies Last" Style="{StaticResource LblStyle}" />
+                    <CheckBox Grid.Column="0" Grid.Row="2" Style="{StaticResource ChckBoxStyle}" cal:Message.Attach="SupplyChkBox_SelectionChanged($source)" />
+                    <Label Grid.Column="1" Grid.Row="2" Content="No Rainchecks" Style="{StaticResource LblStyle}" />
+                    <CheckBox Grid.Column="1" Grid.Row="2" Style="{StaticResource ChckBoxStyle}" cal:Message.Attach="RainChkBox_SelectionChanged($source)" />
+                    <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="Generate Flyer" cal:Message.Attach="GenerateFlyer" />
 
                 </Grid>
             </Border>

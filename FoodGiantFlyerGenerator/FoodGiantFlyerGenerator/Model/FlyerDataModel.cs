@@ -17,6 +17,8 @@ namespace FoodGiantFlyerGenerator.Model
         public string ItemSize { get; set; }
         public string ItemDesc { get; set; }
 
+        public FlyerDataModel() { }
+
         public FlyerDataModel(string itemName, string itemCategory, string imgName1, string imgName2, string imgName3)
         {
             if (!string.IsNullOrEmpty(itemName))

@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="FoodGiantFlyerGenerator.FlyerItemContainerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FoodGiantFlyerGenerator"
+        xmlns:cal="http://www.caliburnproject.org">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/FlyerItemContainerStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="White">
+        <Image Source="{Binding ItemImageSrc}" Margin="0,53,91.8,-0.4" />
+
+        <TextBlock Text="{Binding ItemPriceDollar}" Style="{StaticResource FlyerItemDollarPriceStyle}" Margin="83.83,0,76.926,0" Height="73.072" VerticalAlignment="Top" />
+        <TextBlock Text="{Binding ItemPriceCents}" Style="{StaticResource FlyerItemCentsPriceStyle}" Height="43" VerticalAlignment="Top" Margin="0,5,86.8,0" HorizontalAlignment="Right" Width="45" />
+        <TextBlock Text="{Binding ItemSize}" Style="{StaticResource FlyerItemSizeStyle}" TextAlignment="Center" Height="16.648" VerticalAlignment="Top" Margin="0,47.899,17.05,0" HorizontalAlignment="Right" Width="81.486" />
+        <TextBlock Text="{Binding ItemNameAndDesc}"  Style="{StaticResource FlyerItemNameDesStyle}" Margin="0,73.072,0,0" HorizontalAlignment="Right" Width="91.486" VerticalAlignment="Top" Height="36.352" />
+
+    </Grid>
+</UserControl>
