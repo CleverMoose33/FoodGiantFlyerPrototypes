@@ -10,6 +10,7 @@
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
+    <!--
     <Style TargetType="TextBlock" x:Key="FlyerItemDollarPriceStyle">
         <Setter Property="FontSize" Value="55"/>
         <Setter Property="FontFamily" Value="Franklin Gothic Heavy"/>
@@ -22,7 +23,23 @@
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
     </Style>
+    -->
 
+    <Style TargetType="TextBox" x:Key="FlyerItemDollarPriceStyle">
+        <Setter Property="FontSize" Value="55"/>
+        <Setter Property="FontFamily" Value="Franklin Gothic Heavy"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="MaxLength" Value="5"/>
+        <Setter Property="BorderThickness" Value="0,0,0,0"/>
+    </Style>
+
+    <Style TargetType="TextBox" x:Key="FlyerItemCentsPriceStyle">
+        <Setter Property="FontSize" Value="36"/>
+        <Setter Property="FontFamily" Value="Franklin Gothic Heavy"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="MaxLength" Value="2"/>
+        <Setter Property="BorderThickness" Value="0,0,0,0"/>
+    </Style>
 
     <Style TargetType="TextBlock" x:Key="FlyerItemSizeStyle">
         <Setter Property="FontSize" Value="16"/>

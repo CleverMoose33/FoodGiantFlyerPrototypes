@@ -568,6 +568,10 @@ namespace FoodGiantFlyerGenerator
             Title = "Food Giant Flyer Creator";
         }
 
+        protected override void OnActivate()
+        {
+
+        }
         #region Flyer Creator Items Instantiation
         /// <summary>
         /// Create initial Store Location Combo Box Values

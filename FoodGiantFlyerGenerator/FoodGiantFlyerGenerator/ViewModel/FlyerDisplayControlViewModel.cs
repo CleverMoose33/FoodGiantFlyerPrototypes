@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Media;
 
 namespace FoodGiantFlyerGenerator
@@ -14,9 +15,9 @@ namespace FoodGiantFlyerGenerator
         private readonly IEventAggregator _EventAggregator;
 
         #region Binding Items
-        private ContentControl _SelectedFlyerType;
+        private GenericFlyerViewModel _SelectedFlyerType;
 
-        public ContentControl SelectedFlyerType
+        public GenericFlyerViewModel SelectedFlyerType
         {
             get { return _SelectedFlyerType; }
             set
@@ -27,13 +28,30 @@ namespace FoodGiantFlyerGenerator
         }
         #endregion
 
-        public FlyerDisplayControlViewModel(ContentControl selectedFlyer)
+        //public FlyerDisplayControlViewModel(ContentControl selectedFlyer)
+        //{
+        //    _EventAggregator = IoC.Get<IEventAggregator>();
+        //    _EventAggregator.Subscribe(this);
+
+        //    SelectedFlyerType = selectedFlyer;
+
+        //}
+
+        public FlyerDisplayControlViewModel(GenericFlyerViewModel selectedFlyer)
         {
             _EventAggregator = IoC.Get<IEventAggregator>();
             _EventAggregator.Subscribe(this);
 
             SelectedFlyerType = selectedFlyer;
 
+        }
+
+        public void PrintFlyer()
+        {
+            PrintDialog pd = new PrintDialog();
+            if (pd.ShowDialog() == true)
+                //pd.PrintVisual( SelectedFlyerType.PrintVisual(), "something");
+                pd.PrintDocument(((IDocumentPaginatorSource)SelectedFlyerType).DocumentPaginator, "Flyer");
         }
     }
 }

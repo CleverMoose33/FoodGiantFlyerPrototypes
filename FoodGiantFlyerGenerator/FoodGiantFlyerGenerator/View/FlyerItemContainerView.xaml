@@ -13,10 +13,11 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid Background="White">
-        <Image Source="{Binding ItemImageSrc}" Margin="0,53,91.8,-0.4" />
-
-        <TextBlock Text="{Binding ItemPriceDollar}" Style="{StaticResource FlyerItemDollarPriceStyle}" Margin="83.83,0,76.926,0" Height="73.072" VerticalAlignment="Top" />
-        <TextBlock Text="{Binding ItemPriceCents}" Style="{StaticResource FlyerItemCentsPriceStyle}" Height="43" VerticalAlignment="Top" Margin="0,5,86.8,0" HorizontalAlignment="Right" Width="45" />
+        <Image Source="{Binding ItemImageSrc}" Margin="0,55.331,91.8,-0.4" />
+        <StackPanel HorizontalAlignment="Left" Height="55.331" Margin="150,0,0,0" Orientation="Horizontal" VerticalAlignment="Top">
+            <TextBox Text="{Binding ItemPriceDollar}" Style="{StaticResource FlyerItemDollarPriceStyle}" VerticalAlignment="Top" />
+            <TextBox Text="{Binding ItemPriceCents}" Style="{StaticResource FlyerItemCentsPriceStyle}" Width="60" VerticalAlignment="Stretch" />
+        </StackPanel>
         <TextBlock Text="{Binding ItemSize}" Style="{StaticResource FlyerItemSizeStyle}" TextAlignment="Center" Height="16.648" VerticalAlignment="Top" Margin="0,47.899,17.05,0" HorizontalAlignment="Right" Width="81.486" />
         <TextBlock Text="{Binding ItemNameAndDesc}"  Style="{StaticResource FlyerItemNameDesStyle}" Margin="0,73.072,0,0" HorizontalAlignment="Right" Width="91.486" VerticalAlignment="Top" Height="36.352" />
 

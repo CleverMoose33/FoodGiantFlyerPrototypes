@@ -1,19 +1,20 @@
-﻿<Window x:Class="FoodGiantFlyerGenerator.GenericFlyerView"
+﻿<UserControl x:Class="FoodGiantFlyerGenerator.GenericFlyerView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FoodGiantFlyerGenerator"
         xmlns:cal="http://www.caliburnproject.org"
+        MinWidth="1000" MinHeight="850"
         Width="1000" Height="850"
         MaxWidth="1000" MaxHeight="850">
-    <Window.Resources>
+    <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Themes/BasicFlyerStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </Window.Resources>
+    </UserControl.Resources>
     <Grid Background="Red">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" SharedSizeGroup="ColumnGroups"/>
@@ -42,7 +43,7 @@
                     </TransformGroup>
                 </TextBlock.RenderTransform>
             </TextBlock>
-            <TextBlock Text="{Binding SecondDayName}" Margin="81,0,0,46" Style="{StaticResource FlyerSmallCalendarDateStyle}" Height="13" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="26" RenderTransformOrigin="0.552,0.755" >
+            <TextBlock Text="{Binding SecondDayName}" Margin="81,0,0,46.75" Style="{StaticResource FlyerSmallCalendarDateStyle}" Height="13" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="26" RenderTransformOrigin="0.552,0.755" >
                 <TextBlock.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -52,7 +53,7 @@
                     </TransformGroup>
                 </TextBlock.RenderTransform>
             </TextBlock>
-            <TextBlock Text="{Binding ThirdDayName}" Margin="117,0,0,53" Style="{StaticResource FlyerSmallCalendarDateStyle}" Height="13" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="31" RenderTransformOrigin="0.5,0.5" >
+            <TextBlock Text="{Binding ThirdDayName}" Margin="117,0,0,53.75" Style="{StaticResource FlyerSmallCalendarDateStyle}" Height="13" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="31" RenderTransformOrigin="0.5,0.5" >
                 <TextBlock.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -63,13 +64,13 @@
                 </TextBlock.RenderTransform>
             </TextBlock>
 
-            <TextBlock Text="{Binding FirstDayName}" Margin="200,65,179.6,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="17" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" />
-            <TextBlock Text="{Binding SecondDayName}" Margin="265,67,110.6,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="15" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" />
-            <TextBlock Text="{Binding ThirdDayName}" Margin="342,71,24.6,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="15" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" />
+            <TextBlock Text="{Binding FirstDayName}" Margin="200,62.5,179.6,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="17" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" />
+            <TextBlock Text="{Binding SecondDayName}" Margin="264.5,66,111.1,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="15" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" />
+            <TextBlock Text="{Binding ThirdDayName}" Margin="342,69.25,24.6,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="15" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" />
 
-            <TextBlock Text="{Binding FirstDayNum}" Margin="194,83,179.6,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="13" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" />
-            <TextBlock Text="{Binding SecondDayNum}" Margin="265,83,110.6,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="13" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" />
-            <TextBlock Text="{Binding ThirdDayNum}" Margin="342,87,24.6,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="17" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" />
+            <TextBlock Text="{Binding FirstDayNum}" Margin="194.75,79.75,178.85,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="13" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" />
+            <TextBlock Text="{Binding SecondDayNum}" Margin="264.5,81.5,111.1,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="13" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" />
+            <TextBlock Text="{Binding ThirdDayNum}" Margin="342,84.5,24.6,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="17" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" />
 
             <Grid Grid.Column="1" Background="White">
                 <Grid.ColumnDefinitions>
@@ -131,4 +132,4 @@
         </Grid>
 
     </Grid>
-</Window>
+</UserControl>

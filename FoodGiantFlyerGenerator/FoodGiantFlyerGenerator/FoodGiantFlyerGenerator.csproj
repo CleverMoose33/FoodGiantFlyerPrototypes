@@ -87,6 +87,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DatabaseInterface.cs" />
+    <Compile Include="Driver.cs" />
     <Compile Include="Model\FlyerSettingsModel.cs" />
     <Compile Include="Model\FlyerDataModel.cs" />
     <Compile Include="ViewModel\FlyerItemContainerViewModel.cs" />
@@ -100,8 +101,8 @@
     <Compile Include="View\FlyerItemContainerView.xaml.cs">
       <DependentUpon>FlyerItemContainerView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\FlyerDisplayControlModel.xaml.cs">
-      <DependentUpon>FlyerDisplayControlModel.xaml</DependentUpon>
+    <Compile Include="View\FlyerDisplayControlView.xaml.cs">
+      <DependentUpon>FlyerDisplayControlView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GenericFlyerView.xaml.cs">
       <DependentUpon>GenericFlyerView.xaml</DependentUpon>
@@ -134,7 +135,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\FlyerDisplayControlModel.xaml">
+    <Page Include="View\FlyerDisplayControlView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

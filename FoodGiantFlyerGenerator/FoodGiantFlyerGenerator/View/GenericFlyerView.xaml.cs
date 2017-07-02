@@ -6,7 +6,7 @@ namespace FoodGiantFlyerGenerator
     /// <summary>
     /// Interaction logic for BaseView.xaml
     /// </summary>
-    public partial class GenericFlyerView : Window
+    public partial class GenericFlyerView : UserControl
     {
         public GenericFlyerView()
         {
