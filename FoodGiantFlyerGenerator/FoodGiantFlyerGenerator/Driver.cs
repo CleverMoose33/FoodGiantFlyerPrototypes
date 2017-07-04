@@ -10,10 +10,11 @@ namespace FoodGiantFlyerGenerator
 {
     internal class Driver
     {
-        private void StubTestForGenericFlyer()
+        public void StubTestForGenericFlyer()
         {
             FlyerSettingsModel settings = new FlyerSettingsModel("Piggly Wiggly", "Some Address at Florida, 32555", "850-111-1111", true, true);
-            FlyerDataModel[] flyerData = new FlyerDataModel[3];
+            FlyerDataModel[] flyerData = new FlyerDataModel[7];
+
             flyerData[0] = new FlyerDataModel();
             flyerData[0].ImgName1 = @"C:\Users\Kendrick\Documents\UWF Stuff\Capstone!\Git Repo\FoodGiantFlyer\FoodGiantFlyerGenerator\FoodGiantFlyerGenerator\bin\Debug\Images\cocacola1.png";
             flyerData[0].ItemPrice = "$4.30";
@@ -35,6 +36,33 @@ namespace FoodGiantFlyerGenerator
             flyerData[2].ItemName = "Some Item";
             flyerData[2].ItemDesc = "Some Desc";
 
+            flyerData[3] = new FlyerDataModel();
+            flyerData[3].ImgName1 = @"C:\Users\Kendrick\Documents\UWF Stuff\Capstone!\Git Repo\FoodGiantFlyer\FoodGiantFlyerGenerator\FoodGiantFlyerGenerator\bin\Debug\Images\hotpocketham.jpg";
+            flyerData[3].ItemPrice = "$4.30";
+            flyerData[3].ItemSize = "Oz";
+            flyerData[3].ItemName = "Some Item";
+            flyerData[3].ItemDesc = "Some Desc";
+
+            flyerData[4] = new FlyerDataModel();
+            flyerData[4].ImgName1 = @"C:\Users\Kendrick\Documents\UWF Stuff\Capstone!\Git Repo\FoodGiantFlyer\FoodGiantFlyerGenerator\FoodGiantFlyerGenerator\bin\Debug\Images\hotpocketham.jpg";
+            flyerData[4].ItemPrice = "$4.30";
+            flyerData[4].ItemSize = "Oz";
+            flyerData[4].ItemName = "Some Item";
+            flyerData[4].ItemDesc = "Some Desc";
+
+            flyerData[5] = new FlyerDataModel();
+            flyerData[5].ImgName1 = @"C:\Users\Kendrick\Documents\UWF Stuff\Capstone!\Git Repo\FoodGiantFlyer\FoodGiantFlyerGenerator\FoodGiantFlyerGenerator\bin\Debug\Images\hotpocketham.jpg";
+            flyerData[5].ItemPrice = "$4.30";
+            flyerData[5].ItemSize = "Oz";
+            flyerData[5].ItemName = "Some Item";
+            flyerData[5].ItemDesc = "Some Desc";
+
+            flyerData[6] = new FlyerDataModel();
+            flyerData[6].ImgName1 = @"C:\Users\Kendrick\Documents\UWF Stuff\Capstone!\Git Repo\FoodGiantFlyer\FoodGiantFlyerGenerator\FoodGiantFlyerGenerator\bin\Debug\Images\hotpocketham.jpg";
+            flyerData[6].ItemPrice = "$4.30";
+            flyerData[6].ItemSize = "Oz";
+            flyerData[6].ItemName = "Some Item";
+            flyerData[6].ItemDesc = "Some Desc";
 
             DateTime startDate = new DateTime(2017, 07, 01);
             DateTime endDate = new DateTime(2017, 07, 03);

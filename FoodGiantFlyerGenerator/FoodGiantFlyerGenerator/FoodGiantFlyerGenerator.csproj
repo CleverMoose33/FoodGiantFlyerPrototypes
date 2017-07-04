@@ -60,6 +60,7 @@
     <Reference Include="Caliburn.Micro.Platform.Core">
       <HintPath>.\Caliburn.Micro.Platform.Core.dll</HintPath>
     </Reference>
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />

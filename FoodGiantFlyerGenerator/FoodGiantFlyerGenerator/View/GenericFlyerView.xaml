@@ -15,7 +15,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Background="Red">
+    <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" SharedSizeGroup="ColumnGroups"/>
             <ColumnDefinition Width="1*" SharedSizeGroup="ColumnGroups"/>
@@ -23,7 +23,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="180"/>
-            <RowDefinition Height="1020" />
+            <RowDefinition Height="670" />
         </Grid.RowDefinitions>
 
         <!--Flyer Heading Grid-->
@@ -93,7 +93,7 @@
             </Grid>
         </Grid>
         
-        <!--Flyer Items-->
+        <!--Flyer Items Grid-->
         <Grid Grid.Row="1" Grid.ColumnSpan="4">
             <Grid.ColumnDefinitions>
                 <!--Flyer Item Columns-->

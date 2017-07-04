@@ -16,8 +16,7 @@
             <RowDefinition Height="25"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Content="Print Flyer" Click="Button_Click" />
-        <!--cal:Message.Attach="PrintFlyer()"/>-->
+        <Button Grid.Row="0" Content="Print Flyer" cal:Message.Attach="PrintFlyer($view)" />
         <ContentControl Grid.Row="1" x:Name="SelectedFlyerType" />
     </Grid>
 </Window>

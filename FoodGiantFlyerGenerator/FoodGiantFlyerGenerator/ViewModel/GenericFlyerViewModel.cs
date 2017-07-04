@@ -10,7 +10,7 @@ using System.Windows.Media;
 namespace FoodGiantFlyerGenerator
 {
     [Export(typeof(GenericFlyerViewModel))]
-    public class GenericFlyerViewModel : Screen 
+    public class GenericFlyerViewModel : Screen
     {
         private readonly IEventAggregator _EventAggregator;
 
@@ -634,64 +634,21 @@ namespace FoodGiantFlyerGenerator
 
         #region Generic Flyer Methods
         /// <summary>
-        /// 
+        /// Set array based on number of user selected items
         /// </summary>
         private void SetFlyerVisList()
         {
             _FlyerItemVisList = new Visibility[_MaxFlyerItems];
         }
-        #endregion
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="settings"></param>
-        /// <param name="flyerData"></param>
-        /// <param name="startDate"></param>
-        /// <param name="endDate"></param>
-        private void SetupFlyerLayout(FlyerSettingsModel settings, DateTime startDate, DateTime endDate)
-        {
-            SetSaleDates(startDate, endDate);
-
-            StoreName = settings.StoreName;
-
-            SetStoreTypeImages(StoreName);
-
-            StoreNumber = settings.StoreNumber;
-            StoreAddress = settings.StoreAddress;
-
-            if (settings.RainChkd)
-                ShowRaincheck = Visibility.Visible;
-            else
-                ShowRaincheck = Visibility.Collapsed;
-
-            if (settings.SupplyChkd)
-                ShowSupply = Visibility.Visible;
-            else
-                ShowSupply = Visibility.Collapsed;
-        }
-
-        private void SetSaleDates(DateTime startDate, DateTime endDate)
-        {
-            DateTime secondDate = startDate.AddDays(1);
-
-            FirstDayName = startDate.DayOfWeek.ToString().Remove(3);
-            SecondDayName = secondDate.DayOfWeek.ToString().Remove(3);
-            ThirdDayName = endDate.DayOfWeek.ToString().Remove(3);
-
-            FirstDayNum = startDate.Day.ToString();
-            SecondDayNum = secondDate.Day.ToString();
-            ThirdDayNum = endDate.Day.ToString();
-        }
-
-        /// <summary>
-        /// 
+        /// Add all selected flyer items to Generic Flyer
         /// </summary>
         /// <param name="flyerData"></param>
         private void PopulateFlyerValues(FlyerDataModel[] flyerData)
         {
             GenerateFlyerItems();
-                        
+
             for (int i = 0; i < flyerData.Length; i++)
             {
                 _FlyerItemList[i].PopulateFlyerValues(flyerData[i]);
@@ -701,7 +658,8 @@ namespace FoodGiantFlyerGenerator
         }
 
         /// <summary>
-        /// 
+        /// Instantiate max number of Flyer Items
+        /// Could use case to limit unnecessary calls
         /// </summary>
         /// <param name="flyerData"></param>
         private void GenerateFlyerItems()
@@ -743,6 +701,10 @@ namespace FoodGiantFlyerGenerator
             _FlyerItemList[15] = FlyerItem16;
         }
 
+        /// <summary>
+        /// Set store image based on user selection
+        /// </summary>
+        /// <param name="storeName"></param>
         private void SetStoreTypeImages(string storeName)
         {
             string tempImageLocation = Environment.CurrentDirectory + @"\Program Images\";
@@ -787,6 +749,54 @@ namespace FoodGiantFlyerGenerator
             Item14Vis = _FlyerItemVisList[13];
             Item15Vis = _FlyerItemVisList[14];
             Item16Vis = _FlyerItemVisList[15];
+        }
+        #endregion
+
+        /// <summary>
+        /// Use objects generated from FlyerCreatorVM to populate Generic Flyer
+        /// </summary>
+        /// <param name="settings"></param>
+        /// <param name="flyerData"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        private void SetupFlyerLayout(FlyerSettingsModel settings, DateTime startDate, DateTime endDate)
+        {
+            SetSaleDates(startDate, endDate);
+
+            StoreName = settings.StoreName;
+
+            SetStoreTypeImages(StoreName);
+
+            StoreNumber = settings.StoreNumber;
+            StoreAddress = settings.StoreAddress;
+
+            if (settings.RainChkd)
+                ShowRaincheck = Visibility.Visible;
+            else
+                ShowRaincheck = Visibility.Collapsed;
+
+            if (settings.SupplyChkd)
+                ShowSupply = Visibility.Visible;
+            else
+                ShowSupply = Visibility.Collapsed;
+        }
+
+        /// <summary>
+        /// Set Calendar dates
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        private void SetSaleDates(DateTime startDate, DateTime endDate)
+        {
+            DateTime secondDate = startDate.AddDays(1);
+
+            FirstDayName = startDate.DayOfWeek.ToString().Remove(3);
+            SecondDayName = secondDate.DayOfWeek.ToString().Remove(3);
+            ThirdDayName = endDate.DayOfWeek.ToString().Remove(3);
+
+            FirstDayNum = startDate.Day.ToString();
+            SecondDayNum = secondDate.Day.ToString();
+            ThirdDayNum = endDate.Day.ToString();
         }
 
     }
