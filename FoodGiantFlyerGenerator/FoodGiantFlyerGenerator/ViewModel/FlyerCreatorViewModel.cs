@@ -23,6 +23,8 @@ namespace FoodGiantFlyerGenerator
         private DateTime _SelectedStartDate;
         private DateTime _SelectedEndDate;
 
+        private string tempImageLocation = Environment.CurrentDirectory + @"\Images\";
+
         #region Binding Items
 
         #region Check Boxes
@@ -697,6 +699,42 @@ namespace FoodGiantFlyerGenerator
             WindowManager wm = new WindowManager();
             GenericFlyerViewModel gfvm = new GenericFlyerViewModel(settings, flyerData, _SelectedStartDate, _SelectedEndDate);
             wm.ShowDialog(gfvm);
+
+        }
+
+        /// <summary>
+        /// Current preview method for flyer, can expand to open selected flyer once multiple flyers exist
+        /// </summary>
+        public void PreviewFlyer()
+        {
+            FlyerSettingsModel settings = new FlyerSettingsModel("Piggly Wiggly", "Some Address at Florida, 32555", "850-111-1111", true, true);
+            FlyerDataModel[] flyerData = new FlyerDataModel[3];
+            
+            flyerData[0] = new FlyerDataModel();
+            flyerData[0].ImgName1 = tempImageLocation + @"cocacola1.png";
+            flyerData[0].ItemPrice = "2/4";
+            flyerData[0].ItemSize = "Single Can";
+            flyerData[0].ItemName = "Coca Cola";
+
+            flyerData[1] = new FlyerDataModel();
+            flyerData[1].ImgName1 = tempImageLocation + @"DietCoke1.jpg";
+            flyerData[1].ItemPrice = "$3.30";
+            flyerData[1].ItemSize = "12 Pack";
+            flyerData[1].ItemName = "Diet Coke";
+
+            flyerData[2] = new FlyerDataModel();
+            flyerData[2].ImgName1 = tempImageLocation + @"hotpocketham.jpg";
+            flyerData[2].ItemPrice = "$2.35";
+            flyerData[2].ItemSize = "Per Pack";
+            flyerData[2].ItemName = "Hot Pocket";
+            flyerData[2].ItemDesc = "Ham and Cheese";
+
+            DateTime startDate = new DateTime(2017, 07, 01);
+            DateTime endDate = new DateTime(2017, 07, 03);
+
+            WindowManager wm = new WindowManager();
+            GenericFlyerViewModel gvcm = new GenericFlyerViewModel(settings, flyerData, startDate, endDate);
+            wm.ShowWindow(gvcm);
 
         }
         #endregion
