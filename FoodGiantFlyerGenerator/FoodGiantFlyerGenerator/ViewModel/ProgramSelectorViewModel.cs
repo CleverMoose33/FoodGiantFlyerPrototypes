@@ -34,10 +34,9 @@ namespace FoodGiantFlyerGenerator
 
         public void FlyerHistoryClicked()
         {
-
-            //WindowManager wm = new WindowManager();
-            //FlyerHistoryViewModel fhvm = new FlyerHistoryViewModel();
-            //wm.ShowWindow(fhvm);
+            WindowManager wm = new WindowManager();
+            FlyerHistoryViewModel fhvm = new FlyerHistoryViewModel();
+            wm.ShowWindow(fhvm);
         }
     }
 }

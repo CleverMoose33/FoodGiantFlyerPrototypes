@@ -91,6 +91,7 @@
     <Compile Include="Driver.cs" />
     <Compile Include="Model\FlyerSettingsModel.cs" />
     <Compile Include="Model\FlyerDataModel.cs" />
+    <Compile Include="ViewModel\FlyerHistoryViewModel.cs" />
     <Compile Include="ViewModel\FlyerItemContainerViewModel.cs" />
     <Compile Include="ViewModel\FlyerDisplayControlViewModel.cs" />
     <Compile Include="ViewModel\GenericFlyerViewModel.cs" />
@@ -99,6 +100,9 @@
     <Compile Include="ViewModel\FlyerCreatorViewModel.cs" />
     <Compile Include="ViewModel\ProgramSelectorViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="View\FlyerHistoryView.xaml.cs">
+      <DependentUpon>FlyerHistoryView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\FlyerItemContainerView.xaml.cs">
       <DependentUpon>FlyerItemContainerView.xaml</DependentUpon>
     </Compile>
@@ -131,6 +135,10 @@
     <Page Include="Themes\DefaultStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FlyerHistoryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\FlyerItemContainerView.xaml">
       <Generator>MSBuild:Compile</Generator>
