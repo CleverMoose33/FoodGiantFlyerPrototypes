@@ -14,7 +14,7 @@
     </UserControl.Resources>
     <Grid Background="White">
         <Image Source="{Binding ItemImageSrc}" Margin="0,55.331,91.8,-0.4" />
-        <StackPanel HorizontalAlignment="Left" Height="55.331" Margin="150,0,0,0" Orientation="Horizontal" VerticalAlignment="Top">
+        <StackPanel Height="55.331" Margin="100,0,0,0" Orientation="Horizontal" VerticalAlignment="Top">
             <TextBox Text="{Binding ItemPriceDollar}" Style="{StaticResource FlyerItemDollarPriceStyle}" VerticalAlignment="Top" />
             <TextBox Text="{Binding ItemPriceCents}" Style="{StaticResource FlyerItemCentsPriceStyle}" Width="60" VerticalAlignment="Stretch" />
         </StackPanel>
