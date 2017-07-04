@@ -671,8 +671,49 @@ namespace FoodGiantFlyerGenerator
 
         #region User Events
         #region FlyerGeneration
+        private bool ValidateData()
+        {
+            bool isValidEntry = true;
+            for(int i = 0; i < _NumDisplayedFlyerItems; i++)
+            {
+                if (isValidEntry)
+                {
+                    if (_FlyerItemList[i].SelectedItemName == null || (string.IsNullOrEmpty(_FlyerItemList[i].SelectedItemName)))
+                    {
+                        MessageBox.Show("Please Update Flyer" + (i + 1) + "'s Name", "Flyer Items not complete", MessageBoxButton.OK, MessageBoxImage.Hand);
+                        isValidEntry = false;
+                    }
+                    if (_FlyerItemList[i].PriceTxtBlk == null || (string.IsNullOrEmpty(_FlyerItemList[i].PriceTxtBlk)) || _FlyerItemList[i].PriceTxtBlk.Equals("Enter Price Here"))
+                    {
+                        MessageBox.Show("Please Update Flyer" + (i + 1) + "'s Price", "Flyer Items not complete", MessageBoxButton.OK, MessageBoxImage.Hand);
+                        isValidEntry = false;
+                    }
+                    if (_FlyerItemList[i].SelectedItemSize == null || (string.IsNullOrEmpty(_FlyerItemList[i].SelectedItemSize)))
+                    {
+                        MessageBox.Show("Please Update Flyer" + (i + 1) + "'s Size", "Flyer Items not complete", MessageBoxButton.OK, MessageBoxImage.Hand);
+                        isValidEntry = false;
+                    }
+                    if (_FlyerItemList[i].ItemDesTxtBlk == null || (string.IsNullOrEmpty(_FlyerItemList[i].ItemDesTxtBlk)) || _FlyerItemList[i].PriceTxtBlk.Equals("Enter Item Description"))
+                    {
+                        MessageBox.Show("Please Update or clear Flyer" + (i + 1) + "'s Description", "Flyer Items not complete", MessageBoxButton.OK, MessageBoxImage.Hand);
+                        isValidEntry = false;
+                    }
+                    if (_FlyerItemList[i].SelectedImage == null || (string.IsNullOrEmpty(_FlyerItemList[i].SelectedImage)))
+                    {
+                        MessageBox.Show("Please Update Flyer" + (i + 1) + "'s Image", "Flyer Items not complete", MessageBoxButton.OK, MessageBoxImage.Hand);
+                        isValidEntry = false;
+                    }
+                }
+            }
+
+
+
+            return isValidEntry;
+        }
+
         public void GenerateFlyer()
         {
+            ValidateData();
             FlyerDataModel[] flyerData = new FlyerDataModel[_NumDisplayedFlyerItems];
             for (int i = 0; i < _NumDisplayedFlyerItems; i++)
             {

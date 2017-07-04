@@ -5,18 +5,64 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FoodGiantFlyerGenerator"
         xmlns:cal="http://www.caliburnproject.org"
-        mc:Ignorable="d"
-        Title="BaseView" Height="300" Width="300">
+        Title="{Binding Title}" 
+        Height="600" Width="800">
     <Window.Resources>
-        
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/DefaultStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        
+        <Label Grid.Row="0" Grid.ColumnSpan="3" Content="Select a Previously-Created Flyer"  Style="{StaticResource LblHeaderStyle}" />
+
+
+        <RadioButton  Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Find all created flyers"
+                         GroupName="SortType" cal:Message.Attach="UpdateResultsBox($source)"/>
+
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <RadioButton Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                     Content="Sort by user"  GroupName="SortType" cal:Message.Attach="UpdateResultsBox($source)"/>
+            <ComboBox Grid.Row="1" ItemsSource="{Binding ManagerListCmboBox}" 
+                          SelectedItem="{Binding SelectedManager}" Style="{StaticResource CmboBoxStyle}" cal:Message.Attach="ManagerListCmboBox_SelectionChanged($this)" />
+        </Grid>
+
+        <Grid Grid.Column="2" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <RadioButton Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Sort by date"
+                         GroupName="SortType" cal:Message.Attach="UpdateResultsBox($source)"/>
+            <DatePicker Grid.Row="1" Grid.Column="0" cal:Message.Attach="PickStartSaleDate($source)"/>
+            
+        </Grid>
+
+        <ComboBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" x:Name="resultsComboBox" Style="{StaticResource CmboBoxStyle}" ItemsSource="{Binding ItemNameList}"
+                              cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)" >
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Style="{StaticResource LblStyle}" Content="{Binding ItemName}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Button Grid.ColumnSpan="3" Grid.Row="3" Content="Generate Flyer" cal:Message.Attach="GenerateFlyer()"/>
     </Grid>
 </Window>

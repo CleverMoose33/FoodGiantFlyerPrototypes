@@ -22,6 +22,47 @@ namespace FoodGiantFlyerGenerator
         }
 
         /// <summary>
+        /// Delete Flyer Item from database
+        /// </summary>
+        /// <param name="item"></param>
+        public void DeleteItem(string itemName)
+        {
+            SqlConnection dbConn = new SqlConnection(dbConnStr);
+            SqlCommand cmd = new SqlCommand();
+
+            string additionString = "DELETE FROM FlyerHistory" + " WHERE ItemName = " + itemName;
+
+            cmd.Connection = dbConn;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT * FROM ItemList";
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            bool itemAlreadyExists = reader.HasRows;
+            reader.Close();
+
+
+            //cmd.ExecuteNonQuery();
+        }
+
+        #region Flyer History Queries
+        public void GetFlyerHistoryItems()
+        {
+
+        }
+
+        public void GetFlyerHistoryItemsByDate(DateTime searchDate)
+        {
+
+        }
+
+        public void GetFlyerHistoryItemsByName(string managerName)
+        {
+
+        }
+
+        #endregion
+
+        /// <summary>
         /// Queries and Populates all items from the ItemList Table
         /// </summary>
         public BindableCollection<FlyerDataModel> PullItems()

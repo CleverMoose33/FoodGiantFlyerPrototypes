@@ -12,16 +12,62 @@ namespace FoodGiantFlyerGenerator
     public class FlyerHistoryViewModel : PropertyChangedBase //Or Screen if visual
     {
         private readonly IEventAggregator _EventAggregator;
+        private readonly DatabaseInterface _DbInt;
+
 
         #region Binding Items
-        private string _BaseItem;
+        private BindableCollection<string> _ItemNameList;
 
-        public string BaseItem
+        public BindableCollection<string> ItemNameList
         {
-            get { return _BaseItem; }
+            get
+            {
+                return _ItemNameList;
+            }
             set
             {
-                _BaseItem = value;
+                _ItemNameList = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private string _ItemName;
+
+        public string ItemName
+        {
+            get
+            { return _ItemName; }
+            set
+            {
+                _ItemName = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private List<string> _ManagerListCmboBox;
+
+        public List<string> ManagerListCmboBox
+        {
+            get
+            {
+                return _ManagerListCmboBox;
+            }
+            set
+            {
+                _ManagerListCmboBox = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private string _SelectedManager;
+
+        public string SelectedManager
+        {
+            get
+            { return _SelectedManager; }
+            set
+            {
+                _SelectedManager = value;
                 NotifyOfPropertyChange();
             }
         }
@@ -31,6 +77,39 @@ namespace FoodGiantFlyerGenerator
         {
             _EventAggregator = IoC.Get<IEventAggregator>();
             _EventAggregator.Subscribe(this);
+
+            _DbInt = new DatabaseInterface();
         }
+
+        /// <summary>
+        /// Updates selected item name value
+        /// </summary>
+        /// <param name="selectedItmCmboBox"></param>
+        public void ItemListCmboBox_SelectionChanged(ComboBox selectedItmCmboBox)
+        {
+
+        }
+
+        public void ManagerListCmboBox_SelectionChanged(object managers)
+        {
+
+        }
+
+
+        public void PickStartSaleDate(DatePicker selectedDate)
+        {
+            _DbInt.GetFlyerHistoryItemsByDate(selectedDate.DisplayDate);
+        }
+
+        public void UpdateResultsBox(object radioButton)
+        {
+
+        }
+
+        public void GenerateFlyer()
+        {
+
+        }
+
     }
 }
