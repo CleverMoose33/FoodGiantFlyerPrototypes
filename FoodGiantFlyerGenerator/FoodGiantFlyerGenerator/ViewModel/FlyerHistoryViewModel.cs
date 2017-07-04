@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using FoodGiantFlyerGenerator.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -13,7 +14,6 @@ namespace FoodGiantFlyerGenerator
     {
         private readonly IEventAggregator _EventAggregator;
         private readonly DatabaseInterface _DbInt;
-
 
         #region Binding Items
         private BindableCollection<string> _ItemNameList;
@@ -101,9 +101,11 @@ namespace FoodGiantFlyerGenerator
             _DbInt.GetFlyerHistoryItemsByDate(selectedDate.DisplayDate);
         }
 
-        public void UpdateResultsBox(object radioButton)
+        public void GetAllFlyerHistoryItems()
         {
+            List<FlyerHistoryModel> results = _DbInt.GetFlyerHistoryItems();
 
+           
         }
 
         public void GenerateFlyer()

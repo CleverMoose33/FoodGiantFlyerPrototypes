@@ -15,6 +15,8 @@ namespace FoodGiantFlyerGenerator
         {
             _EventAggregator = IoC.Get<IEventAggregator>();
             _EventAggregator.Subscribe(this);
+            Driver drv = new Driver();
+            drv.StubTestForGenericFlyer();
         }
         public void FlyerCreatorClicked()
         {

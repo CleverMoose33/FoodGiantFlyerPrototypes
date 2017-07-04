@@ -89,6 +89,7 @@
     </ApplicationDefinition>
     <Compile Include="DatabaseInterface.cs" />
     <Compile Include="Driver.cs" />
+    <Compile Include="Model\FlyerHistoryModel.cs" />
     <Compile Include="Model\FlyerSettingsModel.cs" />
     <Compile Include="Model\FlyerDataModel.cs" />
     <Compile Include="ViewModel\FlyerHistoryViewModel.cs" />

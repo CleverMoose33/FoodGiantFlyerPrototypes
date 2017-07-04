@@ -16,10 +16,15 @@ namespace FoodGiantFlyerGenerator
 
         private readonly int _MaxFlyerItems = 16;
         private FlyerItemContainerViewModel[] _FlyerItemList;
+        public FlyerDataModel[] _FlyerData;
         private Visibility[] _FlyerItemVisList;
 
         string tempImgLocation = Environment.CurrentDirectory + @"\Images\";
 
+        public DateTime _StartDate;
+        public DateTime _EndDate;
+
+        //Future Improvements: Make Gneric Flyer Interface to force flyers to inherit data
         #region Binding Items
 
         #region StoreLogo Items
@@ -167,6 +172,7 @@ namespace FoodGiantFlyerGenerator
                 NotifyOfPropertyChange();
             }
         }
+
         #endregion
 
         private Visibility _ShowSupply;
@@ -647,6 +653,7 @@ namespace FoodGiantFlyerGenerator
         /// <param name="flyerData"></param>
         private void PopulateFlyerValues(FlyerDataModel[] flyerData)
         {
+            _FlyerData = flyerData;
             GenerateFlyerItems();
 
             for (int i = 0; i < flyerData.Length; i++)
@@ -788,6 +795,9 @@ namespace FoodGiantFlyerGenerator
         /// <param name="endDate"></param>
         private void SetSaleDates(DateTime startDate, DateTime endDate)
         {
+            _StartDate = startDate;
+            _EndDate = endDate;
+
             DateTime secondDate = startDate.AddDays(1);
 
             FirstDayName = startDate.DayOfWeek.ToString().Remove(3);
