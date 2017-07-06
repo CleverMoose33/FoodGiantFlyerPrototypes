@@ -10,15 +10,16 @@ namespace FoodGiantFlyerGenerator.Model
     {
         public string ManagerName { get; set; }
         public string TemplateName { get; set; }
+        public string StoreName { get; set; }
         public string StoreAddress { get; set; }
         public string StoreNumber { get; set; }
         public string FlyerCreationDate { get; set; }
-        public string FlyerSaleDates { get; set; }
+        public string FlyerStartDate { get; set; }
+        public string FlyerEndDate { get; set; }
         public bool SupplyChecked { get; set; }
         public bool RaincheckChecked { get; set; }
 
-
-        public List<FlyerDataModel> flyerItemLst { get; set;}
+        public List<FlyerDataModel> flyerItemLst { get; set; }
 
         public FlyerHistoryModel()
         {

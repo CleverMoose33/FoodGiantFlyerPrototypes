@@ -77,15 +77,21 @@ namespace FoodGiantFlyerGenerator
             }
         }
 
+        /// <summary>
+        /// Generates and returns the FlyerHistoryModel object
+        /// </summary>
+        /// <returns></returns>
         private FlyerHistoryModel GenerateFlyerHistoryModel()
         {
             FlyerHistoryModel flyerHisMdl = new FlyerHistoryModel();
             flyerHisMdl.ManagerName = Environment.UserName;
             flyerHisMdl.TemplateName = SelectedFlyerType.ToString();
+            flyerHisMdl.StoreName = SelectedFlyerType.StoreName;
             flyerHisMdl.StoreAddress = SelectedFlyerType.StoreAddress;
             flyerHisMdl.StoreNumber = SelectedFlyerType.StoreNumber;
             flyerHisMdl.FlyerCreationDate = DateTime.Today.ToShortDateString();
-            flyerHisMdl.FlyerSaleDates = SelectedFlyerType._StartDate.ToShortDateString() + SelectedFlyerType._EndDate.ToShortDateString();
+            flyerHisMdl.FlyerStartDate = SelectedFlyerType._StartDate.ToShortDateString();
+            flyerHisMdl.FlyerEndDate = SelectedFlyerType._EndDate.ToShortDateString();
 
             if (SelectedFlyerType.ShowSupply == Visibility.Visible)
                 flyerHisMdl.SupplyChecked = true;
@@ -98,8 +104,8 @@ namespace FoodGiantFlyerGenerator
                 flyerHisMdl.RaincheckChecked = false;
 
             flyerHisMdl.flyerItemLst = new List<FlyerDataModel>(SelectedFlyerType._FlyerData);
-            return flyerHisMdl;
 
+            return flyerHisMdl;
         }
     }
 }

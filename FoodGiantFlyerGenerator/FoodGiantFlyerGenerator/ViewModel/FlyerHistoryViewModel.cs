@@ -14,11 +14,13 @@ namespace FoodGiantFlyerGenerator
     {
         private readonly IEventAggregator _EventAggregator;
         private readonly DatabaseInterface _DbInt;
+        private DateTime _SearchDate;
+        private string _DateSearchType;
 
         #region Binding Items
-        private BindableCollection<string> _ItemNameList;
+        private List<FlyerHistoryModel> _ItemNameList;
 
-        public BindableCollection<string> ItemNameList
+        public List<FlyerHistoryModel> ItemNameList
         {
             get
             {
@@ -31,9 +33,9 @@ namespace FoodGiantFlyerGenerator
             }
         }
 
-        private string _ItemName;
+        private FlyerHistoryModel _ItemName;
 
-        public string ItemName
+        public FlyerHistoryModel ItemName
         {
             get
             { return _ItemName; }
@@ -71,14 +73,33 @@ namespace FoodGiantFlyerGenerator
                 NotifyOfPropertyChange();
             }
         }
+
+        private Visibility _DatePickerVis;
+
+        public Visibility DatePickerVis
+        {
+            get
+            { return _DatePickerVis; }
+            set
+            {
+                _DatePickerVis = value;
+                NotifyOfPropertyChange();
+            }
+        }
+        
         #endregion
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public FlyerHistoryViewModel()
         {
             _EventAggregator = IoC.Get<IEventAggregator>();
             _EventAggregator.Subscribe(this);
 
             _DbInt = new DatabaseInterface();
+
+            DatePickerVis = Visibility.Collapsed;
         }
 
         /// <summary>
@@ -87,30 +108,60 @@ namespace FoodGiantFlyerGenerator
         /// <param name="selectedItmCmboBox"></param>
         public void ItemListCmboBox_SelectionChanged(ComboBox selectedItmCmboBox)
         {
-
+            ItemName = selectedItmCmboBox.SelectedItem as FlyerHistoryModel;
         }
 
-        public void ManagerListCmboBox_SelectionChanged(object managers)
+        public void GetFlyerHistoryItemsByUser()
         {
-
+            ManagerListCmboBox = _DbInt.GetManagerList();
         }
 
-
-        public void PickStartSaleDate(DatePicker selectedDate)
+        /// <summary>
+        /// Queries Database by Selected Manager Name
+        /// </summary>
+        /// <param name="managers"></param>
+        public void ManagerListCmboBox_SelectionChanged(ComboBox selectedItmCmboBox)
         {
-            _DbInt.GetFlyerHistoryItemsByDate(selectedDate.DisplayDate);
+            ItemNameList = _DbInt.GetFlyerHistoryItemsByManager(selectedItmCmboBox.SelectedItem.ToString());
+            DatePickerVis = Visibility.Collapsed;
         }
 
+        /// <summary>
+        /// Queries Database by Selected Flyer Start Date
+        /// </summary>
+        /// <param name="selectedDate"></param>
+        public void GetAllFlyerHistoryItemsByDate(DatePicker selectedDate)
+        {
+            _SearchDate = selectedDate.DisplayDate;
+            ItemNameList = _DbInt.GetFlyerHistoryItemsByDate(_SearchDate, _DateSearchType);
+        }
+
+        /// <summary>
+        /// Makes calendar visible
+        /// </summary>
+        public void PickDateSearchType(RadioButton btn)
+        {
+            _DateSearchType = btn.Content.ToString();
+            DatePickerVis = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// Queries Database for all Flyer History entries
+        /// </summary>
         public void GetAllFlyerHistoryItems()
         {
-            List<FlyerHistoryModel> results = _DbInt.GetFlyerHistoryItems();
-
-           
+            DatePickerVis = Visibility.Collapsed;
+            ItemNameList = _DbInt.GetFlyerHistoryItems();
         }
 
+        /// <summary>
+        /// Generate Flyer based in selected FlyerHistory
+        /// </summary>
         public void GenerateFlyer()
         {
-
+            WindowManager wm = new WindowManager();
+            GenericFlyerViewModel gfvm = new GenericFlyerViewModel(ItemName);
+            wm.ShowWindow(gfvm);
         }
 
     }

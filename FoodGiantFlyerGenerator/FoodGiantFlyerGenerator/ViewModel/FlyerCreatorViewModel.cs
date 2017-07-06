@@ -570,10 +570,6 @@ namespace FoodGiantFlyerGenerator
             Title = "Food Giant Flyer Creator";
         }
 
-        protected override void OnActivate()
-        {
-
-        }
         #region Flyer Creator Items Instantiation
         /// <summary>
         /// Create initial Store Location Combo Box Values
@@ -671,6 +667,10 @@ namespace FoodGiantFlyerGenerator
 
         #region User Events
         #region FlyerGeneration
+        /// <summary>
+        /// Confirm flyer item data is entered correctly, return where issue is if not
+        /// </summary>
+        /// <returns></returns>
         private bool ValidateData()
         {
             bool isValidEntry = true;
@@ -705,12 +705,14 @@ namespace FoodGiantFlyerGenerator
                     }
                 }
             }
-
-
-
             return isValidEntry;
         }
 
+        /// <summary>
+        /// Generate flyer based on data entered
+        /// Currently only launches Generic Flyer, future improvement is to launch multiple flyers
+        /// based on user's option
+        /// </summary>
         public void GenerateFlyer()
         {
             ValidateData();
@@ -791,31 +793,56 @@ namespace FoodGiantFlyerGenerator
             ShowHideElements(_NumDisplayedFlyerItems);
         }
 
+        /// <summary>
+        /// Updates Store Name Field
+        /// </summary>
+        /// <param name="storeName"></param>
         public void StoreLocCmboBox_SelectionChanged(string storeName)
         {
             StoreName = storeName;
         }
 
+        /// <summary>
+        /// Updates Store Address Field
+        /// </summary>
+        /// <param name="storeName"></param>
         public void StoreAddress_TextChanged(string storeAddress)
         {
             StoreAddress = storeAddress;
         }
 
+        /// <summary>
+        /// Updates Store Number Field
+        /// </summary>
+        /// <param name="storeName"></param>
         public void StoreNumber_TextChanged(string storeNumber)
         {
             StoreNumber = storeNumber;
         }
+
+        /// <summary>
+        /// Updates Flyer Template Field
+        /// </summary>
+        /// <param name="storeName"></param>
 
         public void FlyerTemplateCmboBox_SelectionChanged(string flyerTemplateName)
         {
             _SelectedFlyerTemplate = flyerTemplateName;
         }
 
+        /// <summary>
+        /// Updates Supply Check box field
+        /// </summary>
+        /// <param name="chkBox"></param>
         public void SupplyChkBox_SelectionChanged(CheckBox chkBox)
         {
             _SupplyChkBox = chkBox.IsChecked.Value;
         }
 
+        /// <summary>
+        /// Updates Raincheck Check box field
+        /// </summary>
+        /// <param name="chkBox"></param>
         public void RainChkBox_SelectionChanged(CheckBox chkBox)
         {
             _RainChkBox = chkBox.IsChecked.Value;
@@ -824,7 +851,7 @@ namespace FoodGiantFlyerGenerator
         #endregion
 
         /// <summary>
-        /// 
+        /// Populates Flyer Start Date
         /// </summary>
         /// <param name="selectedDate"></param>
         public void PickStartSaleDate(DatePicker selectedDate)
@@ -833,7 +860,7 @@ namespace FoodGiantFlyerGenerator
         }
 
         /// <summary>
-        /// 
+        /// Populates Flyer Start Date
         /// </summary>
         /// <param name="selectedDate"></param>
         public void PickEndSaleDate(DatePicker selectedDate)
@@ -842,7 +869,6 @@ namespace FoodGiantFlyerGenerator
         }
 
         #region Visibility
-
             /// <summary>
             /// Shows/Hides elements based on user selection, will be used for
             /// aspx page to inform it of how many items it will be generating
