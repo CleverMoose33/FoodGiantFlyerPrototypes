@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FoodGiantFlyerGenerator"
         xmlns:cal="http://www.caliburnproject.org"
-        Title="{Binding Title}" Height="500" Width="1000">
+        Title="{Binding Title}" 
+        MinHeight="500" MinWidth="1000"
+        Height="500" Width="1000">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -43,10 +45,10 @@
                     </Grid.RowDefinitions>
                     <!--Flyer options-->
                 <Label Grid.Row="0" Grid.Column="0" Content="Number of Items for Flyer" Style="{StaticResource LblStyle}" />
-                <ComboBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding NumItemsCmboBox}" cal:Message.Attach="NumImagesCmboBox_SelectionChanged($this)"/>
+                    <ComboBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding NumItemsCmboBox}" Style="{StaticResource CmboBoxStyle}" cal:Message.Attach="NumImagesCmboBox_SelectionChanged($this)"/>
 
                 <Label Grid.Row="0" Grid.Column="1" Content="Flyer Template" Style="{StaticResource LblStyle}" />
-                    <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding FlyerTemplatesCmboBox}" cal:Message.Attach="FlyerTemplateCmboBox_SelectionChanged($this)"/>
+                    <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding FlyerTemplatesCmboBox}" Style="{StaticResource CmboBoxStyle}" cal:Message.Attach="FlyerTemplateCmboBox_SelectionChanged($this)"/>
 
                     <!--Check Boxes-->
                     <Label Grid.Column="0" Grid.Row="2" Content="Supplies Last" Style="{StaticResource LblStyle}" />
@@ -75,7 +77,7 @@
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Store Type" Style="{StaticResource LblStyle}" />
                     <ComboBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding StoreLocCmboBox}" 
-                          SelectedItem="{Binding StoreName}" cal:Message.Attach="StoreLocCmboBox_SelectionChanged($this)" />
+                          SelectedItem="{Binding StoreName}" Style="{StaticResource CmboBoxStyle}" cal:Message.Attach="StoreLocCmboBox_SelectionChanged($this)" />
                     <Label Grid.Row="0" Grid.Column="2" Content="Store Address" Style="{StaticResource LblStyle}" />
                     <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding StoreAddress}" cal:Message.Attach="StoreAddress_TextChanged($this)" />
                     <Label Grid.Row="0" Grid.Column="3" Content="Store Phone Number" Style="{StaticResource LblStyle}" />

@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Windows;
 using FoodGiantFlyerGenerator.Model;
 using Caliburn.Micro;
+using System.Collections.Generic;
 
 namespace FoodGiantFlyerGenerator
 {
@@ -12,15 +13,374 @@ namespace FoodGiantFlyerGenerator
     /// </summary>
     public class DatabaseInterface
     {
-        private string dbConnStr;
+        private string _DbConnStr;
 
         private BindableCollection<FlyerDataModel> flyerDBItemsList = new BindableCollection<FlyerDataModel>();
 
         public DatabaseInterface()
         {
-            dbConnStr = Properties.Settings.Default.FoodGiantSQLDatabaseConn;
+            _DbConnStr = Properties.Settings.Default.FoodGiantSQLDatabaseConn;
         }
 
+        /// <summary>
+        /// Delete Flyer Item from database
+        /// </summary>
+        /// <param name="item"></param>
+        public void DeleteItem(string itemName)
+        {
+            SqlConnection dbConn = new SqlConnection(_DbConnStr);
+            SqlCommand cmd = new SqlCommand();
+
+            string additionString = "DELETE FROM FlyerHistory" + " WHERE ItemName = " + itemName;
+
+            cmd.Connection = dbConn;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT * FROM ItemList";
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            bool itemAlreadyExists = reader.HasRows;
+            reader.Close();
+
+
+            //cmd.ExecuteNonQuery();
+        }
+
+        #region Flyer History Queries
+        /// <summary>
+        /// Added Flyer History to database.
+        /// Future improevment, find out parameters to set for duplicate check like add new item method
+        /// </summary>
+        /// <param name="flyerHistory"></param>
+        public void AddNewFlyerHistoryEntry(FlyerHistoryModel flyerHistory)
+        {
+            SqlConnection dbConn = new SqlConnection(_DbConnStr);
+
+            //Check for duplicate entry before we add entry to database
+            SqlCommand insertCmd = new SqlCommand();
+            try
+            {
+                insertCmd.Connection = dbConn;
+                insertCmd.CommandType = CommandType.Text;
+
+                //Split INSERT and VALUES section due to dynamic query based on number of images
+                string insertCmdTxt = "INSERT INTO FlyerHistory (ManagerName, TemplateName, StoreName, StoreAddress, StoreNumber, FlyerCreationDate," +
+                    " FlyerStartDate, FlyerEndDate, SupplyChecked, RaincheckChecked";
+                string insertValCmdTxt = " VALUES (@ManagerName, @TemplateName, @StoreName, @StoreAddress, @StoreNumber, @FlyerCreationDate," +
+                    " @FlyerStartDate, @FlyerEndDate, @SupplyChecked, @RaincheckChecked";
+
+                //Added params this way for reduction of a (unlikely) SQL Command Line Injection Attack
+                insertCmd.Parameters.AddWithValue("@ManagerName", flyerHistory.ManagerName);
+                insertCmd.Parameters.AddWithValue("@TemplateName", flyerHistory.TemplateName);
+                insertCmd.Parameters.AddWithValue("@StoreName", flyerHistory.StoreName);
+                insertCmd.Parameters.AddWithValue("@StoreAddress", flyerHistory.StoreAddress);
+                insertCmd.Parameters.AddWithValue("@StoreNumber", flyerHistory.StoreNumber);
+                insertCmd.Parameters.AddWithValue("@FlyerCreationDate", flyerHistory.FlyerCreationDate);
+                insertCmd.Parameters.AddWithValue("@FlyerStartDate", flyerHistory.FlyerStartDate);
+                insertCmd.Parameters.AddWithValue("@FlyerEndDate", flyerHistory.FlyerEndDate);
+                insertCmd.Parameters.AddWithValue("@SupplyChecked", flyerHistory.SupplyChecked);
+                insertCmd.Parameters.AddWithValue("@RaincheckChecked", flyerHistory.RaincheckChecked);
+
+                //Loop for adding all flyer items
+                int currentItemNum = 1;
+                foreach (FlyerDataModel flyerDataMdl in flyerHistory.flyerItemLst)
+                {
+                    insertCmdTxt = insertCmdTxt + ", Item" + currentItemNum + "Name, Item"
+                        + currentItemNum + "Price, Item" + currentItemNum + "Image, Item" + currentItemNum + "Size";
+                    insertValCmdTxt = insertValCmdTxt + ", @Item" + currentItemNum + "Name, @Item"
+                    + currentItemNum + "Price, @Item" + currentItemNum + "Image, @Item" + currentItemNum + "Size";
+
+                    insertCmd.Parameters.AddWithValue("@Item" + currentItemNum + "Name", flyerDataMdl.ItemName);
+                    insertCmd.Parameters.AddWithValue("@Item" + currentItemNum + "Price", flyerDataMdl.ItemPrice);
+                    insertCmd.Parameters.AddWithValue("@Item" + currentItemNum + "Image", flyerDataMdl.ImgName1);
+                    insertCmd.Parameters.AddWithValue("@Item" + currentItemNum + "Size", flyerDataMdl.ItemSize);
+
+                    if (!string.IsNullOrEmpty(flyerDataMdl.ItemDesc))
+                    {
+                        insertCmdTxt = insertCmdTxt + ", Item" + currentItemNum + "Desc";
+                        insertValCmdTxt = insertValCmdTxt + ", @Item" + currentItemNum + "Desc";
+                        insertCmd.Parameters.AddWithValue("@Item" + currentItemNum + "Desc", flyerDataMdl.ItemDesc);
+                    }
+                    currentItemNum++;
+                }
+
+                insertCmdTxt = insertCmdTxt + ")";
+                insertValCmdTxt = insertValCmdTxt + ")";
+
+                //Append INSERT and VALUE sections together
+                insertCmdTxt = insertCmdTxt + insertValCmdTxt;
+                insertCmd.CommandText = insertCmdTxt;
+
+                dbConn.Open();
+                //See if query updated database
+                int insertSuccess = insertCmd.ExecuteNonQuery();
+            }
+            catch (Exception e) { Console.Write(e); }
+            finally { dbConn.Close(); }
+        }
+
+        /// <summary>
+        /// Return all Flyer History Items in database
+        /// </summary>
+        /// <returns></returns>
+        public List<FlyerHistoryModel> GetFlyerHistoryItems()
+        {
+            List<FlyerHistoryModel> flyerHisLst = new List<FlyerHistoryModel>();
+
+            SqlConnection dbConn = new SqlConnection(_DbConnStr);
+            SqlCommand cmd = new SqlCommand();
+
+            string additionString = "SELECT * FROM FlyerHistory";
+
+            cmd.Connection = dbConn;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = additionString;
+            
+            try
+            {
+                dbConn.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.Default);
+                while (reader.Read())
+                {
+                    try
+                    {
+                        IDataRecord record = reader;
+                        flyerHisLst.Add(GenerateDataItem(reader));
+                    }
+                    catch (Exception)
+                    {
+                        reader.Close();
+                        MessageBox.Show("Error Has Occured");
+                    }
+                }
+            }
+            finally
+            {
+                dbConn.Close();
+            }
+
+            return flyerHisLst;
+        }
+
+        /// <summary>
+        /// Return List of all managers that have created flyers
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetManagerList()
+        {
+            List<string> managerLst = new List<string>();
+
+            SqlConnection dbConn = new SqlConnection(_DbConnStr);
+            SqlCommand cmd = new SqlCommand();
+
+            string additionString = "SELECT ManagerName FROM FlyerHistory";
+
+            cmd.Connection = dbConn;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = additionString;
+
+            dbConn.Open();
+
+            SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.Default);
+
+            try
+            {
+                while (reader.Read())
+                {
+                    try
+                    {
+                        IDataRecord record = reader;
+                        managerLst.Add((string)reader["ManagerName"]);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Error Has Occured");
+                    }
+                }
+            }
+            finally
+            {
+                reader.Close();
+                dbConn.Close();
+            }
+            return managerLst;
+        }
+
+        /// <summary>
+        /// Gets Flyer History Items by managername
+        /// </summary>
+        /// <param name="managerName"></param>
+        /// <returns>List of Flyer Histories</returns>
+        public List<FlyerHistoryModel> GetFlyerHistoryItemsByManager(string managerName)
+        {
+            List<FlyerHistoryModel> flyerHisLst = new List<FlyerHistoryModel>();
+
+            SqlConnection dbConn = new SqlConnection(_DbConnStr);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = dbConn;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT * FROM FlyerHistory WHERE ManagerName LIKE @ManagerName";
+
+            //Added params this way for reduction of a (unlikely) SQL Command Line Injection Attack
+            cmd.Parameters.AddWithValue("@ManagerName", managerName);
+
+            try
+            {
+                dbConn.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.Default);
+                while (reader.Read())
+                {
+                    try
+                    {
+                        IDataRecord record = reader;
+                        flyerHisLst.Add(GenerateDataItem(reader));
+                    }
+                    catch (Exception)
+                    {
+                        reader.Close();
+                        MessageBox.Show("Error Has Occured");
+                    }
+                }
+            }
+            finally
+            {
+                dbConn.Close();
+            }
+
+            return flyerHisLst;
+        }
+
+        /// <summary>
+        /// Gets Flyer History Items by selected date type
+        /// </summary>
+        /// <param name="searchDate"></param>
+        /// <returns>List of Flyer Histories</returns>
+        public List<FlyerHistoryModel> GetFlyerHistoryItemsByDate(DateTime searchDate, string dateSearchType)
+        {
+            //Field for date search type
+            string dateSearchParam;
+            if(dateSearchType.Contains("start"))
+            {
+                dateSearchParam = "FlyerStartDate";
+            }
+            else if (dateSearchType.Contains("end"))
+            {
+                dateSearchParam = "FlyerEndDate";
+            }
+            else
+            {
+                dateSearchParam = "FlyerCreationDate";
+            }
+
+            List<FlyerHistoryModel> flyerHisLst = new List<FlyerHistoryModel>();
+
+            SqlConnection dbConn = new SqlConnection(_DbConnStr);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = dbConn;
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT * FROM FlyerHistory WHERE " + dateSearchParam + " LIKE @" + dateSearchParam;
+
+            //Added params this way for reduction of a (unlikely) SQL Command Line Injection Attack
+            cmd.Parameters.AddWithValue("@" + dateSearchParam, searchDate.ToShortDateString());
+            
+            try
+            {
+                dbConn.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.Default);
+                while (reader.Read())
+                {
+                    try
+                    {
+                        IDataRecord record = reader;
+                        flyerHisLst.Add(GenerateDataItem(reader));
+                    }
+                    catch (Exception)
+                    {
+                        reader.Close();
+                        MessageBox.Show("Error Has Occured");
+                    }
+                }
+            }
+            finally
+            {
+                dbConn.Close();
+            }
+
+            return flyerHisLst;
+        }
+
+        /// <summary>
+        /// Enter Flyer History Item into database
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns>Complete Flyer History Model object</returns>
+        private FlyerHistoryModel GenerateDataItem(SqlDataReader reader)
+        {
+            FlyerHistoryModel flyerHisMdl = new FlyerHistoryModel();
+            try
+            {
+                flyerHisMdl.ManagerName = (string)reader["ManagerName"];
+                flyerHisMdl.TemplateName = (string)reader["TemplateName"];
+                flyerHisMdl.StoreName = (string)reader["StoreName"];
+                flyerHisMdl.StoreAddress = (string)reader["StoreAddress"];
+                flyerHisMdl.StoreNumber = (string)reader["StoreNumber"];
+                flyerHisMdl.FlyerCreationDate = (string)reader["FlyerCreationDate"];
+                flyerHisMdl.FlyerStartDate = (string)reader["FlyerStartDate"];
+                flyerHisMdl.FlyerEndDate = (string)reader["FlyerEndDate"];
+                flyerHisMdl.SupplyChecked = (bool)reader["SupplyChecked"];
+                flyerHisMdl.RaincheckChecked = (bool)reader["RaincheckChecked"];
+
+                //Method to populate flyer items
+                flyerHisMdl.flyerItemLst = new List<FlyerDataModel>();
+                FlyerDataModel tempModel;
+                bool addedAllItems = false;
+                int currentItemNum = 1;
+                while (!addedAllItems)
+                {
+                    if (!string.IsNullOrEmpty(reader["Item" + currentItemNum + "Name"].ToString()))
+                    {
+                        tempModel = new FlyerDataModel();
+                        tempModel.ItemName = (string)reader["Item" + currentItemNum + "Name"];
+                        tempModel.ItemPrice = (string)reader["Item" + currentItemNum + "Price"];
+                        tempModel.ImgName1 = (string)reader["Item" + currentItemNum + "Image"];
+                        tempModel.ItemSize = (string)reader["Item" + currentItemNum + "Size"];
+
+                        if (!string.IsNullOrEmpty(reader["Item" + currentItemNum + "Desc"].ToString()))
+                            tempModel.ItemDesc = (string)reader["Item" + currentItemNum + "Desc"];
+                        flyerHisMdl.flyerItemLst.Add(tempModel);
+                        currentItemNum++;
+                    }
+                    else
+                        addedAllItems = true;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error Has Occured");
+            }
+            return flyerHisMdl;
+        }
+
+        /// <summary>
+        /// Gets Flyer History Items by Name
+        /// </summary>
+        /// <param name="managerName"></param>
+        /// <returns>List of Flyer Histories</returns>
+        public List<FlyerHistoryModel> GetFlyerHistoryItemsByName(string managerName)
+        {
+            List<FlyerHistoryModel> returnedList = new List<FlyerHistoryModel>();
+
+
+            return returnedList;
+        }
+
+        #endregion
+
+        #region Flyer Item Queries
         /// <summary>
         /// Queries and Populates all items from the ItemList Table
         /// </summary>
@@ -30,7 +390,7 @@ namespace FoodGiantFlyerGenerator
             if (flyerDBItemsList.Count == 0)
             {
                 SqlCommand cmd = new SqlCommand();
-                SqlConnection dbConn = new SqlConnection(dbConnStr);
+                SqlConnection dbConn = new SqlConnection(_DbConnStr);
 
                 cmd.Connection = dbConn;
                 cmd.CommandType = CommandType.Text;
@@ -76,11 +436,11 @@ namespace FoodGiantFlyerGenerator
                 finally
                 {
                     reader.Close();
+                    dbConn.Close();
                 }
-                dbConn.Close();
             }
             return flyerDBItemsList;
-        }
+        }      
 
         /// <summary>
         /// Add new item to database
@@ -90,7 +450,7 @@ namespace FoodGiantFlyerGenerator
         {
             bool entryAdded = false;
             SqlCommand duplicateChkCmd = new SqlCommand();
-            SqlConnection dbConn = new SqlConnection(dbConnStr);
+            SqlConnection dbConn = new SqlConnection(_DbConnStr);
 
             duplicateChkCmd.Connection = dbConn;
             duplicateChkCmd.CommandType = CommandType.Text;
@@ -188,6 +548,6 @@ namespace FoodGiantFlyerGenerator
             }
             return entryAdded;
         }
-
+        #endregion
     }
 }

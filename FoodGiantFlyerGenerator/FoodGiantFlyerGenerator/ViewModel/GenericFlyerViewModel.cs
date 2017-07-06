@@ -16,10 +16,15 @@ namespace FoodGiantFlyerGenerator
 
         private readonly int _MaxFlyerItems = 16;
         private FlyerItemContainerViewModel[] _FlyerItemList;
+        public FlyerDataModel[] _FlyerData;
         private Visibility[] _FlyerItemVisList;
 
         string tempImgLocation = Environment.CurrentDirectory + @"\Images\";
 
+        public DateTime _StartDate;
+        public DateTime _EndDate;
+
+        //Future Improvements: Make Gneric Flyer Interface to force flyers to inherit data
         #region Binding Items
 
         #region StoreLogo Items
@@ -167,6 +172,7 @@ namespace FoodGiantFlyerGenerator
                 NotifyOfPropertyChange();
             }
         }
+
         #endregion
 
         private Visibility _ShowSupply;
@@ -632,6 +638,38 @@ namespace FoodGiantFlyerGenerator
             PopulateFlyerValues(flyerData);
         }
 
+        /// <summary>
+        /// Constructor for Flyer
+        /// </summary>
+        /// <param name="settings"></param>
+        /// <param name="flyerData"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        public GenericFlyerViewModel(FlyerHistoryModel flyerHistory)
+        {
+            _EventAggregator = IoC.Get<IEventAggregator>();
+            _EventAggregator.Subscribe(this);
+
+            SetFlyerVisList();
+
+            FlyerSettingsModel settings = new FlyerSettingsModel(flyerHistory.StoreName, flyerHistory.StoreAddress, 
+                flyerHistory.StoreNumber, flyerHistory.SupplyChecked, flyerHistory.RaincheckChecked);
+
+            DateTime startDate = DateTime.Parse(flyerHistory.FlyerStartDate);
+            DateTime endDate = DateTime.Parse(flyerHistory.FlyerEndDate);
+
+            SetupFlyerLayout(settings, startDate, endDate);
+
+            FlyerDataModel[] flyerDataArray = new FlyerDataModel[flyerHistory.flyerItemLst.Count];
+
+            for(int i = 0; i< flyerHistory.flyerItemLst.Count; i++)
+            {
+                flyerDataArray[i] = flyerHistory.flyerItemLst[i];
+            }
+            
+            PopulateFlyerValues(flyerDataArray);
+        }
+
         #region Generic Flyer Methods
         /// <summary>
         /// Set array based on number of user selected items
@@ -644,17 +682,18 @@ namespace FoodGiantFlyerGenerator
         /// <summary>
         /// Add all selected flyer items to Generic Flyer
         /// </summary>
-        /// <param name="flyerData"></param>
-        private void PopulateFlyerValues(FlyerDataModel[] flyerData)
+        /// <param name="flyerDataArray"></param>
+        private void PopulateFlyerValues(FlyerDataModel[] flyerDataArray)
         {
+            _FlyerData = flyerDataArray;
             GenerateFlyerItems();
 
-            for (int i = 0; i < flyerData.Length; i++)
+            for (int i = 0; i < flyerDataArray.Length; i++)
             {
-                _FlyerItemList[i].PopulateFlyerValues(flyerData[i]);
+                _FlyerItemList[i].PopulateFlyerValues(flyerDataArray[i]);
             }
 
-            ShowHideElements(flyerData.Length);
+            ShowHideElements(flyerDataArray.Length);
         }
 
         /// <summary>
@@ -788,6 +827,9 @@ namespace FoodGiantFlyerGenerator
         /// <param name="endDate"></param>
         private void SetSaleDates(DateTime startDate, DateTime endDate)
         {
+            _StartDate = startDate;
+            _EndDate = endDate;
+
             DateTime secondDate = startDate.AddDays(1);
 
             FirstDayName = startDate.DayOfWeek.ToString().Remove(3);

@@ -15,6 +15,8 @@ namespace FoodGiantFlyerGenerator
         {
             _EventAggregator = IoC.Get<IEventAggregator>();
             _EventAggregator.Subscribe(this);
+            Driver drv = new Driver();
+            drv.StubTestForGenericFlyer();
         }
         public void FlyerCreatorClicked()
         {
@@ -34,10 +36,9 @@ namespace FoodGiantFlyerGenerator
 
         public void FlyerHistoryClicked()
         {
-
-            //WindowManager wm = new WindowManager();
-            //FlyerHistoryViewModel fhvm = new FlyerHistoryViewModel();
-            //wm.ShowWindow(fhvm);
+            WindowManager wm = new WindowManager();
+            FlyerHistoryViewModel fhvm = new FlyerHistoryViewModel();
+            wm.ShowWindow(fhvm);
         }
     }
 }

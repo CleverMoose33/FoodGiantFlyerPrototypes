@@ -20,8 +20,9 @@
         <Setter Property="BorderBrush" Value="Black"/>
     </Style>
     <Style TargetType="ComboBox" x:Key="CmboBoxStyle">
-        <Setter Property="Height" Value="30"/>
-        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
     </Style>
     <Style TargetType="ComboBoxItem" x:Key="CmboBoxItemStyle">
         <Setter Property="FontSize" Value="14"/>
