@@ -2,6 +2,7 @@
 using FoodGiantFlyerGenerator.Model;
 using System;
 using System.ComponentModel.Composition;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -78,6 +79,32 @@ namespace FoodGiantFlyerGenerator
             set
             {
                 _SelectedItemSize = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private Visibility _ItemSizeCmboBoxBlockVis;
+
+        public Visibility ItemSizeCmboBoxBlockVis
+        {
+            get
+            { return _ItemSizeCmboBoxBlockVis; }
+            set
+            {
+                _ItemSizeCmboBoxBlockVis = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private Visibility _ItemSizeTxtBlockVis;
+
+        public Visibility ItemSizeTxtBlockVis
+        {
+            get
+            { return _ItemSizeTxtBlockVis; }
+            set
+            {
+                _ItemSizeTxtBlockVis = value;
                 NotifyOfPropertyChange();
             }
         }
@@ -218,11 +245,14 @@ namespace FoodGiantFlyerGenerator
             SetDefaultTextFields();
             SetDefaultBdrBrsh();
 
+            //Set combo box as visible item by default, hide text box
+            ItemSizeCmboBoxBlockVis = Visibility.Visible;
+            ItemSizeTxtBlockVis = Visibility.Collapsed;
         }
 
         /// <summary>
         /// Create values for each flyer item
-        /// Potential improvement: read from database?
+        /// Potential future improvement: read from database?
         /// </summary>
         public void SetDefaultTextFields()
         {
@@ -270,18 +300,21 @@ namespace FoodGiantFlyerGenerator
 
         /// <summary>
         /// Updates selected item size value
+        /// If user selects Custom, box changes to block, allowing manual user entry
         /// </summary>
         /// <param name="selectedItmCmboBox"></param>
         public void ItemSizeCmboBox_SelectionChanged(ComboBox selectedItmCmboBox)
         {
             if (selectedItmCmboBox != null)
             {
-                //if(selectedItmCmboBox.SelectedItem.ToString().Equals("Custom"))
-                //Allow user to list own item size type    
-                //else
+                if (selectedItmCmboBox.SelectedItem.ToString().Equals("Custom"))
+                {
+                    ItemSizeTxtBlockVis = Visibility.Visible;
+                    ItemSizeCmboBoxBlockVis = Visibility.Collapsed;
+                }
+                else
                     SelectedItemSize = selectedItmCmboBox.SelectedItem.ToString();
             }
-                
         }
 
         /// <summary>

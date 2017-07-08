@@ -103,6 +103,11 @@
         <Setter Property="Background" Value="White"/>
     </Style>
 
+    <!--Button Styles-->
+    <Style TargetType="Button" x:Key="ButtonStyle">
+        <Setter Property="FontSize" Value="20"/>
+    </Style>
+
     <!--ContentControl Styles-->
     <Style TargetType="ContentControl" x:Key="FlyerItemStyle">
         <Setter Property="Margin" Value="3"/>
