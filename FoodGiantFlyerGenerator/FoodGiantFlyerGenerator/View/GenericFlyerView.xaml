@@ -11,7 +11,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Themes/BasicFlyerStyle.xaml" />
+                <ResourceDictionary Source="../Themes/BasicFlyerStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -23,7 +23,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="180"/>
-            <RowDefinition Height="670" />
+            <RowDefinition Height="670"/>
         </Grid.RowDefinitions>
 
         <!--Flyer Heading Grid-->
@@ -32,7 +32,8 @@
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="4*"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" Source="..\Program Images\3 Day Sale Calendar.png" Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <!--Flyer Calendar and Date Labels-->
+            <Image Grid.Column="0" Source="..\Program Images\3 Day Sale Calendar.png" Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
             <TextBlock Text="{Binding FirstDayName}" Margin="49,0,0,41" Style="{StaticResource FlyerSmallCalendarDateStyle}" Height="14" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="23" RenderTransformOrigin="0.5,0.5" >
                 <TextBlock.RenderTransform>
                     <TransformGroup>
@@ -64,14 +65,15 @@
                 </TextBlock.RenderTransform>
             </TextBlock>
 
-            <TextBlock Text="{Binding FirstDayName}" Margin="200,62.5,179.6,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="17" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" />
-            <TextBlock Text="{Binding SecondDayName}" Margin="264.5,66,111.1,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="15" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" />
-            <TextBlock Text="{Binding ThirdDayName}" Margin="342,69.25,24.6,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="15" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" />
+            <TextBlock Text="{Binding FirstDayName}" Margin="200,62.5,179.6,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="17" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+            <TextBlock Text="{Binding SecondDayName}" Margin="264.5,66,111.1,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="15" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+            <TextBlock Text="{Binding ThirdDayName}" Margin="342,69.25,24.6,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="15" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
 
-            <TextBlock Text="{Binding FirstDayNum}" Margin="194.75,79.75,178.85,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="13" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" />
-            <TextBlock Text="{Binding SecondDayNum}" Margin="264.5,81.5,111.1,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="13" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" />
-            <TextBlock Text="{Binding ThirdDayNum}" Margin="342,84.5,24.6,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="17" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" />
+            <TextBlock Text="{Binding FirstDayNum}" Margin="194.75,79.75,178.85,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="13" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+            <TextBlock Text="{Binding SecondDayNum}" Margin="264.5,81.5,111.1,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="13" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+            <TextBlock Text="{Binding ThirdDayNum}" Margin="342,84.5,24.6,0" Style="{StaticResource FlyerCalendarDateStyle}" Height="17" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
 
+            <!--Store Logo and Misc Items-->
             <Grid Grid.Column="1" Background="White">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
@@ -84,12 +86,11 @@
                     <RowDefinition Height="3*" SharedSizeGroup="RowItems"/>
                 </Grid.RowDefinitions>
                 <Image Grid.Column="0" Grid.RowSpan="4" Source="{Binding LogoImgSrc}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-
-                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding StoreAddress}" Style="{StaticResource FlyerStoreInfoStyle}" />
-                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding StoreNumber}" Style="{StaticResource FlyerStoreInfoStyle}" />
+                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding StoreAddress}" Style="{StaticResource FlyerStoreInfoStyle}"/>
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding StoreNumber}" Style="{StaticResource FlyerStoreInfoStyle}"/>
                 <Image Grid.Column="1" Grid.Row="2" Source="..\Program Images\supplies last.PNG"
-                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="{Binding ShowSupply}" />
-                <TextBlock Grid.Column="1" Grid.Row="3" Text="No Rainchecks" Style="{StaticResource FlyerStoreInfoStyle}" Visibility="{Binding ShowRaincheck}" />
+                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="{Binding ShowSupply}"/>
+                <TextBlock Grid.Column="1" Grid.Row="3" Text="No Rainchecks" Style="{StaticResource FlyerStoreInfoStyle}" Visibility="{Binding ShowRaincheck}"/>
             </Grid>
         </Grid>
         
@@ -97,10 +98,10 @@
         <Grid Grid.Row="1" Grid.ColumnSpan="4">
             <Grid.ColumnDefinitions>
                 <!--Flyer Item Columns-->
-                <ColumnDefinition Width="1*" SharedSizeGroup="ColItems" />
-                <ColumnDefinition Width="1*" SharedSizeGroup="ColItems" />
-                <ColumnDefinition Width="1*" SharedSizeGroup="ColItems" />
-                <ColumnDefinition Width="1*" SharedSizeGroup="ColItems" />
+                <ColumnDefinition Width="1*" SharedSizeGroup="ColItems"/>
+                <ColumnDefinition Width="1*" SharedSizeGroup="ColItems"/>
+                <ColumnDefinition Width="1*" SharedSizeGroup="ColItems"/>
+                <ColumnDefinition Width="1*" SharedSizeGroup="ColItems"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -112,22 +113,22 @@
             </Grid.RowDefinitions>
 
             <!--Flyer Items-->
-            <ContentControl Grid.Row="0" Grid.Column="0" x:Name="FlyerItem1" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item1Vis}" />
-            <ContentControl Grid.Row="0" Grid.Column="1" x:Name="FlyerItem2" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item2Vis}" />
-            <ContentControl Grid.Row="0" Grid.Column="2" x:Name="FlyerItem3" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item3Vis}" />
-            <ContentControl Grid.Row="0" Grid.Column="3" x:Name="FlyerItem4" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item4Vis}" />
-            <ContentControl Grid.Row="1" Grid.Column="0" x:Name="FlyerItem5" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item5Vis}" />
-            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="FlyerItem6" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item6Vis}" />
-            <ContentControl Grid.Row="1" Grid.Column="2" x:Name="FlyerItem7" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item7Vis}" />
-            <ContentControl Grid.Row="1" Grid.Column="3" x:Name="FlyerItem8" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item8Vis}" />
-            <ContentControl Grid.Row="2" Grid.Column="0" x:Name="FlyerItem9" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item9Vis}" />
-            <ContentControl Grid.Row="2" Grid.Column="1" x:Name="FlyerItem10" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item10Vis}" />
-            <ContentControl Grid.Row="2" Grid.Column="2" x:Name="FlyerItem11" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item11Vis}" />
-            <ContentControl Grid.Row="2" Grid.Column="3" x:Name="FlyerItem12" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item12Vis}" />
-            <ContentControl Grid.Row="3" Grid.Column="0" x:Name="FlyerItem13" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item13Vis}" />
-            <ContentControl Grid.Row="3" Grid.Column="1" x:Name="FlyerItem14" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item14Vis}" />
-            <ContentControl Grid.Row="3" Grid.Column="2" x:Name="FlyerItem15" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item15Vis}" />
-            <ContentControl Grid.Row="3" Grid.Column="3" x:Name="FlyerItem16" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item16Vis}" />
+            <ContentControl Grid.Row="0" Grid.Column="0" x:Name="FlyerItem1" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item1Vis}"/>
+            <ContentControl Grid.Row="0" Grid.Column="1" x:Name="FlyerItem2" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item2Vis}"/>
+            <ContentControl Grid.Row="0" Grid.Column="2" x:Name="FlyerItem3" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item3Vis}"/>
+            <ContentControl Grid.Row="0" Grid.Column="3" x:Name="FlyerItem4" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item4Vis}"/>
+            <ContentControl Grid.Row="1" Grid.Column="0" x:Name="FlyerItem5" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item5Vis}"/>
+            <ContentControl Grid.Row="1" Grid.Column="1" x:Name="FlyerItem6" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item6Vis}"/>
+            <ContentControl Grid.Row="1" Grid.Column="2" x:Name="FlyerItem7" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item7Vis}"/>
+            <ContentControl Grid.Row="1" Grid.Column="3" x:Name="FlyerItem8" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item8Vis}"/>
+            <ContentControl Grid.Row="2" Grid.Column="0" x:Name="FlyerItem9" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item9Vis}"/>
+            <ContentControl Grid.Row="2" Grid.Column="1" x:Name="FlyerItem10" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item10Vis}"/>
+            <ContentControl Grid.Row="2" Grid.Column="2" x:Name="FlyerItem11" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item11Vis}"/>
+            <ContentControl Grid.Row="2" Grid.Column="3" x:Name="FlyerItem12" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item12Vis}"/>
+            <ContentControl Grid.Row="3" Grid.Column="0" x:Name="FlyerItem13" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item13Vis}"/>
+            <ContentControl Grid.Row="3" Grid.Column="1" x:Name="FlyerItem14" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item14Vis}"/>
+            <ContentControl Grid.Row="3" Grid.Column="2" x:Name="FlyerItem15" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item15Vis}"/>
+            <ContentControl Grid.Row="3" Grid.Column="3" x:Name="FlyerItem16" Style="{StaticResource FlyerItemStyle}" Visibility="{Binding Item16Vis}"/>
         </Grid>
 
     </Grid>

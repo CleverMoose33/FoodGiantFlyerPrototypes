@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FoodGiantFlyerGenerator"
         xmlns:cal="http://www.caliburnproject.org"
-        mc:Ignorable="d"
-        Title="{Binding Title}" Height="500" Width="700"
+        Title="{Binding Title}" 
+        Height="500" Width="700"
         MinHeight="500" MinWidth="700">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Themes/DefaultStyle.xaml" />
+                <ResourceDictionary Source="../Themes/DefaultStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -23,13 +23,12 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*" SharedSizeGroup="Items"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" SharedSizeGroup="Items"/>
             <RowDefinition Height="1*" SharedSizeGroup="Items"/>
             <RowDefinition Height="2*" SharedSizeGroup="Items"/>
-                <RowDefinition Height="1*" SharedSizeGroup="Items"/>
-            </Grid.RowDefinitions>
+            <RowDefinition Height="1*" SharedSizeGroup="Items"/>
+        </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"  Style="{StaticResource LblHeaderStyle}" Content="{Binding TitleString}"/>
 
@@ -40,10 +39,10 @@
         <Button Grid.Row="1" Grid.Column="4" Content="Select Third Image" cal:Message.Attach="SelectImage3()"/>
 
         <Border Grid.Row="2" Grid.Column="0" Style="{StaticResource BdrStyle}">
-            <TextBox Grid.Row="2" Grid.Column="0" Text="{Binding ItemName}" />
+            <TextBox Grid.Row="2" Grid.Column="0" Text="{Binding ItemName}"/>
         </Border>
         <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource BdrStyle}">
-            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ItemCategory}" />
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ItemCategory}"/>
         </Border>
 
         <Border Grid.Row="2" Grid.Column="2" Style="{StaticResource BdrStyle}">
@@ -57,7 +56,7 @@
         <Border Grid.Row="2" Grid.Column="4" Style="{StaticResource BdrStyle}">
             <Image Grid.Row="2" Grid.Column="4" Source="{Binding Image3Src}"/>
         </Border>
-        
+
         <Button Grid.Row="3" Grid.Column="3" Content="Add Item To Database" Grid.ColumnSpan="2" cal:Message.Attach="AddItemToDatabase()"/>
     </Grid>
 </Window>

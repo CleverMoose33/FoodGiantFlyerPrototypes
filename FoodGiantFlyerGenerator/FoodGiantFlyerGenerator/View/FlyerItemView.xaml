@@ -8,7 +8,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Themes/DefaultStyle.xaml" />
+                <ResourceDictionary Source="../Themes/DefaultStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -24,16 +24,20 @@
                               cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)" >
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Style="{StaticResource LblStyle}" Content="{Binding ItemName}" />
+                    <Label Style="{StaticResource LblStyle}" Content="{Binding ItemName}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding PriceTxtBlk}" Style="{StaticResource TxtBoxStyle}" />
+        <!--Item Price-->
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding PriceTxtBlk}" Style="{StaticResource TxtBoxStyle}"/>
         <!--Make into text box, prompt user to enter item size-->
+        <!--Item Size-->
         <ComboBox Grid.Column="2"  ItemsSource="{Binding ItemSizeList}" Style="{StaticResource CmboBoxStyle}"
-                              cal:Message.Attach="ItemSizeCmboBox_SelectionChanged($source)" />
-
-        <TextBox Grid.Column="3" Text="{Binding ItemDesTxtBlk}" Style="{StaticResource TxtBoxStyle}" />
+                              cal:Message.Attach="ItemSizeCmboBox_SelectionChanged($source)"/>
+        <!--Item Description-->
+        <TextBox Grid.Column="3" Text="{Binding ItemDesTxtBlk}" Style="{StaticResource TxtBoxStyle}"/>
+        
+        <!--Borders and Images-->
         <Grid Grid.Column="4" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
@@ -41,13 +45,13 @@
                 <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" BorderBrush="{Binding BdrBrsh1}" Style="{StaticResource BdrStyle}">
-                <Image Grid.Column="0" Source="{Binding ImgSrc1}" cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ImgSrc1Changed()]" />
+                <Image Grid.Column="0" Source="{Binding ImgSrc1}" cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ImgSrc1Changed()]"/>
             </Border>
             <Border Grid.Column="1" BorderBrush="{Binding BdrBrsh2}" Style="{StaticResource BdrStyle}">
-                <Image Grid.Column="1" Source="{Binding ImgSrc2}" cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ImgSrc2Changed()]" />
+                <Image Grid.Column="1" Source="{Binding ImgSrc2}" cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ImgSrc2Changed()]"/>
             </Border>
             <Border Grid.Column="2" BorderBrush="{Binding BdrBrsh3}" Style="{StaticResource BdrStyle}">
-                <Image Grid.Column="2" Source="{Binding ImgSrc3}" cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ImgSrc3Changed()]" />
+                <Image Grid.Column="2" Source="{Binding ImgSrc3}" cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ImgSrc3Changed()]"/>
             </Border>
         </Grid>
     </Grid>
