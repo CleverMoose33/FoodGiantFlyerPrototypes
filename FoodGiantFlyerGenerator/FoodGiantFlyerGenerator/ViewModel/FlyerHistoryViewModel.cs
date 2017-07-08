@@ -74,6 +74,19 @@ namespace FoodGiantFlyerGenerator
             }
         }
 
+        private string _Title;
+
+        public string Title
+        {
+            get
+            { return _Title; }
+            set
+            {
+                _Title = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
         private Visibility _DatePickerVis;
 
         public Visibility DatePickerVis
@@ -98,6 +111,8 @@ namespace FoodGiantFlyerGenerator
             _EventAggregator.Subscribe(this);
 
             _DbInt = new DatabaseInterface();
+
+            Title = "Flyer History";
 
             DatePickerVis = Visibility.Collapsed;
         }

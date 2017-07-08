@@ -18,6 +18,10 @@
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
     </Style>
+    <Style TargetType="TextBox" x:Key="TxtBoxEntryStyle">
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
     <Style TargetType="TextBox" x:Key="FlyerItemDollarPriceStyle">
         <Setter Property="FontSize" Value="55"/>
         <Setter Property="FontFamily" Value="Franklin Gothic Heavy"/>
@@ -117,5 +121,12 @@
     <Style TargetType="DatePicker" x:Key="DatePickerStyle">
         
     </Style>
+    
+    <!--Image Styles-->
+    <Style TargetType="Image" x:Key="ImageStyle">
+        <Setter Property="MaxHeight" Value="200"/>
+        <Setter Property="MaxWidth" Value="200"/>
+    </Style>
+
 
 </ResourceDictionary>

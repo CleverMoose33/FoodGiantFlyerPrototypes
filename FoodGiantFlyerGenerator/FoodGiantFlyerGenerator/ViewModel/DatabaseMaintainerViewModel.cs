@@ -113,6 +113,32 @@ namespace FoodGiantFlyerGenerator
                 NotifyOfPropertyChange();
             }
         }
+
+        private Visibility _Image2Vis;
+
+        public Visibility Image2Vis
+        {
+            get
+            { return _Image2Vis; }
+            set
+            {
+                _Image2Vis = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private Visibility _Image3Vis;
+
+        public Visibility Image3Vis
+        {
+            get
+            { return _Image3Vis; }
+            set
+            {
+                _Image3Vis = value;
+                NotifyOfPropertyChange();
+            }
+        }
         #endregion
 
         #endregion
@@ -124,10 +150,13 @@ namespace FoodGiantFlyerGenerator
         {
             _EventAggregator = IoC.Get<IEventAggregator>();
             _EventAggregator.Subscribe(this);
-            Title = "Database Maintainer";
             _DbInt = new DatabaseInterface();
 
+            Title = "Database Maintainer";
             TitleString = "Enter Food Giant Inventory Items below";
+
+            Image2Vis = Visibility.Collapsed;
+            Image3Vis = Visibility.Collapsed;
         }
 
         /// <summary>
@@ -198,6 +227,8 @@ namespace FoodGiantFlyerGenerator
                 {
                     Image1Src = opnfldlg.FileName;
                     _SafeImage1 = opnfldlg.SafeFileName;
+
+                    Image2Vis = Visibility.Visible;
                 }
             }
         }
@@ -218,6 +249,7 @@ namespace FoodGiantFlyerGenerator
                 {
                     Image2Src = opnfldlg.FileName;
                     _SafeImage2 = opnfldlg.SafeFileName;
+                    Image3Vis = Visibility.Visible;
                 }
             }
         }

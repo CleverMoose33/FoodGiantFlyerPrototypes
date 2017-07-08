@@ -78,9 +78,9 @@
                     <ComboBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding StoreLocCmboBox}" 
                           SelectedItem="{Binding StoreName}" Style="{StaticResource CmboBoxStyle}" cal:Message.Attach="StoreLocCmboBox_SelectionChanged($this)"/>
                     <Label Grid.Row="0" Grid.Column="2" Content="Store Address" Style="{StaticResource LblStyle}"/>
-                    <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding StoreAddress}" cal:Message.Attach="StoreAddress_TextChanged($this)"/>
+                    <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding StoreAddress}" cal:Message.Attach="StoreAddress_TextChanged($this)" Style="{StaticResource TxtBoxStyle}"/>
                     <Label Grid.Row="0" Grid.Column="3" Content="Store Phone Number" Style="{StaticResource LblStyle}"/>
-                    <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding StoreNumber}" cal:Message.Attach="StoreNumber_TextChanged($this)" MaxLength="11"/>
+                    <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding StoreNumber}" cal:Message.Attach="StoreNumber_TextChanged($this)" MaxLength="15" Style="{StaticResource TxtBoxStyle}"/>
 
                     <DatePicker Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource DatePickerStyle}" cal:Message.Attach="PickStartSaleDate($source)"/>
                     <DatePicker Grid.Row="2" Grid.Column="3" Style="{StaticResource DatePickerStyle}" cal:Message.Attach="PickEndSaleDate($source)"/>

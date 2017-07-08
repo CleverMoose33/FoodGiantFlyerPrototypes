@@ -693,7 +693,7 @@ namespace FoodGiantFlyerGenerator
                         MessageBox.Show("Please Update Flyer" + (i + 1) + "'s Size", "Flyer Items not complete", MessageBoxButton.OK, MessageBoxImage.Hand);
                         isValidEntry = false;
                     }
-                    if (_FlyerItemList[i].ItemDesTxtBlk == null || (string.IsNullOrEmpty(_FlyerItemList[i].ItemDesTxtBlk)) || _FlyerItemList[i].PriceTxtBlk.Equals("Enter Item Description"))
+                    if (_FlyerItemList[i].ItemDesTxtBlk == null || _FlyerItemList[i].PriceTxtBlk.Equals("Enter Item Description"))
                     {
                         MessageBox.Show("Please Update or clear Flyer" + (i + 1) + "'s Description", "Flyer Items not complete", MessageBoxButton.OK, MessageBoxImage.Hand);
                         isValidEntry = false;
@@ -715,34 +715,36 @@ namespace FoodGiantFlyerGenerator
         /// </summary>
         public void GenerateFlyer()
         {
-            ValidateData();
-            FlyerDataModel[] flyerData = new FlyerDataModel[_NumDisplayedFlyerItems];
-            for (int i = 0; i < _NumDisplayedFlyerItems; i++)
+            if (ValidateData())
             {
-                flyerData[i] = new FlyerDataModel();
-                flyerData[i].ItemName = _FlyerItemList[i].SelectedItemName;
-                flyerData[i].ItemPrice = _FlyerItemList[i].PriceTxtBlk;
-                flyerData[i].ItemSize = _FlyerItemList[i].SelectedItemSize;
-                flyerData[i].ItemDesc = _FlyerItemList[i].ItemDesTxtBlk;
-                flyerData[i].ImgName1 = _FlyerItemList[i].SelectedImage;
+                FlyerDataModel[] flyerData = new FlyerDataModel[_NumDisplayedFlyerItems];
+                for (int i = 0; i < _NumDisplayedFlyerItems; i++)
+                {
+                    flyerData[i] = new FlyerDataModel();
+                    flyerData[i].ItemName = _FlyerItemList[i].SelectedItemName;
+                    flyerData[i].ItemPrice = _FlyerItemList[i].PriceTxtBlk;
+                    flyerData[i].ItemSize = _FlyerItemList[i].SelectedItemSize;
+                    flyerData[i].ItemDesc = _FlyerItemList[i].ItemDesTxtBlk;
+                    flyerData[i].ImgName1 = _FlyerItemList[i].SelectedImage;
 
-                //Future implementation for Item Category
-                //flyerData[i].ItemCategory = _FlyerItemList[i].ItemCategory;
+                    //Future implementation for Item Category
+                    //flyerData[i].ItemCategory = _FlyerItemList[i].ItemCategory;
+                }
+                FlyerSettingsModel settings = new FlyerSettingsModel(StoreName, StoreAddress, StoreNumber, _SupplyChkBox, _RainChkBox);
+
+                //Outside current SRS Future implementation: Launch different flyers based on user choice
+                //if (_SelectedFlyerTemplate.Equals("Generic Flyer"))
+                //{
+                //    WindowManager wm = new WindowManager();
+                //    GenericFlyerViewModel gfvm = new GenericFlyerViewModel(settings, flyerData, _SelectedStartDate, _SelectedEndDate);
+                //    wm.ShowDialog(gfvm);
+                //}
+                //Currently launching generic flyer, launch from Flyer display control model at some point
+                WindowManager wm = new WindowManager();
+                GenericFlyerViewModel gfvm = new GenericFlyerViewModel(settings, flyerData, _SelectedStartDate, _SelectedEndDate);
+                FlyerDisplayControlViewModel fdcvm = new FlyerDisplayControlViewModel(gfvm);
+                wm.ShowDialog(fdcvm);
             }
-            FlyerSettingsModel settings = new FlyerSettingsModel(StoreName, StoreAddress, StoreNumber, _SupplyChkBox, _RainChkBox);
-
-            //Outside current SRS Future implementation: Launch different flyers based on user choice
-            //if (_SelectedFlyerTemplate.Equals("Generic Flyer"))
-            //{
-            //    WindowManager wm = new WindowManager();
-            //    GenericFlyerViewModel gfvm = new GenericFlyerViewModel(settings, flyerData, _SelectedStartDate, _SelectedEndDate);
-            //    wm.ShowDialog(gfvm);
-            //}
-            //Currently launching generic flyer, launch from Flyer display control model at some point
-            WindowManager wm = new WindowManager();
-            GenericFlyerViewModel gfvm = new GenericFlyerViewModel(settings, flyerData, _SelectedStartDate, _SelectedEndDate);
-            wm.ShowDialog(gfvm);
-
         }
 
         /// <summary>
