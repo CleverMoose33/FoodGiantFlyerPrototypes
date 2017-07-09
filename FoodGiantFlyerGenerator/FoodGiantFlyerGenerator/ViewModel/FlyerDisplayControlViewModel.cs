@@ -56,24 +56,24 @@ namespace FoodGiantFlyerGenerator
 
             if (flyerDisplayControlGrid != null)
             {
-                _DbInt.AddNewFlyerHistoryEntry(GenerateFlyerHistoryModel());
-                //Button btn = flyerDisplayControlGrid.Children[0] as Button;
-                //btn.Visibility = Visibility.Hidden;
-                //ContentControl printableArea = flyerDisplayControlGrid.Children[1] as ContentControl;
-                //if (printableArea != null)
-                //{
-                //    PrintDialog printDlg = new PrintDialog();
-                //    PageMediaSize pageSize = new PageMediaSize(PageMediaSizeName.NorthAmericaLetter);
-                //    printDlg.PrintTicket.PageMediaSize = pageSize;
-                //    if(printDlg.ShowDialog().Value)
-                //    {
-                //        PrintTicket pt = printDlg.PrintTicket;
-                //        Double printableWidth = pt.PageMediaSize.Width.Value;
-                //        Double printableHeight = pt.PageMediaSize.Height.Value;
-                //        printableArea.RenderSize = new Size(printableWidth, printableHeight);
-                //        printDlg.PrintVisual(printableArea, "Store Flyer - date" + DateTime.Now.ToShortDateString());                      
-                //    }
-                //}
+                Button btn = flyerDisplayControlGrid.Children[0] as Button;
+                btn.Visibility = Visibility.Hidden;
+                ContentControl printableArea = flyerDisplayControlGrid.Children[1] as ContentControl;
+                if (printableArea != null)
+                {
+                    PrintDialog printDlg = new PrintDialog();
+                    PageMediaSize pageSize = new PageMediaSize(PageMediaSizeName.NorthAmericaLetter);
+                    printDlg.PrintTicket.PageMediaSize = pageSize;
+                    if (printDlg.ShowDialog().Value)
+                    {
+                        PrintTicket pt = printDlg.PrintTicket;
+                        Double printableWidth = pt.PageMediaSize.Width.Value;
+                        Double printableHeight = pt.PageMediaSize.Height.Value;
+                        printableArea.RenderSize = new Size(printableWidth, printableHeight);
+                        printDlg.PrintVisual(printableArea, "Store Flyer - date" + DateTime.Now.ToShortDateString());
+                        _DbInt.AddNewFlyerHistoryEntry(GenerateFlyerHistoryModel());
+                    }
+                }
             }
         }
 

@@ -28,12 +28,9 @@ namespace FoodGiantFlyerGenerator
             _EventAggregator = IoC.Get<IEventAggregator>();
             _EventAggregator.Subscribe(this);
             Title = "Food Giant Program Selector";
-            Driver drv = new Driver();
-            drv.StubTestForGenericFlyer();
         }
         public void FlyerCreatorClicked()
         {
-            //ActivateItem(new FlyerCreatorViewModel());
             WindowManager wm = new WindowManager();
             FlyerCreatorViewModel fcvm = new FlyerCreatorViewModel();
             wm.ShowWindow(fcvm);
@@ -41,7 +38,6 @@ namespace FoodGiantFlyerGenerator
 
         public void DatabaseClicked()
         {
-            //  ActivateItem(new DatabaseMaintainerViewModel());
             WindowManager wm = new WindowManager();
             DatabaseMaintainerViewModel dbvm = new DatabaseMaintainerViewModel();
             wm.ShowWindow(dbvm);
