@@ -333,6 +333,7 @@ namespace FoodGiantFlyerGenerator
                 flyerHisMdl.FlyerEndDate = (string)reader["FlyerEndDate"];
                 flyerHisMdl.SupplyChecked = (bool)reader["SupplyChecked"];
                 flyerHisMdl.RaincheckChecked = (bool)reader["RaincheckChecked"];
+                flyerHisMdl.FlyerHistoryCmboBoxDispName = "Manager: " + flyerHisMdl.ManagerName + " on date " + flyerHisMdl.FlyerCreationDate;
 
                 //Method to populate flyer items
                 flyerHisMdl.flyerItemLst = new List<FlyerDataModel>();
@@ -364,20 +365,6 @@ namespace FoodGiantFlyerGenerator
             }
             return flyerHisMdl;
         }
-
-        /// <summary>
-        /// Gets Flyer History Items by Name
-        /// </summary>
-        /// <param name="managerName"></param>
-        /// <returns>List of Flyer Histories</returns>
-        public List<FlyerHistoryModel> GetFlyerHistoryItemsByName(string managerName)
-        {
-            List<FlyerHistoryModel> returnedList = new List<FlyerHistoryModel>();
-
-
-            return returnedList;
-        }
-
         #endregion
 
         #region Flyer Item Queries

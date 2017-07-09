@@ -99,7 +99,19 @@ namespace FoodGiantFlyerGenerator
                 NotifyOfPropertyChange();
             }
         }
-        
+
+        private Visibility _ManagerListCmboBoxSortVis;
+
+        public Visibility ManagerListCmboBoxSortVis
+        {
+            get
+            { return _ManagerListCmboBoxSortVis; }
+            set
+            {
+                _ManagerListCmboBoxSortVis = value;
+                NotifyOfPropertyChange();
+            }
+        }
         #endregion
 
         /// <summary>
@@ -114,6 +126,7 @@ namespace FoodGiantFlyerGenerator
 
             Title = "Flyer History";
 
+            ManagerListCmboBoxSortVis = Visibility.Collapsed;
             DatePickerVis = Visibility.Collapsed;
         }
 
@@ -138,6 +151,7 @@ namespace FoodGiantFlyerGenerator
         public void ManagerListCmboBox_SelectionChanged(ComboBox selectedItmCmboBox)
         {
             ItemNameList = _DbInt.GetFlyerHistoryItemsByManager(selectedItmCmboBox.SelectedItem.ToString());
+            ManagerListCmboBoxSortVis = Visibility.Visible;
             DatePickerVis = Visibility.Collapsed;
         }
 
@@ -158,6 +172,7 @@ namespace FoodGiantFlyerGenerator
         {
             _DateSearchType = btn.Content.ToString();
             DatePickerVis = Visibility.Visible;
+            ManagerListCmboBoxSortVis = Visibility.Collapsed;
         }
 
         /// <summary>
@@ -166,6 +181,7 @@ namespace FoodGiantFlyerGenerator
         public void GetAllFlyerHistoryItems()
         {
             DatePickerVis = Visibility.Collapsed;
+            ManagerListCmboBoxSortVis = Visibility.Collapsed;
             ItemNameList = _DbInt.GetFlyerHistoryItems();
         }
 

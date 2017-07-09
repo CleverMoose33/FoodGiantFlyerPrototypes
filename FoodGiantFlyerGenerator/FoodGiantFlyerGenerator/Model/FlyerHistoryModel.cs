@@ -18,6 +18,7 @@ namespace FoodGiantFlyerGenerator.Model
         public string FlyerEndDate { get; set; }
         public bool SupplyChecked { get; set; }
         public bool RaincheckChecked { get; set; }
+        public string FlyerHistoryCmboBoxDispName { get; set; }
 
         public List<FlyerDataModel> flyerItemLst { get; set; }
 
