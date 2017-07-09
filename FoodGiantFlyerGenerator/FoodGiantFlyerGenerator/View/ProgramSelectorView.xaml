@@ -5,9 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FoodGiantFlyerGenerator"
         xmlns:cal="http://www.caliburnproject.org"
-        Title="Food Giant Program Selector" Height="400" Width="525">
+        Title="{Binding Title}" 
+        MinHeight="400" MinWidth="525"
+        Height="400" Width="525">
     <Window.Resources>
-        <BitmapImage x:Key="FoodGiantBannerImageSrc" UriSource="../Program Images/FGLogo.png" />
+        <ResourceDictionary>
+            <BitmapImage x:Key="FoodGiantBannerImageSrc" UriSource="../Program Images/FGLogo.png"/>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Themes/DefaultStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -19,9 +26,9 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Image Grid.Row="0" Grid.ColumnSpan="2" Source="{StaticResource FoodGiantBannerImageSrc}" />
-        <Button Grid.Row="1" Grid.Column="0" Content="Create a New Store Flyer" cal:Message.Attach="FlyerCreatorClicked" />
-        <Button Grid.Row="2" Grid.Column="0" Content="Add/Remove a Store Item" cal:Message.Attach="DatabaseClicked" />
-        <Button Grid.Row="3" Grid.Column="0" Content="View Previously Created Flyers" cal:Message.Attach="FlyerHistoryClicked" />
+        <Image Grid.Row="0" Grid.ColumnSpan="2" Source="{StaticResource FoodGiantBannerImageSrc}"/>
+        <Button Grid.Row="1" Grid.Column="0" Content="Create a New Store Flyer" cal:Message.Attach="FlyerCreatorClicked" Style="{StaticResource ButtonStyle}"/>
+        <Button Grid.Row="2" Grid.Column="0" Content="Add/Remove a Store Item" cal:Message.Attach="DatabaseClicked" Style="{StaticResource ButtonStyle}"/>
+        <Button Grid.Row="3" Grid.Column="0" Content="View Previously Created Flyers" cal:Message.Attach="FlyerHistoryClicked" Style="{StaticResource ButtonStyle}"/>
     </Grid>
 </Window>

@@ -11,10 +11,23 @@ namespace FoodGiantFlyerGenerator
     {
         private readonly IEventAggregator _EventAggregator;
 
+        private string _Title;
+        public string Title
+        {
+            get
+            { return _Title; }
+            set
+            {
+                _Title = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
         public ProgramSelectorViewModel()
         {
             _EventAggregator = IoC.Get<IEventAggregator>();
             _EventAggregator.Subscribe(this);
+            Title = "Food Giant Program Selector";
             Driver drv = new Driver();
             drv.StubTestForGenericFlyer();
         }

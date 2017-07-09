@@ -731,14 +731,14 @@ namespace FoodGiantFlyerGenerator
             }
             FlyerSettingsModel settings = new FlyerSettingsModel(StoreName, StoreAddress, StoreNumber, _SupplyChkBox, _RainChkBox);
 
-            //Outside current SRS TODO: Launch different flyers based on user choice
+            //Outside current SRS Future implementation: Launch different flyers based on user choice
             //if (_SelectedFlyerTemplate.Equals("Generic Flyer"))
             //{
             //    WindowManager wm = new WindowManager();
             //    GenericFlyerViewModel gfvm = new GenericFlyerViewModel(settings, flyerData, _SelectedStartDate, _SelectedEndDate);
             //    wm.ShowDialog(gfvm);
             //}
-            //Currently launching generic flyer, TODO launch from Flyer display control model at some point
+            //Currently launching generic flyer, launch from Flyer display control model at some point
             WindowManager wm = new WindowManager();
             GenericFlyerViewModel gfvm = new GenericFlyerViewModel(settings, flyerData, _SelectedStartDate, _SelectedEndDate);
             wm.ShowDialog(gfvm);

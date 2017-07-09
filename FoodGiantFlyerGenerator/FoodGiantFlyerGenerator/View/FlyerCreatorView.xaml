@@ -11,7 +11,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Themes/DefaultStyle.xaml" />
+                <ResourceDictionary Source="../Themes/DefaultStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -44,20 +44,19 @@
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <!--Flyer options-->
-                <Label Grid.Row="0" Grid.Column="0" Content="Number of Items for Flyer" Style="{StaticResource LblStyle}" />
+                    <Label Grid.Row="0" Grid.Column="0" Content="Number of Items for Flyer" Style="{StaticResource LblStyle}"/>
                     <ComboBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding NumItemsCmboBox}" Style="{StaticResource CmboBoxStyle}" cal:Message.Attach="NumImagesCmboBox_SelectionChanged($this)"/>
 
-                <Label Grid.Row="0" Grid.Column="1" Content="Flyer Template" Style="{StaticResource LblStyle}" />
+                    <Label Grid.Row="0" Grid.Column="1" Content="Flyer Template" Style="{StaticResource LblStyle}"/>
                     <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding FlyerTemplatesCmboBox}" Style="{StaticResource CmboBoxStyle}" cal:Message.Attach="FlyerTemplateCmboBox_SelectionChanged($this)"/>
 
                     <!--Check Boxes-->
-                    <Label Grid.Column="0" Grid.Row="2" Content="Supplies Last" Style="{StaticResource LblStyle}" />
-                    <CheckBox Grid.Column="0" Grid.Row="2" Style="{StaticResource ChckBoxStyle}" cal:Message.Attach="SupplyChkBox_SelectionChanged($source)" />
-                    <Label Grid.Column="1" Grid.Row="2" Content="No Rainchecks" Style="{StaticResource LblStyle}" />
-                    <CheckBox Grid.Column="1" Grid.Row="2" Style="{StaticResource ChckBoxStyle}" cal:Message.Attach="RainChkBox_SelectionChanged($source)" />
-                    <Button Grid.Column="0" Grid.Row="3" Content="Preview Flyer" cal:Message.Attach="PreviewFlyer" />
-                    <Button Grid.Column="1" Grid.Row="3" Content="Generate Flyer" cal:Message.Attach="GenerateFlyer" />
-
+                    <Label Grid.Column="0" Grid.Row="2" Content="Supplies Last" Style="{StaticResource LblStyle}"/>
+                    <CheckBox Grid.Column="0" Grid.Row="2" Style="{StaticResource ChckBoxStyle}" cal:Message.Attach="SupplyChkBox_SelectionChanged($source)"/>
+                    <Label Grid.Column="1" Grid.Row="2" Content="No Rainchecks" Style="{StaticResource LblStyle}"/>
+                    <CheckBox Grid.Column="1" Grid.Row="2" Style="{StaticResource ChckBoxStyle}" cal:Message.Attach="RainChkBox_SelectionChanged($source)"/>
+                    <Button Grid.Column="0" Grid.Row="3" Content="Preview Flyer" cal:Message.Attach="PreviewFlyer"/>
+                    <Button Grid.Column="1" Grid.Row="3" Content="Generate Flyer" cal:Message.Attach="GenerateFlyer"/>
                 </Grid>
             </Border>
 
@@ -75,19 +74,18 @@
                         <RowDefinition Height="4*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Store Type" Style="{StaticResource LblStyle}" />
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Store Type" Style="{StaticResource LblStyle}"/>
                     <ComboBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding StoreLocCmboBox}" 
-                          SelectedItem="{Binding StoreName}" Style="{StaticResource CmboBoxStyle}" cal:Message.Attach="StoreLocCmboBox_SelectionChanged($this)" />
-                    <Label Grid.Row="0" Grid.Column="2" Content="Store Address" Style="{StaticResource LblStyle}" />
-                    <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding StoreAddress}" cal:Message.Attach="StoreAddress_TextChanged($this)" />
-                    <Label Grid.Row="0" Grid.Column="3" Content="Store Phone Number" Style="{StaticResource LblStyle}" />
-                    <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding StoreNumber}" cal:Message.Attach="StoreNumber_TextChanged($this)" MaxLength="11" />
+                          SelectedItem="{Binding StoreName}" Style="{StaticResource CmboBoxStyle}" cal:Message.Attach="StoreLocCmboBox_SelectionChanged($this)"/>
+                    <Label Grid.Row="0" Grid.Column="2" Content="Store Address" Style="{StaticResource LblStyle}"/>
+                    <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding StoreAddress}" cal:Message.Attach="StoreAddress_TextChanged($this)"/>
+                    <Label Grid.Row="0" Grid.Column="3" Content="Store Phone Number" Style="{StaticResource LblStyle}"/>
+                    <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding StoreNumber}" cal:Message.Attach="StoreNumber_TextChanged($this)" MaxLength="11"/>
 
-                    <DatePicker Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" cal:Message.Attach="PickStartSaleDate($source)" />
-                    <DatePicker Grid.Row="2" Grid.Column="3" cal:Message.Attach="PickEndSaleDate($source)" />
+                    <DatePicker Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource DatePickerStyle}" cal:Message.Attach="PickStartSaleDate($source)"/>
+                    <DatePicker Grid.Row="2" Grid.Column="3" Style="{StaticResource DatePickerStyle}" cal:Message.Attach="PickEndSaleDate($source)"/>
                 </Grid>
             </Border>
-            
             
             <!--Flyer Items-->
             <Grid Grid.Row="3" Grid.ColumnSpan="4">
@@ -113,22 +111,22 @@
                 </Grid.RowDefinitions>
 
                 <!--Flyer Items-->
-                <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem1" Visibility="{Binding Item1Vis}" />
-                <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem2" Visibility="{Binding Item2Vis}" />
-                <ContentControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem3" Visibility="{Binding Item3Vis}" />
-                <ContentControl Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem4" Visibility="{Binding Item4Vis}" />
-                <ContentControl Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem5" Visibility="{Binding Item5Vis}" />
-                <ContentControl Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem6" Visibility="{Binding Item6Vis}" />
-                <ContentControl Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem7" Visibility="{Binding Item7Vis}" />
-                <ContentControl Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem8" Visibility="{Binding Item8Vis}" />
-                <ContentControl Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem9" Visibility="{Binding Item9Vis}" />
-                <ContentControl Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem10" Visibility="{Binding Item10Vis}" />
-                <ContentControl Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem11" Visibility="{Binding Item11Vis}" />
-                <ContentControl Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem12" Visibility="{Binding Item12Vis}" />
-                <ContentControl Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem13" Visibility="{Binding Item13Vis}" />
-                <ContentControl Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem14" Visibility="{Binding Item14Vis}" />
-                <ContentControl Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem15" Visibility="{Binding Item15Vis}" />
-                <ContentControl Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem16" Visibility="{Binding Item16Vis}" />
+                <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem1" Visibility="{Binding Item1Vis}"/>
+                <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem2" Visibility="{Binding Item2Vis}"/>
+                <ContentControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem3" Visibility="{Binding Item3Vis}"/>
+                <ContentControl Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem4" Visibility="{Binding Item4Vis}"/>
+                <ContentControl Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem5" Visibility="{Binding Item5Vis}"/>
+                <ContentControl Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem6" Visibility="{Binding Item6Vis}"/>
+                <ContentControl Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem7" Visibility="{Binding Item7Vis}"/>
+                <ContentControl Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem8" Visibility="{Binding Item8Vis}"/>
+                <ContentControl Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem9" Visibility="{Binding Item9Vis}"/>
+                <ContentControl Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem10" Visibility="{Binding Item10Vis}"/>
+                <ContentControl Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem11" Visibility="{Binding Item11Vis}"/>
+                <ContentControl Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem12" Visibility="{Binding Item12Vis}"/>
+                <ContentControl Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem13" Visibility="{Binding Item13Vis}"/>
+                <ContentControl Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem14" Visibility="{Binding Item14Vis}"/>
+                <ContentControl Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem15" Visibility="{Binding Item15Vis}"/>
+                <ContentControl Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="4" x:Name="FlyerItem16" Visibility="{Binding Item16Vis}"/>
             </Grid>
 
         </Grid>
