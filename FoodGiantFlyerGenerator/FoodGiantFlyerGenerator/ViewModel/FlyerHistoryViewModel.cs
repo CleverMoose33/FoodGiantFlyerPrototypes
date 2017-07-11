@@ -3,6 +3,7 @@ using FoodGiantFlyerGenerator.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Security;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -123,6 +124,13 @@ namespace FoodGiantFlyerGenerator
             _EventAggregator.Subscribe(this);
 
             _DbInt = new DatabaseInterface();
+
+            bool isUserAdmin = false;
+            foreach (SecureString userAccount in _DbInt.GetAccountList())
+                if (Environment.UserName.Equals(userAccount))
+                    isUserAdmin = true;
+            if (!isUserAdmin)
+                Environment.Exit(0);
 
             Title = "Flyer History";
 
