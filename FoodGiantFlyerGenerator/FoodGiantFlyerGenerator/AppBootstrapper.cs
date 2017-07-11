@@ -7,6 +7,7 @@ using System.ComponentModel.Composition.Primitives;
 using System.ComponentModel.Composition;
 using System.Windows;
 using System.Reflection;
+using System.Security;
 
 namespace FoodGiantFlyerGenerator
 {
@@ -71,7 +72,18 @@ namespace FoodGiantFlyerGenerator
                 { "Width", 600 }
             };
 
-            DisplayRootViewFor<ProgramSelectorViewModel>(settings);
+            //Check user account and launch appropriate program
+            DatabaseInterface dbint = new DatabaseInterface();
+            bool isUserAdmin = false;
+            foreach (SecureString userAccount in dbint.GetAccountList())
+                if (Environment.UserName.Equals(userAccount))
+                    isUserAdmin = true;
+
+            if (isUserAdmin)
+                DisplayRootViewFor<ProgramSelectorViewModel>(settings);
+            else
+                DisplayRootViewFor<FlyerCreatorViewModel>(settings);
+
             IEventAggregator eventAggregator = IoC.Get<IEventAggregator>();
         }
 

@@ -240,7 +240,7 @@ namespace FoodGiantFlyerGenerator
             _EventAggregator.Subscribe(this);
 
             DatabaseInterface dbInt = new DatabaseInterface();
-            ItemNameList = dbInt.PullItems();
+            ItemNameList = dbInt.PullFlyerItems();
 
             SetDefaultTextFields();
             SetDefaultBdrBrsh();

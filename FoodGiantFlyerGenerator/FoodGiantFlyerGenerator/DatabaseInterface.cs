@@ -5,6 +5,7 @@ using System.Windows;
 using FoodGiantFlyerGenerator.Model;
 using Caliburn.Micro;
 using System.Collections.Generic;
+using System.Security;
 
 namespace FoodGiantFlyerGenerator
 {
@@ -15,7 +16,8 @@ namespace FoodGiantFlyerGenerator
     {
         private string _DbConnStr;
 
-        private BindableCollection<FlyerDataModel> flyerDBItemsList = new BindableCollection<FlyerDataModel>();
+        private BindableCollection<FlyerDataModel> _FlyerDBItemsList = new BindableCollection<FlyerDataModel>();
+        public List<SecureString> _UserAccounts { get; private set; }
 
         public DatabaseInterface()
         {
@@ -43,6 +45,55 @@ namespace FoodGiantFlyerGenerator
 
 
             //cmd.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        /// Pull User Accounts to find users who should have full program access privileges
+        /// </summary>
+        /// <returns>List of Users</returns>
+        public List<SecureString> GetAccountList()
+        {
+            if(_UserAccounts == null)
+            {
+                _UserAccounts = new List<SecureString>();
+            }
+            //If we have not already generated list of flyer items, then populate list else, pull existing list of items
+            if (_UserAccounts.Count == 0)
+            {
+                SqlCommand cmd = new SqlCommand();
+                SqlConnection dbConn = new SqlConnection(_DbConnStr);
+
+                cmd.Connection = dbConn;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "SELECT * FROM UserAccounts";
+
+                dbConn.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.Default);
+
+                try
+                {
+                    while (reader.Read())
+                    {
+                        try
+                        {
+                            IDataRecord record = reader;
+                            SecureString userAccount = (SecureString)reader["UserAccount"];
+                            _UserAccounts.Add(userAccount);
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Error Has Occured");
+                        }
+                    }
+                }
+                finally
+                {
+                    reader.Close();
+                    dbConn.Close();
+                }
+            }
+            return _UserAccounts;
         }
 
         #region Flyer History Queries
@@ -371,10 +422,10 @@ namespace FoodGiantFlyerGenerator
         /// <summary>
         /// Queries and Populates all items from the ItemList Table
         /// </summary>
-        public BindableCollection<FlyerDataModel> PullItems()
+        public BindableCollection<FlyerDataModel> PullFlyerItems()
         {
             //If we have not already generated list of flyer items, then populate list else, pull existing list of items
-            if (flyerDBItemsList.Count == 0)
+            if (_FlyerDBItemsList.Count == 0)
             {
                 SqlCommand cmd = new SqlCommand();
                 SqlConnection dbConn = new SqlConnection(_DbConnStr);
@@ -412,7 +463,7 @@ namespace FoodGiantFlyerGenerator
 
                             FlyerDataModel flyerItem = new FlyerDataModel(itemName, itemCat, imageName1, imageName2, imageName3);
 
-                            flyerDBItemsList.Add(flyerItem);
+                            _FlyerDBItemsList.Add(flyerItem);
                         }
                         catch (Exception)
                         {
@@ -426,7 +477,7 @@ namespace FoodGiantFlyerGenerator
                     dbConn.Close();
                 }
             }
-            return flyerDBItemsList;
+            return _FlyerDBItemsList;
         }      
 
         /// <summary>
