@@ -1,11 +1,7 @@
 ﻿using Caliburn.Micro;
 using FoodGiantFlyerGenerator.Model;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace FoodGiantFlyerGenerator
 {

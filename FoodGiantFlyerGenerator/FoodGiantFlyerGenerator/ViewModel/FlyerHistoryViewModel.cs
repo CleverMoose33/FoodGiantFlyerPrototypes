@@ -6,7 +6,6 @@ using System.ComponentModel.Composition;
 using System.Security;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace FoodGiantFlyerGenerator
 {
