@@ -142,6 +142,8 @@ namespace FoodGiantFlyerGenerator
         public void GetFlyerHistoryItemsByUser()
         {
             ManagerListCmboBox = _DbInt.GetManagerList();
+            ManagerListCmboBoxSortVis = Visibility.Visible;
+            DatePickerVis = Visibility.Collapsed;
         }
 
         /// <summary>
@@ -151,8 +153,6 @@ namespace FoodGiantFlyerGenerator
         public void ManagerListCmboBox_SelectionChanged(ComboBox selectedItmCmboBox)
         {
             ItemNameList = _DbInt.GetFlyerHistoryItemsByManager(selectedItmCmboBox.SelectedItem.ToString());
-            ManagerListCmboBoxSortVis = Visibility.Visible;
-            DatePickerVis = Visibility.Collapsed;
         }
 
         /// <summary>

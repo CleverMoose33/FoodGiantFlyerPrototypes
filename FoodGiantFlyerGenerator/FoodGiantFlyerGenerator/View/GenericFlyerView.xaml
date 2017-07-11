@@ -86,11 +86,11 @@
                     <RowDefinition Height="3*" SharedSizeGroup="RowItems"/>
                 </Grid.RowDefinitions>
                 <Image Grid.Column="0" Grid.RowSpan="4" Source="{Binding LogoImgSrc}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding StoreAddress}" Style="{StaticResource FlyerStoreInfoStyle}"/>
-                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding StoreNumber}" Style="{StaticResource FlyerStoreInfoStyle}"/>
+                <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding StoreAddress}" Style="{StaticResource FlyerStoreInfoStyle}"/>
+                <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding StoreNumber}" Style="{StaticResource FlyerStoreInfoStyle}"/>
                 <Image Grid.Column="1" Grid.Row="2" Source="..\Program Images\supplies last.PNG"
                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="{Binding ShowSupply}"/>
-                <TextBlock Grid.Column="1" Grid.Row="3" Text="No Rainchecks" Style="{StaticResource FlyerStoreInfoStyle}" Visibility="{Binding ShowRaincheck}"/>
+                <TextBox Grid.Column="1" Grid.Row="3" Text="No Rainchecks" Style="{StaticResource FlyerStoreInfoStyle}" Visibility="{Binding ShowRaincheck}"/>
             </Grid>
         </Grid>
         

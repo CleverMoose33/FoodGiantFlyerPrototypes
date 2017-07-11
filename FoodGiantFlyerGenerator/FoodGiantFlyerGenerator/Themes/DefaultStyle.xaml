@@ -36,6 +36,16 @@
         <Setter Property="MaxLength" Value="2"/>
         <Setter Property="BorderThickness" Value="0,0,0,0"/>
     </Style>
+    <Style TargetType="TextBox" x:Key="FlyerStoreInfoStyle">
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="Red"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderThickness" Value="0,0,0,0"/>
+    </Style>
 
     <!--Border Styles-->
     <Style TargetType="Border" x:Key="BdrStyle">
@@ -96,15 +106,6 @@
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="FontFamily" Value="Arial"/>
         <Setter Property="TextAlignment" Value="Center"/>
-    </Style>
-    <Style TargetType="TextBlock" x:Key="FlyerStoreInfoStyle">
-        <Setter Property="FontSize" Value="20"/>
-        <Setter Property="TextAlignment" Value="Center"/>
-        <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="Foreground" Value="Red"/>
-        <Setter Property="TextWrapping" Value="Wrap"/>
-        <Setter Property="FontFamily" Value="Arial"/>
-        <Setter Property="Background" Value="White"/>
     </Style>
 
     <!--Button Styles-->
