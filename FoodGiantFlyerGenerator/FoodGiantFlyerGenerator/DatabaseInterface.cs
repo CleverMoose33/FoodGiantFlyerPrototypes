@@ -17,7 +17,7 @@ namespace FoodGiantFlyerGenerator
         private string _DbConnStr;
 
         private BindableCollection<FlyerDataModel> _FlyerDBItemsList = new BindableCollection<FlyerDataModel>();
-        public List<SecureString> _UserAccounts { get; private set; }
+        public List<string> _UserAccounts { get; private set; }
 
         public DatabaseInterface()
         {
@@ -51,11 +51,11 @@ namespace FoodGiantFlyerGenerator
         /// Pull User Accounts to find users who should have full program access privileges
         /// </summary>
         /// <returns>List of Users</returns>
-        public List<SecureString> GetAccountList()
+        public List<string> GetAccountList()
         {
             if(_UserAccounts == null)
             {
-                _UserAccounts = new List<SecureString>();
+                _UserAccounts = new List<string>();
             }
             //If we have not already generated list of flyer items, then populate list else, pull existing list of items
             if (_UserAccounts.Count == 0)
@@ -78,7 +78,7 @@ namespace FoodGiantFlyerGenerator
                         try
                         {
                             IDataRecord record = reader;
-                            SecureString userAccount = (SecureString)reader["UserAccount"];
+                            string userAccount = (string)reader["UserAccount"];
                             _UserAccounts.Add(userAccount);
                         }
                         catch (Exception)
