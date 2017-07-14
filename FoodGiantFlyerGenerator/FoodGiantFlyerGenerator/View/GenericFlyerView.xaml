@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FoodGiantFlyerGenerator"
         xmlns:cal="http://www.caliburnproject.org"
-        MinWidth="1025" MinHeight="850"
-        Width="1025" Height="850"
+        MinWidth="{Binding FlyerWidth}" MinHeight="{Binding FlyerHeight}"
+        Width="{Binding FlyerWidth}" Height="{Binding FlyerHeight}"
         MaxWidth="1025" MaxHeight="850">
     <UserControl.Resources>
         <ResourceDictionary>

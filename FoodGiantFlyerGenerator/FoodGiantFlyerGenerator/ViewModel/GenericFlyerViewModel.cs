@@ -23,6 +23,34 @@ namespace FoodGiantFlyerGenerator
         //Future Improvements: Make Gneric Flyer Interface to force flyers to inherit data
         #region Binding Items
 
+        #region FlyerLayout
+        private double _FlyerWidth;
+
+        public double FlyerWidth
+        {
+            get
+            { return _FlyerWidth; }
+            set
+            {
+                _FlyerWidth = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
+        private double _FlyerHeight;
+
+        public double FlyerHeight
+        {
+            get
+            { return _FlyerHeight; }
+            set
+            {
+                _FlyerHeight = value;
+                NotifyOfPropertyChange();
+            }
+        }
+        #endregion
+
         #region StoreLogo Items
         private string _StoreName;
 
@@ -618,7 +646,7 @@ namespace FoodGiantFlyerGenerator
         #endregion
 
         /// <summary>
-        /// Constructor for Flyer
+        /// Constructor for Flyer when building from FLyerCreatorView
         /// </summary>
         /// <param name="settings"></param>
         /// <param name="flyerData"></param>
@@ -630,12 +658,13 @@ namespace FoodGiantFlyerGenerator
             _EventAggregator.Subscribe(this);
 
             SetFlyerVisList();
+            SetFlyerSize(flyerData.Length);
             SetupFlyerLayout(settings, startDate, endDate);
             PopulateFlyerValues(flyerData);
         }
 
         /// <summary>
-        /// Constructor for Flyer
+        /// Constructor for Flyer when taking in History
         /// </summary>
         /// <param name="settings"></param>
         /// <param name="flyerData"></param>
@@ -814,6 +843,15 @@ namespace FoodGiantFlyerGenerator
                 ShowSupply = Visibility.Visible;
             else
                 ShowSupply = Visibility.Collapsed;
+        }
+
+        private void SetFlyerSize(double flyerItems)
+        {
+            int flyerBannerHeight = 180;
+
+            //Make size allocations based on number of flyer items, like 3 or 4 per row
+            FlyerHeight = flyerBannerHeight + (flyerItems / 4 * 167.5);
+            _FlyerWidth = 850;
         }
 
         /// <summary>
