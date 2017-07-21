@@ -76,7 +76,7 @@ namespace FoodGiantFlyerGenerator
             DatabaseInterface dbint = new DatabaseInterface();
             bool isUserAdmin = false;
             foreach (string userAccount in dbint.GetAccountList())
-                if (Environment.UserName.Equals(userAccount))
+                if (Environment.UserName.ToUpper().Equals(userAccount.ToUpper()))
                     isUserAdmin = true;
 
             if (isUserAdmin)

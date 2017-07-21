@@ -152,7 +152,7 @@ namespace FoodGiantFlyerGenerator
 
             bool isUserAdmin = false;
             foreach (string userAccount in _DbInt.GetAccountList())
-                if (Environment.UserName.Equals(userAccount))
+                if (Environment.UserName.ToUpper().Equals(userAccount.ToUpper()))
                     isUserAdmin = true;
             if (!isUserAdmin)
                 Environment.Exit(0);

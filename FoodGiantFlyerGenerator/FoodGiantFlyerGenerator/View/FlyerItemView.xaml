@@ -47,13 +47,13 @@
                 <ColumnDefinition Width="1*" SharedSizeGroup="ItemGroup"/>
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" BorderBrush="{Binding BdrBrsh1}" Style="{StaticResource BdrStyle}">
-                <Image Grid.Column="0" Source="{Binding ImgSrc1}" cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ImgSrc1Changed()]"/>
+                <Image Grid.Column="0" Source="{Binding ImgSrc1}" Style="{StaticResource ImageStyle}" cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ImgSrc1Changed()]"/>
             </Border>
             <Border Grid.Column="1" BorderBrush="{Binding BdrBrsh2}" Style="{StaticResource BdrStyle}">
-                <Image Grid.Column="1" Source="{Binding ImgSrc2}" cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ImgSrc2Changed()]"/>
+                <Image Grid.Column="1" Source="{Binding ImgSrc2}" Style="{StaticResource ImageStyle}" cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ImgSrc2Changed()]"/>
             </Border>
             <Border Grid.Column="2" BorderBrush="{Binding BdrBrsh3}" Style="{StaticResource BdrStyle}">
-                <Image Grid.Column="2" Source="{Binding ImgSrc3}" cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ImgSrc3Changed()]"/>
+                <Image Grid.Column="2" Source="{Binding ImgSrc3}" Style="{StaticResource ImageStyle}" cal:Message.Attach="[Event MouseLeftButtonDown] = [Action ImgSrc3Changed()]"/>
             </Border>
         </Grid>
     </Grid>
