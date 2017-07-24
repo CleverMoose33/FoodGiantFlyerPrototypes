@@ -190,13 +190,14 @@ namespace FoodGiantFlyerGenerator
                     if (!File.Exists(tempImgLocation + _SafeImage1))
                         File.Copy(Image1Src, tempImgLocation + _SafeImage1);
 
-                    if(!string.IsNullOrEmpty(Image2Src) && !File.Exists(tempImgLocation + _SafeImage2))
+                    if (!string.IsNullOrEmpty(Image2Src) && !File.Exists(tempImgLocation + _SafeImage2))
                         File.Copy(Image2Src, tempImgLocation + _SafeImage2);
 
                     if (!string.IsNullOrEmpty(Image3Src) && !File.Exists(tempImgLocation + _SafeImage3))
                         File.Copy(Image3Src, tempImgLocation + _SafeImage3);
 
                     MessageBox.Show("New Item " + ItemName + " Added to Database");
+                    ClearFields();
                 }
             }
         }
@@ -213,6 +214,21 @@ namespace FoodGiantFlyerGenerator
                 validEntry = true;
 
             return validEntry;
+        }
+
+        /// <summary>
+        /// Clears fields after successful item add
+        /// </summary>
+        private void ClearFields()
+        {
+            ItemName = "";
+            ItemCategory = "";
+            Image1Src = "";
+            Image2Src = "";
+            Image3Src = "";
+
+            Image2Vis = Visibility.Hidden;
+            Image3Vis = Visibility.Hidden;
         }
 
         #region Image Selection Events

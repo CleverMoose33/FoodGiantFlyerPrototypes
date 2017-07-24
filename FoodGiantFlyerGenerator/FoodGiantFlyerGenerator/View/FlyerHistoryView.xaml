@@ -66,7 +66,7 @@
                               cal:Message.Attach="ItemListCmboBox_SelectionChanged($source)">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Style="{StaticResource LblStyle}" Content="{Binding FlyerCreationDate}"/>
+                    <Label Style="{StaticResource LblStyle}" Content="{Binding FlyerHistoryCmboBoxDispName}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>

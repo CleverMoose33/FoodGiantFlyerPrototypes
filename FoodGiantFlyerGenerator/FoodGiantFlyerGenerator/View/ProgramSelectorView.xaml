@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:FoodGiantFlyerGenerator"
         xmlns:cal="http://www.caliburnproject.org"
         Title="{Binding Title}" 
-        MinHeight="400" MinWidth="525"
-        Height="400" Width="525">
+        MinHeight="400" MinWidth="550"
+        Height="400" Width="550">
     <Window.Resources>
         <ResourceDictionary>
             <BitmapImage x:Key="FoodGiantBannerImageSrc" UriSource="../Program Images/FGLogo.png"/>

@@ -18,7 +18,7 @@
             <TextBox Text="{Binding ItemPriceDollar}" Style="{StaticResource FlyerItemDollarPriceStyle}" VerticalAlignment="Top"/>
             <TextBox Text="{Binding ItemPriceCents}" Style="{StaticResource FlyerItemCentsPriceStyle}" Width="60" VerticalAlignment="Stretch"/>
         </StackPanel>
-        <TextBlock Text="{Binding ItemSize}" Style="{StaticResource FlyerItemSizeStyle}" TextAlignment="Center" Height="16.648" VerticalAlignment="Top" Margin="0,47.899,17.05,0" HorizontalAlignment="Right" Width="81.486"/>
-        <TextBlock Text="{Binding ItemNameAndDesc}"  Style="{StaticResource FlyerItemNameDesStyle}" Margin="0,73.072,0,0" HorizontalAlignment="Right" Width="91.486" VerticalAlignment="Top" Height="36.352"/>
+        <TextBlock Text="{Binding ItemSize}" Style="{StaticResource FlyerItemSizeStyle}" TextAlignment="Center" Height="25" VerticalAlignment="Top" Margin="0,48,10,0" HorizontalAlignment="Right" Width="89"/>
+        <TextBlock Text="{Binding ItemNameAndDesc}"  Style="{StaticResource FlyerItemNameDesStyle}" Margin="0,73.072,0,0" HorizontalAlignment="Right" Width="91.486" Height="40"/>
     </Grid>
 </UserControl>

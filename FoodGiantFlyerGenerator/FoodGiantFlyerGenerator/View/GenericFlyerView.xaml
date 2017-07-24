@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FoodGiantFlyerGenerator"
         xmlns:cal="http://www.caliburnproject.org"
-        MinWidth="1000" MinHeight="850"
-        Width="1000" Height="850"
-        MaxWidth="1000" MaxHeight="850">
+        MinWidth="1025" MinHeight="850"
+        Width="1025" Height="850"
+        MaxWidth="1025" MaxHeight="850">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

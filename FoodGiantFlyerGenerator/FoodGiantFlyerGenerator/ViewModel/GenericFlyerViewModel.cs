@@ -16,9 +16,7 @@ namespace FoodGiantFlyerGenerator
         private FlyerItemContainerViewModel[] _FlyerItemList;
         public FlyerDataModel[] _FlyerData;
         private Visibility[] _FlyerItemVisList;
-
-        string tempImgLocation = Environment.CurrentDirectory + @"\Images\";
-
+        
         public DateTime _StartDate;
         public DateTime _EndDate;
 
