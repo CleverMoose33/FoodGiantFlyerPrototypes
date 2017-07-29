@@ -858,7 +858,7 @@ namespace FoodGiantFlyerGenerator
         /// <param name="selectedDate"></param>
         public void PickStartSaleDate(DatePicker selectedDate)
         {
-            _SelectedStartDate = selectedDate.DisplayDate;
+            _SelectedStartDate = selectedDate.SelectedDate.Value;
         }
 
         /// <summary>
@@ -867,7 +867,7 @@ namespace FoodGiantFlyerGenerator
         /// <param name="selectedDate"></param>
         public void PickEndSaleDate(DatePicker selectedDate)
         {
-            _SelectedEndDate = selectedDate.DisplayDate;
+            _SelectedEndDate = selectedDate.SelectedDate.Value;
         }
 
         #region Visibility

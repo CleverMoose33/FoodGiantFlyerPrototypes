@@ -15,7 +15,7 @@
 
     <!--TextBox Styles-->
     <Style TargetType="TextBox" x:Key="TxtBoxStyle">
-        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontSize" Value="18"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
     </Style>
     <Style TargetType="TextBox" x:Key="TxtBoxEntryStyle">
